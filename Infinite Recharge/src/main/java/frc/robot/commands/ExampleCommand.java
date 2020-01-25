@@ -18,7 +18,7 @@ public class ExampleCommand extends Command {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_subsystem);
   }
-
+  //cool!
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
