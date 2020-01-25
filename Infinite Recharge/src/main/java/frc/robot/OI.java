@@ -7,12 +7,36 @@
 
 package frc.robot;
 
+import java.util.HashMap;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotMap;
+import frc.robot.commands.*;
+
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  //// CREATING BUTTONS
+
+  //didn't initially set up as mJoystick, so we can get driving quicker
+  //TODO swich over to mJoystick
+  private Joystick Joystick;
+
+  mJoystick = new Joystick(0);
+
+  //Joystick 0 (primary joystick)
+
+
+JoystickButton intakePC = addButton(getJoystick(), bIntakePC, "Intake PC", intake.whenPressed(new ToggleIntake());
+
+JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Extend Intake PC", extend.whenPressed(new ToggleExtendIntakePC())
+
+/// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
   // You create one by telling it which joystick it's on and which button
