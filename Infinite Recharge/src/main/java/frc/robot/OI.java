@@ -34,7 +34,7 @@ public class OI {
 
 JoystickButton intakePC = addButton(getJoystick(), bIntakePC, "Intake PC", intake.whenPressed(new ToggleIntake()));
 
-JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Extend Intake PC", extend.whenPressed(new ToggleExtendIntakePC())
+JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Extend Intake PC", extend.whenPressed(new ToggleExtendIntakePC()));
 
 /// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
