@@ -25,14 +25,14 @@ public class OI {
 
   //didn't initially set up as mJoystick, so we can get driving quicker
   //TODO swich over to mJoystick
-  private Joystick Joystick;
+  private Joystick 
 
   mJoystick = new Joystick(0);
 
   //Joystick 0 (primary joystick)
 
 
-JoystickButton intakePC = addButton(getJoystick(), bIntakePC, "Intake PC", intake.whenPressed(new ToggleIntake());
+JoystickButton intakePC = addButton(getJoystick(), bIntakePC, "Intake PC", intake.whenPressed(new ToggleIntake()));
 
 JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Extend Intake PC", extend.whenPressed(new ToggleExtendIntakePC())
 
@@ -63,4 +63,11 @@ JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Exten
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+
+  
+
+    public Joystick getJoystick()
+    {
+      return mJoystick;
+    }
 }

@@ -18,6 +18,10 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
+  public static final int ARM_MOTOR_Winch = 0; //placeholder, TODO
+  public static final int ARM_MOTOR_RR = 0;//placeholder, TODO
+  public static final int ARM_MOTOR_RL = 0;//placeholder, TODO
+
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:
