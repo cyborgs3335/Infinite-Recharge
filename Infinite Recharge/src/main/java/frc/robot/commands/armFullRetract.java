@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class shimmyRight extends Command {
+public class armFullRetract extends Command {
   /**
-   * Creates a new shimmyRight.
+   * Creates a new armFullRetract.
    */
-  public shimmyRight() {
+  public armFullRetract() {
     // Use addRequirements() here to declare subsystem dependencies.
     requires(Robot.armControl);
   }

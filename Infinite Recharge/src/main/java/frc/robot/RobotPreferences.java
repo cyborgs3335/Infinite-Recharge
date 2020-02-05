@@ -11,7 +11,7 @@ package frc.robot;
  * Add your docs here.
  */
 public class RobotPreferences {
-    //all constants TODO
+    //all constants TODO: correct
 
     //where constats for the robot are placed
     public static final double kDistancePerRevolution = 1.2*Math.PI;//in inches
@@ -52,7 +52,7 @@ public class RobotPreferences {
 
     //vision
     public static final double kCameraDistanceFromFront = 17.75; 
-    public static final double kCameraHeight = 36+(5d/8); //TODO Correct
+    public static final double kCameraHeight = 36+(5d/8); 
     public static final double kCameraAngle = -18; 
     public static final double kPortTargetBottomToPortCenter = 6.5;
     public static final double kFloorToLowPortCenter = 19;

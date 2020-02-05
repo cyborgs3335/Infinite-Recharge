@@ -15,8 +15,6 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.util.LatchedBoolean;
@@ -104,7 +102,7 @@ public class armControl extends Subsystem {
     zeroEncoder();
     armHeight = armPosition.fullRetract;
 
-    //pid
+    //pid for all motors (rollers L&R should be the same)
     armMotorWinch.config_kP(0,RobotPreferences.armW_kP);
     armMotorWinch.config_kI(0,RobotPreferences.armW_kI);
     armMotorWinch.config_kD(0,RobotPreferences.armW_kD);

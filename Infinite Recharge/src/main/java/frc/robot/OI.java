@@ -25,16 +25,14 @@ public class OI {
 
   //didn't initially set up as mJoystick, so we can get driving quicker
   //TODO swich over to mJoystick
-  private Joystick 
-
-  mJoystick = new Joystick(0);
+  private Joystick mJoystick = new Joystick(0);
 
   //Joystick 0 (primary joystick)
 
 
-JoystickButton intakePC = addButton(getJoystick(), bIntakePC, "Intake PC", intake.whenPressed(new ToggleIntake()));
+JoystickButton intakePC = addButton(getJoystick(), bIntakePC, "Intake PC", intake.whenPressed(new triggerIntake()));
 
-JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Extend Intake PC", extend.whenPressed(new ToggleExtendIntakePC()));
+JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Extend Intake PC", extend.whenPressed(new toggleIntake()));
 
 /// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a

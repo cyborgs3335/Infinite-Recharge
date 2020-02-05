@@ -17,6 +17,18 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+  //rotate motors so balls are taken into the robot
+  public void takeIn()
+  {
+      
+  }
+
+  //rotate motors so balls are pushed out of the intake, meant for jams.
+  public void reject()
+  {
+
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

@@ -8,15 +8,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class shimmyRight extends Command {
+public class toggleIntake extends Command {
+  private boolean run;      
   /**
-   * Creates a new shimmyRight.
+   * Creates a new toggleIntake.
    */
-  public shimmyRight() {
+  public toggleIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.
@@ -37,6 +36,7 @@ public class shimmyRight extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    //TODO: if somebutton is pressed then flip the run boolean to true else return run(when false)
     return false;
   }
 }

@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class armRetract extends Command {
   /**
@@ -15,6 +16,7 @@ public class armRetract extends Command {
    */
   public armRetract() {
     // Use addRequirements() here to declare subsystem dependencies.
+    requires(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.
