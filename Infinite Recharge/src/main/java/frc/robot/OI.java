@@ -10,8 +10,7 @@ package frc.robot;
 import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
+import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.*;
@@ -21,18 +20,41 @@ import frc.robot.commands.*;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI {
+public class OI 
+{
 
   //didn't initially set up as mJoystick, so we can get driving quicker
   //TODO swich over to mJoystick
   private Joystick mJoystick = new Joystick(0);
+  private Joystick mJoystick2 = new Joystick(1);
 
   //Joystick 0 (primary joystick)
 
+  //TODO:assign to actuall buttons
+  //Joystick1
+  int bIntakeTrigger = 0;
+  int bIntakeToggle = 2;
 
-JoystickButton intakePC = addButton(getJoystick(), bIntakePC, "Intake PC", intake.whenPressed(new triggerIntake()));
+  //Joystick2(placeholder, unknown if needed)
+  int bArmExtend = 0;
 
-JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Extend Intake PC", extend.whenPressed(new toggleIntake()));
+  JoystickButton intakePC = addButton(getJoystick(), bIntakeTrigger, "Trigger Intake PC");
+  intakePC.whenPressed(new triggerIntake());
+
+  JoystickButton extendIntakePC = addButton(getJoystick(), bIntakeToggle, "Intake Toggle PC");
+  extendIntakePC.whenPressed(new toggleIntake());
+
+
+  public JoystickButton addButton(Joystick j, int k, String key)
+  {
+    return new JoystickButton(j, k);
+  }
+
+  public Joystick getJoystick()
+  {
+    return mJoystick;
+  }
+}
 
 /// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
@@ -61,11 +83,3 @@ JoystickButton extendIntakePC = addButton(getJoystick(), bExtendIntakePC, "Exten
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
-
-  
-
-    public Joystick getJoystick()
-    {
-      return mJoystick;
-    }
-}

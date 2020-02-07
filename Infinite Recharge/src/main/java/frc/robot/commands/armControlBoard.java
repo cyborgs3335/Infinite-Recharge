@@ -8,21 +8,19 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class armFullRetract extends Command {
+public class armControlBoard extends Command {
   /**
-   * Creates a new armFullRetract.
+   * Creates a new armControlBoard.
    */
-  public armFullRetract() {
+  public armControlBoard() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //TODO:Robot.armControl.setArmHeight(the bottom height);
+    //TODO:Robot.armControl.setArmHeight(the control board height);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -38,6 +36,6 @@ public class armFullRetract extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return true;
+    return false;
   }
 }

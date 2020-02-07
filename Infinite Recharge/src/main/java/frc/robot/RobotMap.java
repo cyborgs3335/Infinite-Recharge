@@ -18,10 +18,20 @@ public class RobotMap {
   // following variables to use with your drivetrain subsystem.
   // public static int leftMotor = 1;
   // public static int rightMotor = 2;
-  public static final int ARM_MOTOR_Winch = 0; //placeholder, TODO
-  public static final int ARM_MOTOR_RR = 0;//placeholder, TODO
-  public static final int ARM_MOTOR_RL = 0;//placeholder, TODO
-
+  //TODO: correct all constants
+  public static final int ARM_MOTOR_Winch = 0; 
+  public static final int ARM_MOTOR_RR = 0;
+  public static final int ARM_MOTOR_RL = 0;
+  public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
+	public static final int MOTOR_DRIVE_LEFTF = 14;// front left
+	public static final int MOTOR_DRIVE_LEFTB = 13;//back left
+	public static final int MOTOR_DRIVE_RIGHTF = 11;//front right
+	public static final int MOTOR_DRIVE_RIGHTB = 12;//back right
+	public static final int BUTTERFLY_PCM_MODULE1 = 0;
+	public static final int BUTTERFLY_FORWARD_CHANNEL1 = 0;
+	public static final int BUTTERFLY_FORWARD_CHANNEL2 = 0;
+	public static final int MOTOR_DRIVE_INTAKE_BELT = 0;
+	public static final int MOTOR_DRIVE_INTAKE_ARM = 0;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

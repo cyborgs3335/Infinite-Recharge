@@ -37,6 +37,6 @@ public class toggleIntake extends Command {
   @Override
   public boolean isFinished() {
     //TODO: if somebutton is pressed then flip the run boolean to true else return run(when false)
-    return false;
+    return run;
   }
 }

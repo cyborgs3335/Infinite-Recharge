@@ -28,7 +28,8 @@ public class armControl extends Subsystem {
   {
     fullRetract,
     fullExtend,
-    lowerExtend;
+    lowerExtend,
+    controlboard;
 
     private static armPosition[] vals = values();
     public armPosition next()

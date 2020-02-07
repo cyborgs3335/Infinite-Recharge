@@ -7,7 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import frc.robot.commands.triggerIntake;
 
 /**
@@ -16,7 +20,8 @@ import frc.robot.commands.triggerIntake;
 public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-
+  TalonSRX beltDrive = new TalonSRX(RobotMap.MOTOR_DRIVE_INTAKE_BELT);
+  TalonSRX armDrive = new TalonSRX(RobotMap.MOTOR_DRIVE_INTAKE_ARM);
   //rotate motors so balls are taken into the robot
   public void takeIn()
   {
