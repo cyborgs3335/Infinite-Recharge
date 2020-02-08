@@ -47,13 +47,14 @@ public class TankDrive {
     }
       // Called repeatedly when this Command is scheduled to run
       
-      public void execute() {
-       double fr= Robot.oi.getJoystick().getRawAxis(0);
-       double fl = Robot.oi.getJoystick().getRawAxis(1);
-       double forwardRight = map(fr);
-       double forwardLeft = map(fl);
-       Robot.driveTrain.driveMotorsR(forwardRight, forwardRight);
-       Robot.driveTrain.driveMotorsL(forwardLeft, forwardLeft);
-       DriverStation.reportWarning("you are in the single stick drive now", true);
+      public void execute() 
+      {
+        double fr= Robot.oi.getJoystick().getRawAxis(0);
+        double fl = Robot.oi.getJoystick().getRawAxis(1);
+        double forwardRight = map(fr);
+        double forwardLeft = map(fl);
+        Robot.driveTrain.driveMotorsR(forwardRight, forwardRight);
+        Robot.driveTrain.driveMotorsL(forwardLeft, forwardLeft);
+        DriverStation.reportWarning("you are in the single stick drive now", true);
       }
 }

@@ -29,7 +29,9 @@ public class Intake extends Subsystem {
   {
     armExtend = new Solenoid(RobotMap.INTAKE_SOLENOID_ARM);
     armDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_ARM);
+    armDrive.configFactoryDefault(100);
     beltDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_BELT);
+    beltDrive.configFactoryDefault(100);
 
     //armDrive pid
     armDrive.config_kP(0, RobotPreferences.kIntakeA_P);

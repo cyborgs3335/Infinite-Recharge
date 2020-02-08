@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
+import frc.robot.commands.whatOI;
 
 public class driveTrain extends Subsystem 
 {
@@ -31,13 +32,13 @@ public class driveTrain extends Subsystem
   public driveTrain()
   {
     leftBack = new TalonSRX(RobotMap.DRIVE_MOTOR_LEFTB);
-    leftBack.configFactoryDefault();
+    leftBack.configFactoryDefault(100);
     leftFront = new TalonSRX(RobotMap.DRIVE_MOTOR_LEFTF);
-    leftFront.configFactoryDefault();
+    leftFront.configFactoryDefault(100);
     rightBack = new TalonSRX(RobotMap.DRIVE_MOTOR_RIGHTB);
-    rightBack.configFactoryDefault();
+    rightBack.configFactoryDefault(100);
     rightFront = new TalonSRX(RobotMap.DRIVE_MOTOR_RIGHTF);
-    rightFront.configFactoryDefault();
+    rightFront.configFactoryDefault(100);
     //TODO:correct the talon the pigeon is attached to
     pidgeon = new PigeonIMU(rightFront);
     
@@ -170,6 +171,6 @@ public class driveTrain extends Subsystem
   @Override
   protected void initDefaultCommand() {
     // TODO Auto-generated method stub
-    setDefaultCommand(null);
+    setDefaultCommand(new whatOI());
   }
 }

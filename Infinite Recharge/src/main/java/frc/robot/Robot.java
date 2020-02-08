@@ -25,6 +25,7 @@ import frc.robot.subsystems.driveTrain;
  * project.
  */
 public class Robot extends TimedRobot {
+  public static boolean podrace = true;
   public static Intake m_subsystem = new Intake();
   public static OI oi;
 
@@ -41,7 +42,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    oi = new OI(true);
+    oi = new OI(podrace);
     m_chooser.setDefaultOption("Default Auto", new triggerIntake());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);

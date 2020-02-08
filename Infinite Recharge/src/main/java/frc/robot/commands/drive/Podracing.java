@@ -17,10 +17,10 @@ public class Podracing{
   //not a command
   double deadzone = .1;
 
-  public Podracing(){
+  public Podracing()
+  {
       Robot.driveTrain.setBrake(true);
       Robot.driveTrain.setDefaltRampRate();
-      
   }
 
   public double map(double input) 

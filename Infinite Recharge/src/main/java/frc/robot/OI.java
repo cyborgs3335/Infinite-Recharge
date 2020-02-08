@@ -9,6 +9,8 @@ package frc.robot;
 
 import java.util.HashMap;
 
+import javax.swing.SwingConstants;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -65,6 +67,7 @@ public class OI
       int bIntakeToggle = 0;
       int bArmExtend = 0;
       int bFullArmExtend = 0;
+      int bSwitchDrive = 0;
 
       JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
       intakePC.whileActive(new triggerIntake());
@@ -74,6 +77,9 @@ public class OI
 
       JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
       fullArmExtend.whenPressed(new armFullExtend());
+
+      JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
+      switchDrive.whenPressed(new switchDrive());
     }
   }
 
