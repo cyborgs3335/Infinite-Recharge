@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.triggerIntake;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.armControl;
+import frc.robot.subsystems.driveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -31,6 +32,8 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public static armControl armControl;
+  public static driveTrain driveTrain;
+  public static Intake Intake;
   
   /**
    * This function is run when the robot is first started up and should be

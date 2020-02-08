@@ -39,6 +39,15 @@ public class RobotPreferences {
     public static final double kPeakOutput = 1;
     public static final double kTimeoutMS = 30;
 
+    //intake pid
+    public static final double armID_kP = 0;
+    public static final double armID_kI = 0;
+    public static final double armID_kD = 0;
+    public static final double armIB_kP = 0;
+    public static final double armIB_kI = 0;
+    public static final double armIB_kD = 0;
+    
+
     //arm pid
     public static final double armW_kP = .1;
     public static final double armW_kI = 0;
@@ -61,5 +70,6 @@ public class RobotPreferences {
     public static final double LowestPort = 19;//bottom
     public static final double HighPort = 47;
     public static final double Backport = 1;
+	
 
 }

@@ -19,6 +19,7 @@ import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.util.LatchedBoolean;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -44,6 +45,7 @@ public class armControl extends Subsystem {
   public TalonSRX armMotorWinch;
   public TalonSRX armMotorRollerL;
   public TalonSRX armMotorRollerR;
+  public Solenoid armSolenoid,armSolenoid2,armSolenoidWinch;
   
   public SensorCollection[] sensors = new SensorCollection[3];  
   private armPosition armHeight;
@@ -65,6 +67,9 @@ public class armControl extends Subsystem {
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
+    armSolenoid = new Solenoid(RobotMap.ARM_PCM_MODULE1,RobotMap.SOLENOID_ARM); 
+    armSolenoid = new Solenoid(RobotMap.ARM_PCM_MODULE2,RobotMap.SOLENOID_ARM2); 
+    armSolenoidWinch = new Solenoid(RobotMap.ARM_WINCH_PCM_MODULE1, RobotMap.SOLENOID_ARM_WINCH);
 
     sensors[0] = armMotorWinch.getSensorCollection();
     sensors[1] = armMotorRollerR.getSensorCollection();

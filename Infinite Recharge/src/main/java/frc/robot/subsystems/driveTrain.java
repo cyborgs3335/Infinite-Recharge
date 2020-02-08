@@ -20,7 +20,7 @@ import frc.robot.RobotPreferences;
 public class driveTrain extends Subsystem 
 {
   private final TalonSRX leftBack,leftFront,rightBack,rightFront;
-  private final Solenoid solenoid1, solenoid2;
+  private final Solenoid solenoid1, solenoid2, solenoid3, solenoid4, solenoid5, solenoid6;
   private int direction = RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
   private double voltageRampRateDefault;
 
@@ -33,8 +33,12 @@ public class driveTrain extends Subsystem
     leftFront = new TalonSRX(RobotMap.MOTOR_DRIVE_LEFTF);
     rightBack = new TalonSRX(RobotMap.MOTOR_DRIVE_RIGHTB);
     rightFront = new TalonSRX(RobotMap.MOTOR_DRIVE_RIGHTF);
-    solenoid1 = new Solenoid(RobotMap.BUTTERFLY_PCM_MODULE1, RobotMap.BUTTERFLY_FORWARD_CHANNEL1);
-		solenoid2 = new Solenoid(RobotMap.BUTTERFLY_PCM_MODULE1, RobotMap.BUTTERFLY_FORWARD_CHANNEL2);
+    solenoid1 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL1);
+    solenoid2 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
+    solenoid3 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
+    solenoid4 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
+    solenoid5 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
+    solenoid6 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
 		double voltageRampRate = voltageRampRateDefault;//20;
 		setRampRate(voltageRampRate);
 		solenoid1.set(false);
@@ -140,11 +144,15 @@ public class driveTrain extends Subsystem
 		this.direction = direction * RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
   }
   
-  public void driveMotors(double rf, double rb, double lf, double lb) 
+  public void driveMotorsL(double lf, double lb) 
   {     
 		leftFront.set(ControlMode.PercentOutput, lf);
 		leftBack.set(ControlMode.PercentOutput,lb);
-		rightFront.set(ControlMode.PercentOutput,rf);
+  }
+
+  public void driveMotorsR(double rf, double rb)
+  {
+    rightFront.set(ControlMode.PercentOutput,rf);
 		rightBack.set(ControlMode.PercentOutput,rb);
   }
   

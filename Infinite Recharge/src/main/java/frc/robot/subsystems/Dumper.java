@@ -11,13 +11,19 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
-public class shooter extends Subsystem {
-  Solenoid shoot;
+public class Dumper extends Subsystem{
+
+  Solenoid dump;
   /**
-   * Creates a new shooter.
+   * Creates a new Dumper.
    */
-  public shooter() {
-      shoot = new Solenoid(RobotMap.SHOOT_PCM_MODULE,RobotMap.SOLENOID_SHOOT);
+  public Dumper() {
+    dump = new Solenoid(RobotMap.DRIVE_PCM_DUMPER , RobotMap.SOLENOID_DUMP);
+  }
+
+  public void dump(boolean d)
+  {
+    dump.set(!d);
   }
 
   @Override

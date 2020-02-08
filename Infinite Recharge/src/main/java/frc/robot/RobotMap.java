@@ -26,12 +26,24 @@ public class RobotMap {
 	public static final int MOTOR_DRIVE_LEFTF = 14;// front left
 	public static final int MOTOR_DRIVE_LEFTB = 13;//back left
 	public static final int MOTOR_DRIVE_RIGHTF = 11;//front right
-	public static final int MOTOR_DRIVE_RIGHTB = 12;//back right
-	public static final int BUTTERFLY_PCM_MODULE1 = 0;
-	public static final int BUTTERFLY_FORWARD_CHANNEL1 = 0;
-	public static final int BUTTERFLY_FORWARD_CHANNEL2 = 0;
+  public static final int MOTOR_DRIVE_RIGHTB = 12;//back right
+  public static final int DRIVE_PCM_DUMPER = 0;
+	public static final int DRIVE_PCM_MODULE1 = 0;
+	public static final int DRIVE_FORWARD_CHANNEL1 = 0;
+	public static final int DRIVE_FORWARD_CHANNEL2 = 0;
 	public static final int MOTOR_DRIVE_INTAKE_BELT = 0;
 	public static final int MOTOR_DRIVE_INTAKE_ARM = 0;
+	public static final int SOLENOID_DRIVE_INTAKE = 0;
+	public static final int SOLENOID_ARM_DRIVE_INTAKE = 0;
+	public static final int SOLENOID_DUMP = 0;
+	public static final int ARM_PCM_MODULE1 = 0;
+	public static final int SOLENOID_ARM = 0;
+	public static final int SOLENOID_ARM_WINCH = 0;
+	public static final int ARM_WINCH_PCM_MODULE1 = 0;
+	public static final int SOLENOID_ARM2 = 0;
+	public static final int ARM_PCM_MODULE2 = 0;
+	public static final int SHOOT_PCM_MODULE = 0;
+	public static final int SOLENOID_SHOOT = 0;
 
   // If you are using multiple modules, make sure to define both the port
   // number and the module. For example you with a rangefinder:

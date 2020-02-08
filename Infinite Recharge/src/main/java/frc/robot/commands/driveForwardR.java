@@ -10,13 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class toggleIntake extends Command {
+public class driveForwardR extends Command {
   /**
-   * Creates a new toggleIntake.
+   * Creates a new driveForward.
    */
-  public toggleIntake() {
-    // Use addRequirements() here to declare subsystem dependencies.\
-    requires(Robot.Intake);
+  public driveForwardR() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    requires(Robot.driveTrain);
   }
 
   // Called when the command is initially scheduled.

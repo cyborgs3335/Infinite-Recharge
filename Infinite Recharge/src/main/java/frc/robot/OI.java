@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
-import frc.robot.commands.*;
+
 
 
 /**
@@ -33,13 +33,13 @@ public class OI
   //TODO:assign to actuall buttons
   //Joystick1
   int bIntakeTrigger = 0;
-  int bIntakeToggle = 2;
+  int bIntakeToggle = 0;
 
   //Joystick2(placeholder, unknown if needed)
   int bArmExtend = 0;
 
   JoystickButton intakePC = addButton(getJoystick(), bIntakeTrigger, "Trigger Intake PC");
-  intakePC.whenPressed(new triggerIntake());
+  intakePC.whenPressed(new toggleIntake());
 
   JoystickButton extendIntakePC = addButton(getJoystick(), bIntakeToggle, "Intake Toggle PC");
   extendIntakePC.whenPressed(new toggleIntake());

@@ -16,7 +16,7 @@ import frc.robot.Robot;
 public class triggerIntake extends Command {
   public triggerIntake() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_subsystem);
+    requires(Robot.Intake);
   }
   //cool!
   // Called just before this Command runs the first time
