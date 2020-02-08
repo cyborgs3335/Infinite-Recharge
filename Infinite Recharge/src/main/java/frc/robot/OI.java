@@ -20,38 +20,37 @@ import frc.robot.commands.*;
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI 
-{
+public class OI {
 
-  //didn't initially set up as mJoystick, so we can get driving quicker
-  //TODO swich over to mJoystick
-  private Joystick mJoystick = new Joystick(0);
-  private Joystick mJoystick2 = new Joystick(1);
+  private static final OI INSTANCE = new OI();
 
   //Joystick 0 (primary joystick)
+  private Joystick mJoystick = new Joystick(0);
+  //private Joystick mJoystick2 = new Joystick(1);
 
-  //TODO:assign to actuall buttons
-  //Joystick1
-  int bIntakeTrigger = 0;
-  int bIntakeToggle = 2;
+  //TODO:assign to actual buttons
+  private final int bIntakeTrigger = 0;
+  private final int bIntakeToggle = 2;
+  //private final int bArmExtend = 0;
 
-  //Joystick2(placeholder, unknown if needed)
-  int bArmExtend = 0;
+  public static OI getInstance() {
+    return INSTANCE;
+  }
 
-  JoystickButton intakePC = addButton(getJoystick(), bIntakeTrigger, "Trigger Intake PC");
-  intakePC.whenPressed(new triggerIntake());
+  private OI() {
+    JoystickButton intakePC = addButton(getJoystick(), bIntakeTrigger, "Trigger Intake PC");
+    intakePC.whenPressed(new triggerIntake());
 
-  JoystickButton extendIntakePC = addButton(getJoystick(), bIntakeToggle, "Intake Toggle PC");
-  extendIntakePC.whenPressed(new toggleIntake());
+    JoystickButton extendIntakePC = addButton(getJoystick(), bIntakeToggle, "Intake Toggle PC");
+    extendIntakePC.whenPressed(new toggleIntake());
+  }
 
 
-  public JoystickButton addButton(Joystick j, int k, String key)
-  {
+  public JoystickButton addButton(Joystick j, int k, String key) {
     return new JoystickButton(j, k);
   }
 
-  public Joystick getJoystick()
-  {
+  public Joystick getJoystick() {
     return mJoystick;
   }
 }
