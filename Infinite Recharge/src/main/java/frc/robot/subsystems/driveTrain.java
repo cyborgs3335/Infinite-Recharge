@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,7 +21,7 @@ import frc.robot.RobotPreferences;
 public class driveTrain extends Subsystem 
 {
   private final TalonSRX leftBack,leftFront,rightBack,rightFront;
-  private final Solenoid solenoid1, solenoid2, solenoid3, solenoid4, solenoid5, solenoid6;
+  private final PigeonIMU pidgeon;
   private int direction = RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
   private double voltageRampRateDefault;
 
@@ -29,20 +30,19 @@ public class driveTrain extends Subsystem
    */
   public driveTrain()
   {
-    leftBack = new TalonSRX(RobotMap.MOTOR_DRIVE_LEFTB);
-    leftFront = new TalonSRX(RobotMap.MOTOR_DRIVE_LEFTF);
-    rightBack = new TalonSRX(RobotMap.MOTOR_DRIVE_RIGHTB);
-    rightFront = new TalonSRX(RobotMap.MOTOR_DRIVE_RIGHTF);
-    solenoid1 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL1);
-    solenoid2 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
-    solenoid3 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
-    solenoid4 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
-    solenoid5 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
-    solenoid6 = new Solenoid(RobotMap.DRIVE_PCM_MODULE1, RobotMap.DRIVE_FORWARD_CHANNEL2);
+    leftBack = new TalonSRX(RobotMap.DRIVE_MOTOR_LEFTB);
+    leftBack.configFactoryDefault();
+    leftFront = new TalonSRX(RobotMap.DRIVE_MOTOR_LEFTF);
+    leftFront.configFactoryDefault();
+    rightBack = new TalonSRX(RobotMap.DRIVE_MOTOR_RIGHTB);
+    rightBack.configFactoryDefault();
+    rightFront = new TalonSRX(RobotMap.DRIVE_MOTOR_RIGHTF);
+    rightFront.configFactoryDefault();
+    //TODO:correct the talon the pigeon is attached to
+    pidgeon = new PigeonIMU(rightFront);
+    
 		double voltageRampRate = voltageRampRateDefault;//20;
 		setRampRate(voltageRampRate);
-		solenoid1.set(false);
-    solenoid2.set(false);
 
     leftFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		leftBack.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -132,12 +132,6 @@ public class driveTrain extends Subsystem
   {	 
 		return rightBack.getSelectedSensorPosition();
   }
-
-  public void switchSolenoidState(boolean state){
-		solenoid1.set(state);
-		solenoid2.set(state);
-		
-	}
 
   public void setDirection(int direction) 
   {

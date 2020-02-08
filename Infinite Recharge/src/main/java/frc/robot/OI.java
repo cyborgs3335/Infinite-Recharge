@@ -26,39 +26,70 @@ public class OI
 
   // didn't initially set up as mJoystick, so we can get driving quicker
   //TODO swich over to mJoystick
-  private Joystick mJoystick = new Joystick(0);
-  private Joystick mJoystick2 = new Joystick(1);
+  private Joystick mJoystick;
+  private Joystick mJoystick2;
 
   //Joystick 0 (primary joystick)
-  public OI()
+  public OI(boolean podrace)
   {
-    //TODO:assign to actuall buttons
-    //Joystick1
-    int bIntakeTrigger = 0;
-    int bIntakeToggle = 0;
+    if(podrace)
+    {
+      mJoystick = new Joystick(0);
+      mJoystick2 = new Joystick(1);
 
-    //Joystick2(placeholder, unknown if needed)
-    int bArmExtend = 0;
-    int bFullArmExtend = 0;
+      //TODO:assign to actuall buttons
+      //Joystick1
+      int bIntakeTrigger = 0;
+      int bIntakeToggle = 0;
 
-    JoystickButton intakePC = addButton(getJoystick(), bIntakeTrigger, "Trigger Intake PC");
-    intakePC.whenPressed(new triggerIntake());
+      //Joystick2(placeholder, unknown if needed)
+      int bArmExtend = 0;
+      int bFullArmExtend = 0;
 
-    JoystickButton extendIntakePC = addButton(getJoystick(), bIntakeToggle, "Intake Toggle PC");
-    extendIntakePC.whenPressed(new toggleIntake());
+      JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
+      intakePC.whileActive(new triggerIntake());
 
-    JoystickButton fullArmExtend = addButton(getJoystick(), bFullArmExtend, "Full Extend Arm");
-    fullArmExtend.whenPressed(new armFullExtend());
+      JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
+      toggleIntake.toggleWhenPressed(new toggleIntake());
 
+      JoystickButton fullArmExtend = addButton(mJoystick2, bFullArmExtend, "Full Extend Arm");
+      fullArmExtend.whenPressed(new armFullExtend());
+    }
+    else
+    {
+      mJoystick = new Joystick(0);
+
+      //TODO:assign to actuall buttons
+      //Joystick1
+      int bIntakeTrigger = 0;
+      int bIntakeToggle = 0;
+      int bArmExtend = 0;
+      int bFullArmExtend = 0;
+
+      JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
+      intakePC.whileActive(new triggerIntake());
+
+      JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
+      toggleIntake.toggleWhenPressed(new toggleIntake());
+
+      JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
+      fullArmExtend.whenPressed(new armFullExtend());
+    }
   }
+
   public JoystickButton addButton(Joystick j, int k, String key)
   {
     return new JoystickButton(j, k);
   }
 
-  public Joystick getJoystick()
+  public Joystick getJoystick() 
   {
-    return mJoystick;
+	  return mJoystick;
+  }
+
+  public Joystick getJoystick2() 
+  {
+	  return mJoystick2;
   }
 }
 

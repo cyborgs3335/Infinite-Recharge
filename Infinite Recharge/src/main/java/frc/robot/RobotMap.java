@@ -14,39 +14,40 @@ package frc.robot;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
-  //TODO: correct all constants
-  public static final int ARM_MOTOR_Winch = 0; 
-  public static final int ARM_MOTOR_RR = 0;
-  public static final int ARM_MOTOR_RL = 0;
-  public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
-	public static final int MOTOR_DRIVE_LEFTF = 14;// front left
-	public static final int MOTOR_DRIVE_LEFTB = 13;//back left
-	public static final int MOTOR_DRIVE_RIGHTF = 11;//front right
-  public static final int MOTOR_DRIVE_RIGHTB = 12;//back right
-  public static final int DRIVE_PCM_DUMPER = 0;
-	public static final int DRIVE_PCM_MODULE1 = 0;
-	public static final int DRIVE_FORWARD_CHANNEL1 = 0;
-	public static final int DRIVE_FORWARD_CHANNEL2 = 0;
-	public static final int MOTOR_DRIVE_INTAKE_BELT = 0;
-	public static final int MOTOR_DRIVE_INTAKE_ARM = 0;
-	public static final int SOLENOID_DRIVE_INTAKE = 0;
-	public static final int SOLENOID_ARM_DRIVE_INTAKE = 0;
-	public static final int SOLENOID_DUMP = 0;
-	public static final int ARM_PCM_MODULE1 = 0;
-	public static final int SOLENOID_ARM = 0;
-	public static final int SOLENOID_ARM_WINCH = 0;
-	public static final int ARM_WINCH_PCM_MODULE1 = 0;
-	public static final int SOLENOID_ARM2 = 0;
-	public static final int ARM_PCM_MODULE2 = 0;
+	// For example to map the left and right motors, you could define the
+	// following variables to use with your drivetrain subsystem.
+	// public static int leftMotor = 1;
+	// public static int rightMotor = 2;
+	//TODO: correct all constants
+	//armControl constants
+	public static final int ARM_MOTOR_Winch = 0; 
+ 	public static final int ARM_MOTOR_RR = 0;
+	public static final int ARM_MOTOR_RL = 0;
+	public static final int ARM_SOLENOID_ARMR = 0;
+	public static final int ARM_SOLENOID_WINCH = 0;
+	public static final int ARM_SOLENOID_ARML = 0;
+	public static final int ARM_PCM_SOLENOIDR = 0;
+	public static final int ARM_PCM_WINCH = 0;
+	public static final int ARM_PCM_SOLENOIDL = 0;
+	//driveTrain constants
+  	public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
+	public static final int DRIVE_MOTOR_LEFTF = 14;// front left
+	public static final int DRIVE_MOTOR_LEFTB = 13;//back left
+	public static final int DRIVE_MOTOR_RIGHTF = 11;//front right
+	public static final int DRIVE_MOTOR_RIGHTB = 12;//back right
+  	//intake constants
+	public static final int INTAKE_MOTOR_BELT = 0;
+	public static final int INTAKE_MOTOR_ARM = 0;
+	public static final int INTAKE_SOLENOID_ARM = 0;
+	//dumper constants
+	public static final int DUMP_SOLENOID = 0;
+	public static final int DUMP_PCM = 0;
+	//shooter constants
 	public static final int SHOOT_PCM_MODULE = 0;
-	public static final int SOLENOID_SHOOT = 0;
+	public static final int SHOOT_SOLENOID = 0;
 
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
+	// If you are using multiple modules, make sure to define both the port
+	// number and the module. For example you with a rangefinder:
+	// public static int rangefinderPort = 1;
+	// public static int rangefinderModule = 1;
 }

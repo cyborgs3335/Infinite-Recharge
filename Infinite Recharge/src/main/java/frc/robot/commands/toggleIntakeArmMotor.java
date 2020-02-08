@@ -10,19 +10,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class armControlBoard extends Command {
+public class toggleIntakeArmMotor extends Command {
   /**
-   * Creates a new armControlBoard.
+   * Creates a new toggleIntakeArmMotor.
    */
-  public armControlBoard() {
+  public toggleIntakeArmMotor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
+    requires(Robot.Intake);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //TODO:Robot.armControl.setArmHeight(the control board height);
+    Robot.Intake.driveArmMotor(.5, false);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,6 +33,7 @@ public class armControlBoard extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
+  Robot.Intake.driveArmMotor(0, false);
   }
 
   // Returns true when the command should end.

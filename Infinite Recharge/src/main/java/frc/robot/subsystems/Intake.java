@@ -27,19 +27,19 @@ public class Intake extends Subsystem {
   Solenoid armExtend;
   public Intake()
   {
-    armExtend = new Solenoid(RobotMap.SOLENOID_ARM_DRIVE_INTAKE);
-    armDrive = new TalonSRX(RobotMap.MOTOR_DRIVE_INTAKE_ARM);
-    beltDrive = new TalonSRX(RobotMap.MOTOR_DRIVE_INTAKE_BELT);
+    armExtend = new Solenoid(RobotMap.INTAKE_SOLENOID_ARM);
+    armDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_ARM);
+    beltDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_BELT);
 
     //armDrive pid
-    armDrive.config_kP(0, RobotPreferences.armID_kP);
-    armDrive.config_kI(0, RobotPreferences.armID_kI);
-    armDrive.config_kD(0, RobotPreferences.armID_kD);
+    armDrive.config_kP(0, RobotPreferences.kIntakeA_P);
+    armDrive.config_kI(0, RobotPreferences.kIntakeA_I);
+    armDrive.config_kD(0, RobotPreferences.kIntakeA_D);
 
     //beltDrive pid
-    beltDrive.config_kP(0, RobotPreferences.armID_kP);
-    beltDrive.config_kI(0, RobotPreferences.armID_kI);
-    beltDrive.config_kD(0, RobotPreferences.armID_kD);
+    beltDrive.config_kP(0, RobotPreferences.kIntakeB_P);
+    beltDrive.config_kI(0, RobotPreferences.kIntakeB_I);
+    beltDrive.config_kD(0, RobotPreferences.kIntakeB_D);
   }
 
   public void driveBeltMotor(double speed, boolean isInverted)

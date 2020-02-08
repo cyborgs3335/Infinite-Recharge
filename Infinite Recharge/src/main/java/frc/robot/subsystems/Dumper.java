@@ -18,7 +18,7 @@ public class Dumper extends Subsystem{
    * Creates a new Dumper.
    */
   public Dumper() {
-    dump = new Solenoid(RobotMap.DRIVE_PCM_DUMPER , RobotMap.SOLENOID_DUMP);
+    dump = new Solenoid(RobotMap.DUMP_PCM , RobotMap.DUMP_SOLENOID);
   }
 
   public void dump(boolean d)

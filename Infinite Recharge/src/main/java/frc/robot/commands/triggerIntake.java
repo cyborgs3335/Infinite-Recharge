@@ -27,7 +27,7 @@ public class triggerIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
+    Robot.Intake.driveBeltMotor(.5, false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,6 +39,7 @@ public class triggerIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.Intake.driveBeltMotor(0, false);
   }
 
   // Called when another command which requires one or more of the same

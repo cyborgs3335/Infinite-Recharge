@@ -17,7 +17,7 @@ public class shooter extends Subsystem {
    * Creates a new shooter.
    */
   public shooter() {
-      shoot = new Solenoid(RobotMap.SHOOT_PCM_MODULE,RobotMap.SOLENOID_SHOOT);
+      shoot = new Solenoid(RobotMap.SHOOT_PCM_MODULE,RobotMap.SHOOT_SOLENOID);
   }
 
   @Override

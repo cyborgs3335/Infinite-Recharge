@@ -40,24 +40,24 @@ public class RobotPreferences {
     public static final double kTimeoutMS = 30;
 
     //intake pid
-    public static final double armID_kP = 0;
-    public static final double armID_kI = 0;
-    public static final double armID_kD = 0;
-    public static final double armIB_kP = 0;
-    public static final double armIB_kI = 0;
-    public static final double armIB_kD = 0;
+    public static final double kIntakeB_P = 0;
+    public static final double kIntakeB_I = 0;
+    public static final double kIntakeB_D = 0;
+    public static final double kIntakeA_P = 0;
+    public static final double kIntakeA_I = 0;
+    public static final double kIntakeA_D = 0;
     
 
     //arm pid
-    public static final double armW_kP = .1;
-    public static final double armW_kI = 0;
-    public static final double armW_kD = 0;
-    public static final double armRR_kP = .1;
-    public static final double armRR_kI = 0;
-    public static final double armRR_kD = 0;
-    public static final double armRL_kP = .1;
-    public static final double armRL_kI = 0;
-    public static final double armRL_kD = 0;
+    public static final double kArmW_P = .1;
+    public static final double kArmW_I = 0;
+    public static final double kArmW_D = 0;
+    public static final double kArmRR_P = .1;
+    public static final double kArmRR_I = 0;
+    public static final double kArmRR_D = 0;
+    public static final double kArmRL_P = .1;
+    public static final double kArmRL_I = 0;
+    public static final double kArmRL_D = 0;
 
     //vision
     public static final double kCameraDistanceFromFront = 17.75; 

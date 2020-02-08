@@ -69,9 +69,9 @@ public class armControl extends Subsystem {
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
-    armSolenoidR = new Solenoid(RobotMap.ARM_PCM_MODULE1,RobotMap.SOLENOID_ARM); 
-    armSolenoidL = new Solenoid(RobotMap.ARM_PCM_MODULE2,RobotMap.SOLENOID_ARM2); 
-    armSolenoidWinch = new Solenoid(RobotMap.ARM_WINCH_PCM_MODULE1, RobotMap.SOLENOID_ARM_WINCH);
+    armSolenoidR = new Solenoid(RobotMap.ARM_PCM_SOLENOIDR,RobotMap.ARM_SOLENOID_ARMR); 
+    armSolenoidL = new Solenoid(RobotMap.ARM_PCM_SOLENOIDL,RobotMap.ARM_SOLENOID_ARML); 
+    armSolenoidWinch = new Solenoid(RobotMap.ARM_PCM_WINCH, RobotMap.ARM_SOLENOID_WINCH);
 
     sensors[0] = armMotorWinch.getSensorCollection();
     sensors[1] = armMotorRollerR.getSensorCollection();
@@ -116,18 +116,18 @@ public class armControl extends Subsystem {
     armHeight = armPosition.fullRetract;
 
     //pid for all motors (rollers L&R should be the same)
-    armMotorWinch.config_kP(0,RobotPreferences.armW_kP);
-    armMotorWinch.config_kI(0,RobotPreferences.armW_kI);
-    armMotorWinch.config_kD(0,RobotPreferences.armW_kD);
-    armMotorWinch2.config_kP(0,RobotPreferences.armW_kP);
-    armMotorWinch2.config_kI(0,RobotPreferences.armW_kI);
-    armMotorWinch2.config_kD(0,RobotPreferences.armW_kD);
-    armMotorRollerR.config_kP(0,RobotPreferences.armRR_kP);
-    armMotorRollerR.config_kI(0,RobotPreferences.armRR_kI);
-    armMotorRollerR.config_kD(0,RobotPreferences.armRR_kD);
-    armMotorRollerL.config_kP(0,RobotPreferences.armRL_kP);
-    armMotorRollerL.config_kI(0,RobotPreferences.armRL_kI);
-    armMotorRollerL.config_kD(0,RobotPreferences.armRL_kD);
+    armMotorWinch.config_kP(0,RobotPreferences.kArmW_P);
+    armMotorWinch.config_kI(0,RobotPreferences.kArmW_I);
+    armMotorWinch.config_kD(0,RobotPreferences.kArmW_D);
+    armMotorWinch2.config_kP(0,RobotPreferences.kArmW_P);
+    armMotorWinch2.config_kI(0,RobotPreferences.kArmW_I);
+    armMotorWinch2.config_kD(0,RobotPreferences.kArmW_D);
+    armMotorRollerR.config_kP(0,RobotPreferences.kArmRR_P);
+    armMotorRollerR.config_kI(0,RobotPreferences.kArmRR_I);
+    armMotorRollerR.config_kD(0,RobotPreferences.kArmRR_D);
+    armMotorRollerL.config_kP(0,RobotPreferences.kArmRL_P);
+    armMotorRollerL.config_kI(0,RobotPreferences.kArmRL_I);
+    armMotorRollerL.config_kD(0,RobotPreferences.kArmRL_D);
   }
 
   /**
@@ -185,13 +185,6 @@ public class armControl extends Subsystem {
   {
     armMotorRollerR.set(ControlMode.PercentOutput, speed);
     armMotorRollerL.set(ControlMode.PercentOutput, speed);
-  }
-
-  public void endArm()
-  {
-    armMotorWinch.set(ControlMode.PercentOutput, 0);
-    armMotorRollerR.set(ControlMode.PercentOutput, 0);
-    armMotorRollerL.set(ControlMode.PercentOutput, 0);
   }
 
   @Override

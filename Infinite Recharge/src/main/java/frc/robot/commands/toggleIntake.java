@@ -11,14 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class toggleIntake extends Command {
-  boolean run;
   /**
    * Creates a new toggleIntake.
    */
   public toggleIntake() {
     // Use addRequirements() here to declare subsystem dependencies.\
     requires(Robot.Intake);
-    run = false;
   }
 
   // Called when the command is initially scheduled.
@@ -29,6 +27,7 @@ public class toggleIntake extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.Intake.driveBeltMotor(.5, false);
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +38,6 @@ public class toggleIntake extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return run;
+    return false;
   }
 }
