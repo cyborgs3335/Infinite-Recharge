@@ -8,17 +8,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class toggleIntake extends Command {
-  boolean run;
+public class extendIntakeArm extends Command {
   /**
-   * Creates a new toggleIntake.
+   * Creates a new extendIntakeArm.
    */
-  public toggleIntake() {
-    // Use addRequirements() here to declare subsystem dependencies.\
-    requires(Robot.Intake);
-    run = false;
+  public extendIntakeArm() {
+    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
@@ -39,6 +35,6 @@ public class toggleIntake extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return run;
+    return false;
   }
 }

@@ -42,10 +42,10 @@ public class armControl extends Subsystem {
   
   public double currentHeight;
 
-  public TalonSRX armMotorWinch;
+  public TalonSRX armMotorWinch,armMotorWinch2;
   public TalonSRX armMotorRollerL;
   public TalonSRX armMotorRollerR;
-  public Solenoid armSolenoid,armSolenoid2,armSolenoidWinch;
+  public Solenoid armSolenoidR,armSolenoidL,armSolenoidWinch;
   
   public SensorCollection[] sensors = new SensorCollection[3];  
   private armPosition armHeight;
@@ -63,12 +63,14 @@ public class armControl extends Subsystem {
   {
     armMotorWinch = new TalonSRX(RobotMap.ARM_MOTOR_Winch);
     armMotorWinch.configFactoryDefault(100);
+    armMotorWinch2 = new TalonSRX(RobotMap.ARM_MOTOR_Winch);
+    armMotorWinch2.configFactoryDefault(100);
     armMotorRollerR = new TalonSRX(RobotMap.ARM_MOTOR_RR);
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
-    armSolenoid = new Solenoid(RobotMap.ARM_PCM_MODULE1,RobotMap.SOLENOID_ARM); 
-    armSolenoid = new Solenoid(RobotMap.ARM_PCM_MODULE2,RobotMap.SOLENOID_ARM2); 
+    armSolenoidR = new Solenoid(RobotMap.ARM_PCM_MODULE1,RobotMap.SOLENOID_ARM); 
+    armSolenoidL = new Solenoid(RobotMap.ARM_PCM_MODULE2,RobotMap.SOLENOID_ARM2); 
     armSolenoidWinch = new Solenoid(RobotMap.ARM_WINCH_PCM_MODULE1, RobotMap.SOLENOID_ARM_WINCH);
 
     sensors[0] = armMotorWinch.getSensorCollection();
@@ -93,6 +95,11 @@ public class armControl extends Subsystem {
     armMotorWinch.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorWinch.configForwardSoftLimitEnable(false);
     armMotorWinch.configReverseSoftLimitEnable(false);
+    armMotorWinch2.setNeutralMode(NeutralMode.Brake);
+    armMotorWinch2.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    armMotorWinch2.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    armMotorWinch2.configForwardSoftLimitEnable(false);
+    armMotorWinch2.configReverseSoftLimitEnable(false);
     armMotorRollerR.setNeutralMode(NeutralMode.Brake);
     armMotorRollerR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorRollerR.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
@@ -112,6 +119,9 @@ public class armControl extends Subsystem {
     armMotorWinch.config_kP(0,RobotPreferences.armW_kP);
     armMotorWinch.config_kI(0,RobotPreferences.armW_kI);
     armMotorWinch.config_kD(0,RobotPreferences.armW_kD);
+    armMotorWinch2.config_kP(0,RobotPreferences.armW_kP);
+    armMotorWinch2.config_kI(0,RobotPreferences.armW_kI);
+    armMotorWinch2.config_kD(0,RobotPreferences.armW_kD);
     armMotorRollerR.config_kP(0,RobotPreferences.armRR_kP);
     armMotorRollerR.config_kI(0,RobotPreferences.armRR_kI);
     armMotorRollerR.config_kD(0,RobotPreferences.armRR_kD);

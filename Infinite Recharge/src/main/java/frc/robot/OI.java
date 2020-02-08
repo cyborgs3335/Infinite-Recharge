@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
+import frc.robot.commands.*;
 
 
 
@@ -23,28 +24,33 @@ import frc.robot.RobotMap;
 public class OI 
 {
 
-  //didn't initially set up as mJoystick, so we can get driving quicker
+  // didn't initially set up as mJoystick, so we can get driving quicker
   //TODO swich over to mJoystick
   private Joystick mJoystick = new Joystick(0);
   private Joystick mJoystick2 = new Joystick(1);
 
   //Joystick 0 (primary joystick)
+  public OI()
+  {
+    //TODO:assign to actuall buttons
+    //Joystick1
+    int bIntakeTrigger = 0;
+    int bIntakeToggle = 0;
 
-  //TODO:assign to actuall buttons
-  //Joystick1
-  int bIntakeTrigger = 0;
-  int bIntakeToggle = 0;
+    //Joystick2(placeholder, unknown if needed)
+    int bArmExtend = 0;
+    int bFullArmExtend = 0;
 
-  //Joystick2(placeholder, unknown if needed)
-  int bArmExtend = 0;
+    JoystickButton intakePC = addButton(getJoystick(), bIntakeTrigger, "Trigger Intake PC");
+    intakePC.whenPressed(new triggerIntake());
 
-  JoystickButton intakePC = addButton(getJoystick(), bIntakeTrigger, "Trigger Intake PC");
-  intakePC.whenPressed(new toggleIntake());
+    JoystickButton extendIntakePC = addButton(getJoystick(), bIntakeToggle, "Intake Toggle PC");
+    extendIntakePC.whenPressed(new toggleIntake());
 
-  JoystickButton extendIntakePC = addButton(getJoystick(), bIntakeToggle, "Intake Toggle PC");
-  extendIntakePC.whenPressed(new toggleIntake());
+    JoystickButton fullArmExtend = addButton(getJoystick(), bFullArmExtend, "Full Extend Arm");
+    fullArmExtend.whenPressed(new armFullExtend());
 
-
+  }
   public JoystickButton addButton(Joystick j, int k, String key)
   {
     return new JoystickButton(j, k);
