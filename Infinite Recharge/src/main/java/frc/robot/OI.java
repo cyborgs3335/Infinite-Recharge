@@ -7,10 +7,6 @@
 
 package frc.robot;
 
-import java.util.HashMap;
-
-import javax.swing.SwingConstants;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,8 +22,6 @@ import frc.robot.commands.*;
 public class OI 
 {
 
-  // didn't initially set up as mJoystick, so we can get driving quicker
-  //TODO swich over to mJoystick
   private Joystick mJoystick;
   private Joystick mJoystick2;
 
@@ -40,22 +34,31 @@ public class OI
       mJoystick2 = new Joystick(1);
 
       //TODO:assign to actuall buttons
-      //Joystick1
+      //Joystick1 buttons
       int bIntakeTrigger = 0;
       int bIntakeToggle = 0;
+      int bRetractArm = 0;
 
-      //Joystick2(placeholder, unknown if needed)
+      //Joystick2 buttons
       int bArmExtend = 0;
       int bFullArmExtend = 0;
+      int bSwitchDrive = 0;
+
 
       JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
-      intakePC.whileActive(new triggerIntake());
+      intakePC.whileHeld(new triggerIntake());
 
       JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
       toggleIntake.toggleWhenPressed(new toggleIntake());
 
       JoystickButton fullArmExtend = addButton(mJoystick2, bFullArmExtend, "Full Extend Arm");
       fullArmExtend.whenPressed(new armFullExtend());
+      
+      JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
+      switchDrive.whenPressed(new switchDrive());
+
+      JoystickButton retractArm = addButton(mJoystick, bRetractArm, "Retract Arm");
+      retractArm.whileHeld(new armRetract());
     }
     else
     {
@@ -68,9 +71,10 @@ public class OI
       int bArmExtend = 0;
       int bFullArmExtend = 0;
       int bSwitchDrive = 0;
+      int bRetractArm = 0;
 
       JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
-      intakePC.whileActive(new triggerIntake());
+      intakePC.whileHeld(new triggerIntake());
 
       JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
       toggleIntake.toggleWhenPressed(new toggleIntake());
@@ -80,6 +84,13 @@ public class OI
 
       JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
       switchDrive.whenPressed(new switchDrive());
+
+      JoystickButton retractArm = addButton(mJoystick, bRetractArm, "Retract Arm");
+      retractArm.whileHeld(new armRetract());
+
+      JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
+      extendArm.whileHeld(new armExtend());
+
     }
   }
 

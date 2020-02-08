@@ -45,6 +45,7 @@ public class RobotMap {
 	//shooter constants
 	public static final int SHOOT_PCM_MODULE = 0;
 	public static final int SHOOT_SOLENOID = 0;
+	public static final int SHOOT_MOTOR = 0;
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

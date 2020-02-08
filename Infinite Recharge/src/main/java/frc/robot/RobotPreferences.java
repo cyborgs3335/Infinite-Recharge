@@ -18,7 +18,6 @@ public class RobotPreferences {
     public static final double kRatioToOutput = 60/18;
     public static final double kChassisHeightOffset = 4.5; //in inches
     public static final double kDrivetrainWheelCircumference = 4.0 * Math.PI;
-    public static final double kElevatorScalar = 1.1342376464;
     public static final double kMaxArmAngle = 50;//50 is a filler number to be changed
     public static final double kSRXEncoderCPR = 4096;
     public static final double kRearEncoderToOutputRatio = (1.00/7)*(1.99/5);
@@ -58,6 +57,11 @@ public class RobotPreferences {
     public static final double kArmRL_P = .1;
     public static final double kArmRL_I = 0;
     public static final double kArmRL_D = 0;
+
+    //shooter pid
+    public static final double kShoot_P = 0;
+    public static final double kShoot_I = 0;
+    public static final double kShoot_D = 0;
 
     //vision
     public static final double kCameraDistanceFromFront = 17.75; 

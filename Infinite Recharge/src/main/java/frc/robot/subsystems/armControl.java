@@ -17,6 +17,7 @@ import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
+import frc.robot.commands.armFullRetract;
 import frc.util.LatchedBoolean;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -195,6 +196,6 @@ public class armControl extends Subsystem {
   @Override
   protected void initDefaultCommand() {
     // TODO: might not work
-    setDefaultCommand(null);
+    setDefaultCommand(new armFullRetract());
   }
 }
