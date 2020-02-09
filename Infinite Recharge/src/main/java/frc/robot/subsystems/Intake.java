@@ -10,14 +10,14 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.commands.triggerIntake;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Intake extends Subsystem {
+public class Intake extends SubsystemBase {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   TalonSRX beltDrive = new TalonSRX(RobotMap.MOTOR_DRIVE_INTAKE_BELT);
@@ -32,12 +32,5 @@ public class Intake extends Subsystem {
   public void reject()
   {
 
-  }
-
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new triggerIntake());
   }
 }

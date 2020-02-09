@@ -13,12 +13,11 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 
-public class driveTrain extends Subsystem 
-{
+public class driveTrain extends SubsystemBase {
   private final TalonSRX leftBack,leftFront,rightBack,rightFront;
   private final Solenoid solenoid1, solenoid2;
   private int direction = RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
@@ -163,11 +162,5 @@ public class driveTrain extends Subsystem
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
-
-  @Override
-  protected void initDefaultCommand() {
-    // TODO Auto-generated method stub
-    setDefaultCommand(null);
   }
 }

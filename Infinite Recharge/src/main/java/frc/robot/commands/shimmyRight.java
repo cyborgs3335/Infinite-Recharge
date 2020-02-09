@@ -7,16 +7,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class shimmyRight extends Command {
+public class shimmyRight extends CommandBase {
   /**
    * Creates a new shimmyRight.
    */
   public shimmyRight() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
+    addRequirements(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.
@@ -31,7 +31,7 @@ public class shimmyRight extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
   }
 
   // Returns true when the command should end.

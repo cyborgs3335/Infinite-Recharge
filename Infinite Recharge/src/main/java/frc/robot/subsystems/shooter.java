@@ -7,9 +7,9 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class shooter extends Subsystem {
+public class shooter extends SubsystemBase {
   /**
    * Creates a new shooter.
    */
@@ -20,11 +20,5 @@ public class shooter extends Subsystem {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
-
-  @Override
-  protected void initDefaultCommand() {
-    // TODO Auto-generated method stub
-
   }
 }

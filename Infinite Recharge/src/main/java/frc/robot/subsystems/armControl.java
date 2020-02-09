@@ -19,10 +19,10 @@ import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.util.LatchedBoolean;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
-public class armControl extends Subsystem {
+public class armControl extends SubsystemBase {
   
   public enum armPosition
   {
@@ -182,11 +182,5 @@ public class armControl extends Subsystem {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
-
-  @Override
-  protected void initDefaultCommand() {
-    // TODO: might not work
-    setDefaultCommand(null);
   }
 }

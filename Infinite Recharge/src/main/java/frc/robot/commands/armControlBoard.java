@@ -7,9 +7,9 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class armControlBoard extends Command {
+public class armControlBoard extends CommandBase {
   /**
    * Creates a new armControlBoard.
    */
@@ -30,7 +30,7 @@ public class armControlBoard extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
   }
 
   // Returns true when the command should end.

@@ -7,17 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class armExtend extends Command {
+public class armExtend extends CommandBase {
   double deadzone = .05;
   /**
    * Creates a new armExtend.
    */
   public armExtend() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
+    addRequirements(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.
@@ -33,7 +33,7 @@ public class armExtend extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
   }
 
   // Returns true when the command should end.

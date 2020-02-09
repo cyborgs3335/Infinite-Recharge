@@ -7,9 +7,9 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class toggleIntake extends Command {
+public class toggleIntake extends CommandBase {
   private boolean run;      
   /**
    * Creates a new toggleIntake.
@@ -30,7 +30,7 @@ public class toggleIntake extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
   }
 
   // Returns true when the command should end.
