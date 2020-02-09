@@ -13,9 +13,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.triggerIntake;
+import frc.robot.subsystems.Dumper;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.armControl;
 import frc.robot.subsystems.driveTrain;
+import frc.robot.subsystems.shooter;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -35,7 +37,8 @@ public class Robot extends TimedRobot {
   public static armControl armControl;
   public static driveTrain driveTrain;
   public static Intake Intake;
-  
+  public static shooter shooter;
+  public static Dumper Dumper;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.

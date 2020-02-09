@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.util.mapAxis;
 
 public class toggleIntakeArmMotor extends Command {
   /**
@@ -22,7 +23,7 @@ public class toggleIntakeArmMotor extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.Intake.driveArmMotor(.5, false);
+    Robot.Intake.driveArmMotor(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)), false);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
