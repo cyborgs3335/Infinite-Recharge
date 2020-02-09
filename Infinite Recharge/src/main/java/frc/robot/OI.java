@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.*;
+import frc.robot.subsystems.armControl;
 
 
 
@@ -35,43 +36,34 @@ public class OI
 
       //TODO:assign to actuall buttons
       //Joystick1 buttons
+      //intake
       int bIntakeTrigger = 0;
       int bIntakeToggle = 0;
+      int bIntakeArmMotorToggle = 0;
+      int bIntakeArmToggle = 0;
+
+      //arm
+      int bArmExtend = 0;
+      int bFullArmExtend = 0;
+      int bFullArmRetract = 0;
+      int bShimmyRight = 0;
+      int bShimmyLeft = 0;
+      int bArmControlBoard = 0;
       int bRetractArm = 0;
+
+      //dump
+      int bToggleDump = 0;
+
+      //shooter
+      int bToggleShooter = 0;
+      int bTriggerShooter = 0;
+      
+      //switch drive
+      int bSwitchDrive = 0;
 
       //Joystick2 buttons
-      int bArmExtend = 0;
-      int bFullArmExtend = 0;
-      int bSwitchDrive = 0;
-
-
-      JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
-      intakePC.whileHeld(new triggerIntake());
-
-      JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
-      toggleIntake.toggleWhenPressed(new toggleIntake());
-
-      JoystickButton fullArmExtend = addButton(mJoystick2, bFullArmExtend, "Full Extend Arm");
-      fullArmExtend.whenPressed(new armFullExtend());
       
-      JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
-      switchDrive.whenPressed(new switchDrive());
 
-      JoystickButton retractArm = addButton(mJoystick, bRetractArm, "Retract Arm");
-      retractArm.whileHeld(new armRetract());
-    }
-    else
-    {
-      mJoystick = new Joystick(0);
-
-      //TODO:assign to actuall buttons
-      //Joystick1
-      int bIntakeTrigger = 0;
-      int bIntakeToggle = 0;
-      int bArmExtend = 0;
-      int bFullArmExtend = 0;
-      int bSwitchDrive = 0;
-      int bRetractArm = 0;
 
       JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
       intakePC.whileHeld(new triggerIntake());
@@ -79,8 +71,11 @@ public class OI
       JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
       toggleIntake.toggleWhenPressed(new toggleIntake());
 
-      JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
-      fullArmExtend.whenPressed(new armFullExtend());
+      JoystickButton toggleIntakeArmMotor = addButton(mJoystick, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
+      toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
+
+      JoystickButton toggleIntakeArm = addButton(mJoystick, bIntakeArmToggle, "Toggle Intake Arm");
+      toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
 
       JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
       switchDrive.whenPressed(new switchDrive());
@@ -91,12 +86,117 @@ public class OI
       JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
       extendArm.whileHeld(new armExtend());
 
+      JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
+      fullArmExtend.whenPressed(new armFullExtend());
+
+      JoystickButton fullArmRetract = addButton(mJoystick, bFullArmRetract, "Full Retract Arm");
+      fullArmRetract.whenPressed(new armFullRetract());
+
+      JoystickButton armControlBoard = addButton(mJoystick, bArmControlBoard, "arm to control board");
+      armControlBoard.whenPressed(new armControlBoard());
+
+      JoystickButton shimmyLeft = addButton(mJoystick, bShimmyLeft, "Shimmy Left");
+      shimmyLeft.whileHeld(new shimmyLeft());
+
+      JoystickButton shimmyRight = addButton(mJoystick, bShimmyRight, "Shimmy Right");
+      shimmyRight.whileHeld(new shimmyLeft());
+
+      JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
+      toggleDump.toggleWhenPressed(new toggleDump());
+
+      JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
+      toggleShooter.toggleWhenPressed(new toggleShooter());
+
+      JoystickButton triggerShooter = addButton(mJoystick, bTriggerShooter, "trigger shooter");
+      triggerShooter.whileHeld(new triggerShooter());
     }
+    else
+    {
+      mJoystick = new Joystick(0);
+
+      //TODO:assign to actuall buttons
+      //Joystick1
+
+      //intake
+      int bIntakeTrigger = 0;
+      int bIntakeToggle = 0;
+      int bIntakeArmMotorToggle = 0;
+      int bIntakeArmToggle = 0;
+
+      //arm
+      int bArmExtend = 0;
+      int bFullArmExtend = 0;
+      int bFullArmRetract = 0;
+      int bShimmyRight = 0;
+      int bShimmyLeft = 0;
+      int bArmControlBoard = 0;
+      int bRetractArm = 0;
+
+      //dump
+      int bToggleDump = 0;
+
+      //shooter
+      int bToggleShooter = 0;
+      int bTriggerShooter = 0;
+
+      //switch drive
+      int bSwitchDrive = 0;
+      
+      
+
+      JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
+      intakePC.whileHeld(new triggerIntake());
+
+      JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
+      toggleIntake.toggleWhenPressed(new toggleIntake());
+
+      JoystickButton toggleIntakeArmMotor = addButton(mJoystick, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
+      toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
+
+      JoystickButton toggleIntakeArm = addButton(mJoystick, bIntakeArmToggle, "Toggle Intake Arm");
+      toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
+
+      JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
+      switchDrive.whenPressed(new switchDrive());
+
+      JoystickButton retractArm = addButton(mJoystick, bRetractArm, "Retract Arm");
+      retractArm.whileHeld(new armRetract());
+
+      JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
+      extendArm.whileHeld(new armExtend());
+
+      JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
+      fullArmExtend.whenPressed(new armFullExtend());
+
+      JoystickButton fullArmRetract = addButton(mJoystick, bFullArmRetract, "Full Retract Arm");
+      fullArmRetract.whenPressed(new armFullRetract());
+
+      JoystickButton armControlBoard = addButton(mJoystick, bArmControlBoard, "arm to control board");
+      armControlBoard.whenPressed(new armControlBoard());
+
+      JoystickButton shimmyLeft = addButton(mJoystick, bShimmyLeft, "Shimmy Left");
+      shimmyLeft.whileHeld(new shimmyLeft());
+
+      JoystickButton shimmyRight = addButton(mJoystick, bShimmyRight, "Shimmy Right");
+      shimmyRight.whileHeld(new shimmyLeft());
+
+      JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
+      toggleDump.toggleWhenPressed(new toggleDump());
+
+      JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
+      toggleShooter.toggleWhenPressed(new toggleShooter());
+
+      JoystickButton triggerShooter = addButton(mJoystick, bTriggerShooter, "trigger shooter");
+      triggerShooter.whileHeld(new triggerShooter());
+    }
+    
   }
 
   public JoystickButton addButton(Joystick j, int k, String key)
   {
-    return new JoystickButton(j, k);
+    JoystickButton test = new JoystickButton(j, k);
+    SmartDashboard.putData(key, test);
+    return test;
   }
 
   public Joystick getJoystick() 
