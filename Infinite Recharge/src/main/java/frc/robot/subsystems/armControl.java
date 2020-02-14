@@ -82,10 +82,20 @@ public class armControl extends Subsystem {
     ErrorCode encoderPresentW = armMotorWinch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
     ErrorCode encoderPresentRL =armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
     ErrorCode encoderPresentRR = armMotorRollerR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
-    //TODO: tell which encoder isn't working
-    if(encoderPresentW != ErrorCode.OK || encoderPresentRL != ErrorCode.OK || encoderPresentRR != ErrorCode.OK) 
+    
+    if(encoderPresentW != ErrorCode.OK) 
     {
-      DriverStation.reportError("Jesus im dying where is my encoder", false);
+      DriverStation.reportError("EncoderWinch is dead", false);
+      seeEncoder = false;
+    }
+    else if( encoderPresentRL != ErrorCode.OK)
+    {
+      DriverStation.reportError("EncoderRollerLeft is dead", false);
+      seeEncoder = false;
+    }
+    else if(encoderPresentRR != ErrorCode.OK)
+    {
+      DriverStation.reportError("EncoderRollerRight is dead", false);
       seeEncoder = false;
     }
     currentHeight = 0; //TODO
