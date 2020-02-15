@@ -18,6 +18,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.armControl;
 import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.shooter;
+import frc.robot.subsystems.vision.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -39,6 +40,7 @@ public class Robot extends TimedRobot {
   public static Intake Intake;
   public static shooter shooter;
   public static Dumper Dumper;
+  public static Limelight Limelight;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
