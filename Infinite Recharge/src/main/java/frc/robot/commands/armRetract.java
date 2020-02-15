@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.armControl.armPosition;
 import frc.util.mapAxis;
 
 public class armRetract extends Command {
@@ -23,7 +24,14 @@ public class armRetract extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.armControl.moveArm(-mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
+    if(!Robot.armControl.getArmHeight().equals(armPosition.fullRetract))
+    {
+      Robot.armControl.moveArm(-mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
+    }
+    else
+    {
+      System.out.println("You're at the bottom");
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
