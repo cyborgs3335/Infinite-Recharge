@@ -18,8 +18,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.robot.commands.DefaultHeight;
-import frc.robot.commands.armFullRetract;
-import frc.util.LatchedBoolean;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -52,18 +50,12 @@ public class armControl extends Subsystem {
   
   public SensorCollection[] sensors = new SensorCollection[4];  
   private armPosition armHeight;
-  private double height;
-  private String datHeight = "ground";
   private boolean isSafe;
-  private boolean seeEncoder;
-
-  private LatchedBoolean tachCrossed = new LatchedBoolean();
-
+  
   /**
    * Creates a new armControl.
    */
-  public armControl() 
-  {
+  public armControl() {
     armMotorWinchL = new TalonSRX(RobotMap.ARM_MOTOR_WINCHL);
     armMotorWinchL.configFactoryDefault(100);
     armMotorWinchR = new TalonSRX(RobotMap.ARM_MOTOR_WINCHR);
@@ -72,34 +64,28 @@ public class armControl extends Subsystem {
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
-    armSolenoidR = new Solenoid(RobotMap.ARM_PCM_SOLENOIDR,RobotMap.ARM_SOLENOID_ARMR); 
-    armSolenoidL = new Solenoid(RobotMap.ARM_PCM_SOLENOIDL,RobotMap.ARM_SOLENOID_ARML); 
+    armSolenoidR = new Solenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMR);
+    armSolenoidL = new Solenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARML);
     armSolenoidWinch = new Solenoid(RobotMap.ARM_PCM_WINCH, RobotMap.ARM_SOLENOID_WINCH);
 
     sensors[0] = armMotorWinchL.getSensorCollection();
     sensors[1] = armMotorWinchR.getSensorCollection();
     sensors[2] = armMotorRollerR.getSensorCollection();
-    sensors[3] = armMotorRollerL.getSensorCollection(); 
+    sensors[3] = armMotorRollerL.getSensorCollection();
 
-    seeEncoder = true;
-    ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
-    ErrorCode encoderPresentRL =armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
-    ErrorCode encoderPresentRR = armMotorRollerR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
-    
-    if(encoderPresentW != ErrorCode.OK) 
-    {
+    ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0,
+        10);
+    ErrorCode encoderPresentRL = armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
+        0, 10);
+    ErrorCode encoderPresentRR = armMotorRollerR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
+        0, 10);
+
+    if (encoderPresentW != ErrorCode.OK) {
       DriverStation.reportError("EncoderWinch is dead", false);
-      seeEncoder = false;
-    }
-    else if( encoderPresentRL != ErrorCode.OK)
-    {
+    } else if (encoderPresentRL != ErrorCode.OK) {
       DriverStation.reportError("EncoderRollerLeft is dead", false);
-      seeEncoder = false;
-    }
-    else if(encoderPresentRR != ErrorCode.OK)
-    {
+    } else if (encoderPresentRR != ErrorCode.OK) {
       DriverStation.reportError("EncoderRollerRight is dead", false);
-      seeEncoder = false;
     }
     currentHeight = RobotPreferences.kDefaultStart; //TODO
 
