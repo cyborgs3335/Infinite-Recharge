@@ -17,6 +17,7 @@ import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
+import frc.robot.commands.DefaultHeight;
 import frc.robot.commands.armFullRetract;
 import frc.util.LatchedBoolean;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -30,6 +31,7 @@ public class armControl extends Subsystem {
   {
     fullRetract,
     fullExtend,
+    defaultStart,
     lowerExtend,
     controlboard;
 
@@ -99,7 +101,7 @@ public class armControl extends Subsystem {
       DriverStation.reportError("EncoderRollerRight is dead", false);
       seeEncoder = false;
     }
-    currentHeight = 0; //TODO
+    currentHeight = RobotPreferences.kDefaultStart; //TODO
 
     //set all motors in the arm to the same neutral mode, and disable all limits *might need to modifiy this later
     armMotorWinchL.setNeutralMode(NeutralMode.Brake);
@@ -125,7 +127,7 @@ public class armControl extends Subsystem {
 
     isSafe = true;
     zeroEncoder();
-    armHeight = armPosition.fullRetract;
+    armHeight = armPosition.defaultStart;
 
     //pid for all motors (rollers L&R should be the same)
     armMotorWinchL.config_kP(0,RobotPreferences.kArmW_P);
@@ -164,17 +166,19 @@ public class armControl extends Subsystem {
   public void setArmHeight(double height) {
     if(isSafe())
     {
-      //TODO: make talon move the arm(reference from DeepSpace below)
-        //int targetSensorPosition = (int) Math.round(RobotPreferences.kElevatorScalar*(height - 19) / RobotPreferences.kDistancePerRevolution * 4096 * RobotPreferences.kRatioToOutput /.2);
-        //elevatorMotor1.set(ControlMode.Position, targetSensorPosition);
+      //should take the height(the inches we want) and multiply it by how many ticks it takes to get an inch(kWinchScalar)
+      //TODO:make sure it works
+      int targetSensorPosition = (int) Math.round(RobotPreferences.kWinchScalar * height);
+      armMotorWinchL.set(ControlMode.Position, targetSensorPosition);
+      armMotorWinchR.set(ControlMode.Position, targetSensorPosition);
       currentHeight = height;
    }
   }
 
   public double getTranslateHight()
   {
-    //TODO: Make this accurate
-    return (getEncoder() / RobotPreferences.kWinchDegreesPerInch * .2) + 19;
+    //TODO: make sure it works
+    return  getEncoder()/RobotPreferences.kWinchScalar;
   }
 
   //TODO: Find out what this means and how to use it
@@ -209,6 +213,6 @@ public class armControl extends Subsystem {
   @Override
   protected void initDefaultCommand() {
     // TODO: might not work
-    setDefaultCommand(new armFullRetract());
+    setDefaultCommand(new DefaultHeight());
   }
 }

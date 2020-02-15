@@ -14,17 +14,17 @@ public class RobotPreferences {
     //all constants TODO: correct
 
     //where constats for the robot are placed
-    public static final double kDistancePerRevolution = 1.2*Math.PI;//in inches
-    public static final double kRatioToOutput = 60/18;
-    public static final double kChassisHeightOffset = 4.5; //in inches
-    public static final double kDrivetrainWheelCircumference = 4.0 * Math.PI;
-    public static final double kMaxArmAngle = 50;//50 is a filler number to be changed
-    public static final double kSRXEncoderCPR = 4096;
-    public static final double kRearEncoderToOutputRatio = (1.00/7)*(1.99/5);
-    public static final double kRearMaxAngle = 90;
-    public static final double kRearMinAngle = 0;
-    public static final double kEGearRatio = -.3;
-    public static final int kWinchDegreesPerInch = 1;
+    //TODO: set all constants in Inches
+
+    //arm constants
+    public static final double kWinchScalar = 0; //ticks per inch of hight on the arm
+        //height of arm constants
+    public static final double kControlBoardHeight = 0;
+    public static final double kFullExtendHeight = 0;
+    public static final double kFullRetractHeight = 0;
+    public static final double kDefaultStart = 0;
+    public static final double kLowerExtendHeight = 0;
+
 
     //speeds
     public static final double armSpeed = .1;

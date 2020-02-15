@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotPreferences;
 import frc.robot.subsystems.armControl.armPosition;
 
 public class armFullRetract extends Command {
@@ -23,8 +24,8 @@ public class armFullRetract extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //TODO:Robot.armControl.setArmHeight(the bottom height);
-    Robot.armControl.setArmPosition(armPosition.fullExtend);
+    Robot.armControl.setArmHeight(RobotPreferences.kFullRetractHeight);
+    Robot.armControl.setArmPosition(armPosition.fullRetract);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
