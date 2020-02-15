@@ -20,9 +20,10 @@ public class RobotMap {
 	// public static int rightMotor = 2;
 	//TODO: correct all constants
 	//armControl constants
-	public static final int ARM_MOTOR_Winch = 0; 
- 	public static final int ARM_MOTOR_RR = 0;
-	public static final int ARM_MOTOR_RL = 0;
+	public static final int ARM_MOTOR_WINCHL = 2; 
+	public static final int ARM_MOTOR_WINCHR = 13;
+ 	public static final int ARM_MOTOR_RR = 4;
+	public static final int ARM_MOTOR_RL = 11;
 	public static final int ARM_SOLENOID_ARMR = 0;
 	public static final int ARM_SOLENOID_WINCH = 0;
 	public static final int ARM_SOLENOID_ARML = 0;
@@ -31,21 +32,28 @@ public class RobotMap {
 	public static final int ARM_PCM_SOLENOIDL = 0;
 	//driveTrain constants
   	public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
-	public static final int DRIVE_MOTOR_LEFTF = 14;// front left
-	public static final int DRIVE_MOTOR_LEFTB = 13;//back left
-	public static final int DRIVE_MOTOR_RIGHTF = 11;//front right
-	public static final int DRIVE_MOTOR_RIGHTB = 12;//back right
+	public static final int DRIVE_MOTOR_LEFTF = 0;// front left
+	public static final int DRIVE_MOTOR_LEFTB = 1;//back left
+	public static final int DRIVE_MOTOR_RIGHTF = 15;//front right
+	public static final int DRIVE_MOTOR_RIGHTB = 14;//back right
   	//intake constants
-	public static final int INTAKE_MOTOR_BELT = 0;
-	public static final int INTAKE_MOTOR_ARM = 0;
+	public static final int INTAKE_MOTOR_BELT = 5;
+	public static final int INTAKE_MOTOR_ARM = 10;
 	public static final int INTAKE_SOLENOID_ARM = 0;
+	public static final int INTAKE_SOLENOID_ARM2 = 1;
 	//dumper constants
-	public static final int DUMP_SOLENOID = 0;
+	public static final int DUMP_SOLENOID = 2;
+	public static final int DUMP_SOLENOID2 = 3;
 	public static final int DUMP_PCM = 0;
+	public static final int DUMP_PCM2 = 0;
 	//shooter constants
-	public static final int SHOOT_PCM_MODULE = 0;
-	public static final int SHOOT_SOLENOID = 0;
-	public static final int SHOOT_MOTOR = 0;
+	public static final int SHOOT_PCM = 0;
+	public static final int SHOOT_PCM2= 0;
+	public static final int SHOOT_SOLENOID = 4;
+	public static final int SHOOT_SOLENOID2 = 5;
+	public static final int SHOOT_MOTOR_FIRE = 3;
+	public static final int SHOOT_MOTOR_FIRE2 = 12;
+	public static final int SHOOT_MOTOR_PITCH = 6;
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

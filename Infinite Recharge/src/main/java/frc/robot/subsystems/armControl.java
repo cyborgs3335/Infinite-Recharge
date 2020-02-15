@@ -43,12 +43,12 @@ public class armControl extends Subsystem {
   
   public double currentHeight;
 
-  public TalonSRX armMotorWinch,armMotorWinch2;
+  public TalonSRX armMotorWinchL,armMotorWinchR;
   public TalonSRX armMotorRollerL;
   public TalonSRX armMotorRollerR;
   public Solenoid armSolenoidR,armSolenoidL,armSolenoidWinch;
   
-  public SensorCollection[] sensors = new SensorCollection[3];  
+  public SensorCollection[] sensors = new SensorCollection[4];  
   private armPosition armHeight;
   private double height;
   private String datHeight = "ground";
@@ -62,10 +62,10 @@ public class armControl extends Subsystem {
    */
   public armControl() 
   {
-    armMotorWinch = new TalonSRX(RobotMap.ARM_MOTOR_Winch);
-    armMotorWinch.configFactoryDefault(100);
-    armMotorWinch2 = new TalonSRX(RobotMap.ARM_MOTOR_Winch);
-    armMotorWinch2.configFactoryDefault(100);
+    armMotorWinchL = new TalonSRX(RobotMap.ARM_MOTOR_WINCHL);
+    armMotorWinchL.configFactoryDefault(100);
+    armMotorWinchR = new TalonSRX(RobotMap.ARM_MOTOR_WINCHR);
+    armMotorWinchR.configFactoryDefault(100);
     armMotorRollerR = new TalonSRX(RobotMap.ARM_MOTOR_RR);
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
@@ -74,12 +74,13 @@ public class armControl extends Subsystem {
     armSolenoidL = new Solenoid(RobotMap.ARM_PCM_SOLENOIDL,RobotMap.ARM_SOLENOID_ARML); 
     armSolenoidWinch = new Solenoid(RobotMap.ARM_PCM_WINCH, RobotMap.ARM_SOLENOID_WINCH);
 
-    sensors[0] = armMotorWinch.getSensorCollection();
-    sensors[1] = armMotorRollerR.getSensorCollection();
-    sensors[2] = armMotorRollerL.getSensorCollection(); 
+    sensors[0] = armMotorWinchL.getSensorCollection();
+    sensors[1] = armMotorWinchR.getSensorCollection();
+    sensors[2] = armMotorRollerR.getSensorCollection();
+    sensors[3] = armMotorRollerL.getSensorCollection(); 
 
     seeEncoder = true;
-    ErrorCode encoderPresentW = armMotorWinch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
+    ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
     ErrorCode encoderPresentRL =armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
     ErrorCode encoderPresentRR = armMotorRollerR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,0,10);
     
@@ -101,16 +102,16 @@ public class armControl extends Subsystem {
     currentHeight = 0; //TODO
 
     //set all motors in the arm to the same neutral mode, and disable all limits *might need to modifiy this later
-    armMotorWinch.setNeutralMode(NeutralMode.Brake);
-    armMotorWinch.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
-    armMotorWinch.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
-    armMotorWinch.configForwardSoftLimitEnable(false);
-    armMotorWinch.configReverseSoftLimitEnable(false);
-    armMotorWinch2.setNeutralMode(NeutralMode.Brake);
-    armMotorWinch2.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
-    armMotorWinch2.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
-    armMotorWinch2.configForwardSoftLimitEnable(false);
-    armMotorWinch2.configReverseSoftLimitEnable(false);
+    armMotorWinchL.setNeutralMode(NeutralMode.Brake);
+    armMotorWinchL.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    armMotorWinchL.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    armMotorWinchL.configForwardSoftLimitEnable(false);
+    armMotorWinchL.configReverseSoftLimitEnable(false);
+    armMotorWinchR.setNeutralMode(NeutralMode.Brake);
+    armMotorWinchR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    armMotorWinchR.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    armMotorWinchR.configForwardSoftLimitEnable(false);
+    armMotorWinchR.configReverseSoftLimitEnable(false);
     armMotorRollerR.setNeutralMode(NeutralMode.Brake);
     armMotorRollerR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorRollerR.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
@@ -127,12 +128,12 @@ public class armControl extends Subsystem {
     armHeight = armPosition.fullRetract;
 
     //pid for all motors (rollers L&R should be the same)
-    armMotorWinch.config_kP(0,RobotPreferences.kArmW_P);
-    armMotorWinch.config_kI(0,RobotPreferences.kArmW_I);
-    armMotorWinch.config_kD(0,RobotPreferences.kArmW_D);
-    armMotorWinch2.config_kP(0,RobotPreferences.kArmW_P);
-    armMotorWinch2.config_kI(0,RobotPreferences.kArmW_I);
-    armMotorWinch2.config_kD(0,RobotPreferences.kArmW_D);
+    armMotorWinchL.config_kP(0,RobotPreferences.kArmW_P);
+    armMotorWinchL.config_kI(0,RobotPreferences.kArmW_I);
+    armMotorWinchL.config_kD(0,RobotPreferences.kArmW_D);
+    armMotorWinchR.config_kP(0,RobotPreferences.kArmW_P);
+    armMotorWinchR.config_kI(0,RobotPreferences.kArmW_I);
+    armMotorWinchR.config_kD(0,RobotPreferences.kArmW_D);
     armMotorRollerR.config_kP(0,RobotPreferences.kArmRR_P);
     armMotorRollerR.config_kI(0,RobotPreferences.kArmRR_I);
     armMotorRollerR.config_kD(0,RobotPreferences.kArmRR_D);
@@ -179,17 +180,19 @@ public class armControl extends Subsystem {
   //TODO: Find out what this means and how to use it
   public void zeroEncoder()
   {
-    armMotorWinch.setSelectedSensorPosition(0,0,10);
+    armMotorWinchL.setSelectedSensorPosition(0,0,10);
+    armMotorWinchR.setSelectedSensorPosition(0,0,10);
   }
 
   public int getEncoder()
   {
-    return armMotorWinch.getSelectedSensorPosition(1);
+    return armMotorWinchL.getSelectedSensorPosition(1);
   }
 
   public void moveArm(double speed)
   {
-    armMotorWinch.set(ControlMode.PercentOutput, speed);
+    armMotorWinchL.set(ControlMode.PercentOutput, speed);
+    armMotorWinchR.set(ControlMode.PercentOutput, speed);
   }
 
   public void shimmy(double speed)
