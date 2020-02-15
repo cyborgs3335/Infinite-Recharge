@@ -24,8 +24,15 @@ public class armFullExtend extends Command{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.armControl.setArmHeight(RobotPreferences.kFullExtendHeight);
-    Robot.armControl.setArmPosition(armPosition.fullExtend);
+    if(!Robot.armControl.getArmHeight().equals(armPosition.fullExtend))
+    {
+      Robot.armControl.setArmHeight(RobotPreferences.kFullExtendHeight);
+      Robot.armControl.setArmPosition(armPosition.fullExtend);
+    }
+    else
+    {
+      System.out.println("You're at the top");
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

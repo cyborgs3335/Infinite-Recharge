@@ -24,8 +24,15 @@ public class armFullRetract extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.armControl.setArmHeight(RobotPreferences.kFullRetractHeight);
-    Robot.armControl.setArmPosition(armPosition.fullRetract);
+    if(!Robot.armControl.getArmHeight().equals(armPosition.fullRetract))
+    {
+      Robot.armControl.setArmHeight(RobotPreferences.kFullRetractHeight);
+      Robot.armControl.setArmPosition(armPosition.fullRetract);
+    }
+    else
+    {
+      System.out.println("You're at the bottom");
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
