@@ -31,52 +31,66 @@ public class OI
     {
       mJoystick = new Joystick(0);
       mJoystick2 = new Joystick(1);
-
-      //TODO:assign to actuall buttons
+      //BUtton Info:
+      //UNUSED: 8, 9
+      //CONFLICTING: 2, 3, 4, 5, 10
+      //DOUBLED: 1,6,7,11
       //Joystick1 buttons
+      //-----------------
       //intake
-      int bIntakeTrigger = 0;
-      int bIntakeToggle = 0;
-      int bIntakeArmMotorToggle = 0;
-      int bIntakeArmToggle = 0;
 
       //arm
-      int bArmExtend = 0;
-      int bFullArmExtend = 0;
-      int bFullArmRetract = 0;
-      int bShimmyRight = 0;
-      int bShimmyLeft = 0;
-      int bArmControlBoard = 0;
-      int bRetractArm = 0;
+      int bArmExtend = 5;
+      int bShimmyRight = 2;
+      int bShimmyLeft = 3;
+      int bRetractArm = 4;
 
       //dump
-      int bToggleDump = 0;
+      int bToggleDump = 10;
 
       //shooter
-      int bToggleShooter = 0;
-      int bTriggerShooter = 0;
+      int bToggleShooter = 11;
+      int bTriggerShooter = 1;
       
       //switch drive
-      int bSwitchDrive = 0;
+      int bSwitchDrive = 6;
 
       //Joystick2 buttons
-      
+      //-----------------
+      //intake
+      int bIntakeTrigger = 2;
+      int bIntakeToggle = 7;
+      int bIntakeArmMotorToggle = 10;
+      int bIntakeArmToggle = 10;
+
+      //arm
+      int bFullArmExtend = 4;
+      int bFullArmRetract = 5;
+      int bArmControlBoard = 3;
+
+      //dump
+
+      //shooter
 
 
-      JoystickButton intakePC = addButton(mJoystick, bIntakeTrigger, "Trigger Intake PC");
+      JoystickButton intakePC = addButton(mJoystick2, bIntakeTrigger, "Trigger Intake PC");
       intakePC.whileHeld(new triggerIntake());
 
-      JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
+      JoystickButton toggleIntake = addButton(mJoystick2, bIntakeToggle, "Intake Toggle PC");
       toggleIntake.toggleWhenPressed(new toggleIntake());
+      JoystickButton toggleIntake2 = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
+      toggleIntake2.toggleWhenPressed(new toggleIntake());
 
-      JoystickButton toggleIntakeArmMotor = addButton(mJoystick, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
+      JoystickButton toggleIntakeArmMotor = addButton(mJoystick2, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
       toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
 
-      JoystickButton toggleIntakeArm = addButton(mJoystick, bIntakeArmToggle, "Toggle Intake Arm");
+      JoystickButton toggleIntakeArm = addButton(mJoystick2, bIntakeArmToggle, "Toggle Intake Arm");
       toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
 
       JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
       switchDrive.whenPressed(new switchDrive());
+      JoystickButton switchDrive2 = addButton(mJoystick2, bSwitchDrive, "Toggle DriveState");
+      switchDrive2.whenPressed(new switchDrive());
 
       JoystickButton retractArm = addButton(mJoystick, bRetractArm, "Retract Arm");
       retractArm.whileHeld(new armRetract());
@@ -104,41 +118,44 @@ public class OI
 
       JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
       toggleShooter.toggleWhenPressed(new toggleShooter());
+      JoystickButton toggleShooter2 = addButton(mJoystick2, bToggleShooter, "toggle shooter");
+      toggleShooter2.toggleWhenPressed(new toggleShooter());
 
       JoystickButton triggerShooter = addButton(mJoystick, bTriggerShooter, "trigger shooter");
       triggerShooter.whileHeld(new triggerShooter());
+      JoystickButton triggerShooter2 = addButton(mJoystick2, bTriggerShooter, "trigger shooter");
+      triggerShooter2.whileHeld(new triggerShooter());
     }
     else
     {
       mJoystick = new Joystick(0);
-
-      //TODO:assign to actuall buttons
+      
       //Joystick1
-
+      //-1 indicates command is not used
       //intake
-      int bIntakeTrigger = 0;
-      int bIntakeToggle = 0;
-      int bIntakeArmMotorToggle = 0;
-      int bIntakeArmToggle = 0;
+      int bIntakeTrigger = -1;
+      int bIntakeToggle = 10;
+      int bIntakeArmMotorToggle = 6;
+      int bIntakeArmToggle = 6;
 
       //arm
-      int bArmExtend = 0;
-      int bFullArmExtend = 0;
-      int bFullArmRetract = 0;
-      int bShimmyRight = 0;
-      int bShimmyLeft = 0;
-      int bArmControlBoard = 0;
-      int bRetractArm = 0;
+      int bArmExtend = 8;
+      int bFullArmExtend = 3;
+      int bFullArmRetract = 2;
+      int bShimmyRight = 5;
+      int bShimmyLeft = 4;
+      int bArmControlBoard = 10;
+      int bRetractArm = 9;
 
       //dump
-      int bToggleDump = 0;
+      int bToggleDump = 11;
 
       //shooter
-      int bToggleShooter = 0;
-      int bTriggerShooter = 0;
+      int bToggleShooter = -1;
+      int bTriggerShooter = 1;
 
       //switch drive
-      int bSwitchDrive = 0;
+      int bSwitchDrive = 7;
       
       
 
