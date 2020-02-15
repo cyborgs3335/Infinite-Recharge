@@ -39,14 +39,15 @@ public class Limelight extends Subsystem implements IVisionTarget{
 		table = NetworkTableInstance.getDefault();
 
 		//Set default values
-		mTargetSelected = Target.HATCH;
+		mTargetSelected = Target.PORT;
 		mLightMode = LightMode.ON;
 		mCameraMode = CameraMode.VISION;
 		mStreamMode = StreamMode.SECONDARY;
 	}
 
 	public enum Target {
-		HATCH,
+		PORT,
+		CONTROLBOARD,
 		BALL;
 		
 		protected static Target[] targets = Target.values();
