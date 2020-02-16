@@ -24,12 +24,12 @@ public class RobotMap {
 	public static final int ARM_MOTOR_WINCHR = 13;
  	public static final int ARM_MOTOR_RR = 4;
 	public static final int ARM_MOTOR_RL = 11;
-	public static final int ARM_SOLENOID_ARMR = 0;
-	public static final int ARM_SOLENOID_WINCH = 0;
-	public static final int ARM_SOLENOID_ARML = 0;
-	public static final int ARM_PCM_SOLENOIDR = 0;
-	public static final int ARM_PCM_WINCH = 0;
-	public static final int ARM_PCM_SOLENOIDL = 0;
+	public static final int ARM_SOLENOID_ARMRF = 0;
+	public static final int ARM_SOLENOID_ARMRR = 1;
+	public static final int ARM_SOLENOID_ARMLF = 2;
+	public static final int ARM_SOLENOID_ARMLR = 3;
+	public static final int ARM_PCM_SOLENOIDR = 1;
+	public static final int ARM_PCM_SOLENOIDL = 1;
 	//driveTrain constants
   	public static final int DRIVE_TRAIN_FORWARD_DIRECTION = 1;
 	public static final int DRIVE_MOTOR_LEFTF = 0;// front left

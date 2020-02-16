@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import javax.lang.model.util.ElementScanner6;
+
 import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -18,8 +20,10 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.robot.commands.DefaultHeight;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -46,7 +50,7 @@ public class armControl extends Subsystem {
   public TalonSRX armMotorWinchL,armMotorWinchR;
   public TalonSRX armMotorRollerL;
   public TalonSRX armMotorRollerR;
-  public Solenoid armSolenoidR,armSolenoidL,armSolenoidWinch;
+  public DoubleSolenoid armSolenoidR,armSolenoidL;
   
   public SensorCollection[] sensors = new SensorCollection[4];  
   private armPosition armHeight;
@@ -64,9 +68,8 @@ public class armControl extends Subsystem {
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
-    armSolenoidR = new Solenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMR);
-    armSolenoidL = new Solenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARML);
-    armSolenoidWinch = new Solenoid(RobotMap.ARM_PCM_WINCH, RobotMap.ARM_SOLENOID_WINCH);
+    armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
+    armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
 
     sensors[0] = armMotorWinchL.getSensorCollection();
     sensors[1] = armMotorWinchR.getSensorCollection();
@@ -183,6 +186,21 @@ public class armControl extends Subsystem {
   {
     armMotorWinchL.set(ControlMode.PercentOutput, speed);
     armMotorWinchR.set(ControlMode.PercentOutput, speed);
+    if(speed < 0)
+    {
+      armSolenoidL.set(Value.kReverse);
+      armSolenoidR.set(Value.kReverse);
+    }
+    else if(speed > 0)
+    {
+      armSolenoidL.set(Value.kForward);
+      armSolenoidR.set(Value.kForward);
+    }
+    else
+    {
+      armSolenoidL.set(Value.kOff);
+      armSolenoidR.set(Value.kOff);
+    }
   }
 
   public void shimmy(double speed)
@@ -195,6 +213,7 @@ public class armControl extends Subsystem {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
 
   @Override
   protected void initDefaultCommand() {
