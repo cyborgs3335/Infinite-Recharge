@@ -8,16 +8,11 @@
 package frc.robot.commands.vision;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class DriveToLoadingbay extends Command {
-
-  boolean hasArrived = false;
-
-  public DriveToLoadingbay() {
+public class DriveToTarget extends Command {
+  public DriveToTarget() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.Limelight);
   }
 
   // Called just before this Command runs the first time
@@ -33,7 +28,7 @@ public class DriveToLoadingbay extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return hasArrived;
+    return false;
   }
 
   // Called once after isFinished returns true

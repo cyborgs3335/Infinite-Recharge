@@ -18,7 +18,6 @@ public class RobotMap {
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
-	//TODO: correct all constants
 	//armControl constants
 	public static final int ARM_MOTOR_WINCHL = 2; 
 	public static final int ARM_MOTOR_WINCHR = 13;
