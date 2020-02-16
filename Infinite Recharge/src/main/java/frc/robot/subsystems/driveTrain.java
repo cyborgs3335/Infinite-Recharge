@@ -103,7 +103,6 @@ public class driveTrain extends Subsystem
 		// See https://github.com/CrossTheRoadElec/Phoenix-Documentation#installing-phoenix-framework-onto-your-frc-robot
 		NeutralMode mode = brake ? NeutralMode.Brake : NeutralMode.Coast;
 
-        //uncoment this
         
 		leftFront.setNeutralMode(mode);
 		leftBack.setNeutralMode(mode);

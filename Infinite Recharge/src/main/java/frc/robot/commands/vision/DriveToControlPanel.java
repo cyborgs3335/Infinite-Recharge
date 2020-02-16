@@ -13,7 +13,7 @@ import frc.robot.Robot;
 public class DriveToControlPanel extends Command {
 
   boolean hasArrived = false;
-  
+
   public DriveToControlPanel() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -33,7 +33,7 @@ public class DriveToControlPanel extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return hasArrived;
   }
 
   // Called once after isFinished returns true

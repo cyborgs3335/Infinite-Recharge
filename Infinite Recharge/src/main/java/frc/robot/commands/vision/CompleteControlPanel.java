@@ -40,7 +40,7 @@ public class CompleteControlPanel extends Command
   @Override
   protected boolean isFinished() 
   {
-    return false;
+    return isFinished;
   }
 
   // Called once after isFinished returns true
