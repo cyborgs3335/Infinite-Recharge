@@ -20,8 +20,8 @@ import frc.robot.commands.whatOI;
 
 public class driveTrain extends Subsystem 
 {
-  private final TalonSRX leftBack,leftFront,rightBack,rightFront;
-  private final PigeonIMU pidgeon;
+  private final TalonFX leftBack,leftFront,rightBack,rightFront;
+  //private final PigeonIMU pidgeon;
   private int direction = RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
   private double voltageRampRateDefault;
 
@@ -30,16 +30,16 @@ public class driveTrain extends Subsystem
    */
   public driveTrain()
   {
-    leftBack = new TalonSRX(RobotMap.DRIVE_MOTOR_LEFTB);
+    leftBack = new TalonFX(RobotMap.DRIVE_MOTOR_LEFTB);
     leftBack.configFactoryDefault(100);
-    leftFront = new TalonSRX(RobotMap.DRIVE_MOTOR_LEFTF);
+    leftFront = new TalonFX(RobotMap.DRIVE_MOTOR_LEFTF);
     leftFront.configFactoryDefault(100);
-    rightBack = new TalonSRX(RobotMap.DRIVE_MOTOR_RIGHTB);
+    rightBack = new TalonFX(RobotMap.DRIVE_MOTOR_RIGHTB);
     rightBack.configFactoryDefault(100);
-    rightFront = new TalonSRX(RobotMap.DRIVE_MOTOR_RIGHTF);
+    rightFront = new TalonFX(RobotMap.DRIVE_MOTOR_RIGHTF);
     rightFront.configFactoryDefault(100);
     //TODO:correct the talon the pigeon is attached to
-    pidgeon = new PigeonIMU(rightFront);
+    //pidgeon = new PigeonIMU(rightFront);
     
 		double voltageRampRate = voltageRampRateDefault;//20;
 		setRampRate(voltageRampRate);
