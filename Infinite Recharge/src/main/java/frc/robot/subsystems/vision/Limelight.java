@@ -34,7 +34,7 @@ public class Limelight extends Subsystem implements IVisionTarget{
         return mInstance;
     }
 	
-	private Limelight() {
+	public Limelight() {
 		//Set up table and game targets
 		table = NetworkTableInstance.getDefault();
 

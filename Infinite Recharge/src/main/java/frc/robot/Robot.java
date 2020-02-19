@@ -44,6 +44,13 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     oi = new OI(!podrace);
+    Intake = new Intake();
+    shooter = new shooter();
+    Dumper = new Dumper();
+    Limelight = new Limelight();
+    armControl = new armControl();
+    driveTrain = new driveTrain();
+
     m_chooser.setDefaultOption("Default Auto", new triggerIntake());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
