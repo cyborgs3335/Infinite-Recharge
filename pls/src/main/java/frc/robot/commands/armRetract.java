@@ -24,6 +24,12 @@ public class armRetract extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
     if(!Robot.armControl.getArmHeight().equals(armPosition.fullRetract))
     {
       Robot.armControl.moveArm(-mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
@@ -32,12 +38,6 @@ public class armRetract extends Command {
     {
       System.out.println("You're at the bottom");
     }
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    
   }
 
   // Called once the command ends or is interrupted.

@@ -23,12 +23,13 @@ public class toggleIntakeArmMotor extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.intake.driveArmMotor(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)), false);
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.intake.driveArmMotor(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)), false);
   }
 
   // Called once the command ends or is interrupted.

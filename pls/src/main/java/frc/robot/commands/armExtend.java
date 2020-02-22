@@ -25,6 +25,12 @@ public class armExtend extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+   
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
     if(!Robot.armControl.getArmHeight().equals(armPosition.fullExtend))
     {
       Robot.armControl.moveArm(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
@@ -33,12 +39,6 @@ public class armExtend extends Command {
     {
       System.out.println("You're at the top");
     }
-  }
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {
-    
   }
 
   // Called once the command ends or is interrupted.

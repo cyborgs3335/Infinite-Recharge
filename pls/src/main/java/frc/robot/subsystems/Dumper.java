@@ -13,7 +13,7 @@ import frc.robot.RobotMap;
 
 public class Dumper extends Subsystem{
 
-  Solenoid dump/*,dump2*/;
+  public Solenoid dump/*,dump2*/;
   /**
    * Creates a new Dumper.
    */
@@ -24,10 +24,16 @@ public class Dumper extends Subsystem{
 
   public void dump(boolean d)
   {
-    dump.set(!d);
+    dump.set(d);
+    //System.out.println(dump.get());
     // dump2.set(!d);
   }
-
+  
+  public boolean checkState()
+  {
+    return dump.get();
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
