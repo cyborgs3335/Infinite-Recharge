@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
 public class Dumper extends Subsystem{
@@ -20,6 +21,7 @@ public class Dumper extends Subsystem{
   public Dumper() {
     dump = new Solenoid(RobotMap.DUMP_PCM , RobotMap.DUMP_SOLENOID);
     // dump2 = new Solenoid(RobotMap.DUMP_PCM2, RobotMap.DUMP_SOLENOID2);
+    
   }
 
   public void dump(boolean d)
