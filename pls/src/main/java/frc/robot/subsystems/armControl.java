@@ -20,7 +20,6 @@ import frc.robot.RobotPreferences;
 import frc.robot.commands.DefaultHeight;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 

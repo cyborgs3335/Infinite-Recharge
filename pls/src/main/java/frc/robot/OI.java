@@ -42,8 +42,7 @@ public class OI
 
       //arm
       int bArmExtend = 5;
-      int bShimmyRight = 2;
-      int bShimmyLeft = 3;
+      int bShimmy = 3;
       int bRetractArm = 4;
 
       //dump
@@ -108,11 +107,8 @@ public class OI
       JoystickButton armControlBoard = addButton(mJoystick, bArmControlBoard, "arm to control board");
       armControlBoard.whenPressed(new armControlBoard());
 
-      JoystickButton shimmyLeft = addButton(mJoystick, bShimmyLeft, "Shimmy Left");
-      shimmyLeft.whileHeld(new shimmyLeft());
-
-      JoystickButton shimmyRight = addButton(mJoystick, bShimmyRight, "Shimmy Right");
-      shimmyRight.whileHeld(new shimmyLeft());
+      JoystickButton shimmyLeft = addButton(mJoystick, bShimmy, "Shimmy");
+      shimmyLeft.whileHeld(new shimmy());
 
       JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
       toggleDump.toggleWhenPressed(new toggleDump());
@@ -143,8 +139,7 @@ public class OI
       int bArmExtend = 8;
       int bFullArmExtend = 3;
       int bFullArmRetract = 2;
-      int bShimmyRight = 5;
-      int bShimmyLeft = 4;
+      int bShimmy = 4;
       //int bArmControlBoard = 10;
       int bRetractArm = 9;
 
@@ -190,11 +185,8 @@ public class OI
       // JoystickButton armControlBoard = addButton(mJoystick, bArmControlBoard, "arm to control board");
       // armControlBoard.whenPressed(new armControlBoard());
 
-      JoystickButton shimmyLeft = addButton(mJoystick, bShimmyLeft, "Shimmy Left");
-      shimmyLeft.whileHeld(new shimmyLeft());
-
-      JoystickButton shimmyRight = addButton(mJoystick, bShimmyRight, "Shimmy Right");
-      shimmyRight.whileHeld(new shimmyLeft());
+      JoystickButton shimmyLeft = addButton(mJoystick, bShimmy, "Shimmy");
+      shimmyLeft.whileHeld(new shimmy());
 
       JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
       toggleDump.toggleWhenPressed(new toggleDump());
