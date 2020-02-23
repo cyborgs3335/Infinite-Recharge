@@ -8,12 +8,12 @@
 package frc.robot.subsystems.vision;
 
 import com.revrobotics.ColorMatch;
-import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorSensorV3;
 
-import edu.wpi.first.networktables.*;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.Robot;
 
@@ -26,32 +26,48 @@ public class ColorSensor extends Subsystem
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   ColorMatch matcher;
   Color cyan,green,red,yellow;
-  
+  SendableChooser<Integer> colorChooser = new SendableChooser<Integer>();
+
   ColorSensor()
   {
     cs = new ColorSensorV3(i2cPort);
     matcher = new ColorMatch();
+    colorChooser.setDefaultOption("green", 1);
+    colorChooser.addOption("cyan", 2);
+    colorChooser.addOption("red", 3);
+    colorChooser.addOption("yellow", 4);
+    SmartDashboard.putData("ColorChooser",colorChooser);
+    SmartDashboard.putNumber("Number of Revs", 4);
     //TODO: correct colortargets
-    cyan = ColorMatch.makeColor(0,0,0);
-    green = ColorMatch.makeColor(0,0,0);
-    red = ColorMatch.makeColor(0,0,0);
-    yellow = ColorMatch.makeColor(0,0,0);
+    cyan = ColorMatch.makeColor(0,1,1);
+    green = ColorMatch.makeColor(0,1,0);
+    red = ColorMatch.makeColor(1,0,0);
+    yellow = ColorMatch.makeColor(1,1,0);
     matcher.addColorMatch(cyan);
     matcher.addColorMatch(green);
     matcher.addColorMatch(red);
     matcher.addColorMatch(yellow);
   }
 
-  public boolean isTarget()
+  public boolean onTarget()
   {
-    
-    ColorMatchResult match = matcher.matchClosestColor(getDetected());
-    return false;
+    switch(colorChooser.getSelected())
+    {
+      case 1: return(getDetected().equals(green));
+      case 2: return(getDetected().equals(cyan));
+      case 3: return(getDetected().equals(red));
+      default : return(getDetected().equals(yellow));
+    }
+  }
+
+  public void rotatePanel(double speed)
+  {
+    Robot.armControl.shimmy(speed);
   }
 
   public Color getDetected()
   {
-    return cs.getColor();
+    return matcher.matchClosestColor(cs.getColor()).color;
   }
 
 
