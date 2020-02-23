@@ -24,6 +24,7 @@ public class RobotPreferences {
     public static final double kFullRetractHeight = 0;
     public static final double kDefaultStart = 0;
     public static final double kLowerExtendHeight = 0;
+    public static final double kTimeToRotate = 0;//time needed to complete rotation control
 
 
     //speeds

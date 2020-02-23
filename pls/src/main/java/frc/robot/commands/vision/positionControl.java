@@ -8,54 +8,55 @@
 package frc.robot.commands.vision;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.Robot;
+import frc.robot.RobotPreferences;
 
-public class CompleteControlPanel extends Command 
-{
+public class positionControl extends Command {
 
   boolean isFinished = false;
 
-  public CompleteControlPanel() 
-  {
+  public positionControl() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.limelight);
+    requires(Robot.colorSensor);
+    requires(Robot.armControl);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() 
-  {
-
+  protected void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() 
   {
-
+    if(!Robot.colorSensor.onTarget())
+    {
+      Robot.colorSensor.rotatePanel(.5);
+    }
+    else
+    {
+      Robot.colorSensor.rotatePanel(0);
+      isFinished = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
-  {
+  protected boolean isFinished() {
     return isFinished;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() 
-  {
-
+  protected void end() {
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() 
-  {
-
+  protected void interrupted() {
   }
-
 }
