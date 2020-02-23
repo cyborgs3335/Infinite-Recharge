@@ -28,7 +28,7 @@ public class ColorSensor extends Subsystem
   Color cyan,green,red,yellow;
   SendableChooser<Integer> colorChooser = new SendableChooser<Integer>();
 
-  ColorSensor()
+  public ColorSensor()
   {
     cs = new ColorSensorV3(i2cPort);
     matcher = new ColorMatch();
@@ -68,6 +68,11 @@ public class ColorSensor extends Subsystem
   public Color getDetected()
   {
     return matcher.matchClosestColor(cs.getColor()).color;
+  }
+
+  public int getDistance()
+  {
+    return cs.getProximity();
   }
 
 

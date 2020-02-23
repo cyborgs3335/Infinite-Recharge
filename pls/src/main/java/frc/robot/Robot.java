@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.commands.drive.TankDrive;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.vision.ColorSensor;
 import frc.robot.subsystems.vision.Limelight;
 
 /**
@@ -40,6 +41,7 @@ public class Robot extends TimedRobot {
   public static shooter shooter;
   public static Dumper dumper;
   public static Limelight limelight;
+  public static ColorSensor colorSensor;
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -52,6 +54,7 @@ public class Robot extends TimedRobot {
     dumper = new Dumper();
     limelight = new Limelight();
     armControl = new armControl();
+    colorSensor = new ColorSensor();
     // PowerDistributionPanel pdp = new PowerDistributionPanel(0);
     // pdp.
     driveTrain = new driveTrain();
