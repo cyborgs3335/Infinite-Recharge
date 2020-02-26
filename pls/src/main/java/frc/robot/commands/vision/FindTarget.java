@@ -10,11 +10,8 @@ package frc.robot.commands.vision;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class FireAccurateShot extends Command {
-
-  boolean isFinished = false;
-  
-  public FireAccurateShot() {
+public class FindTarget extends Command {
+  public FindTarget() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.limelight);
@@ -29,12 +26,17 @@ public class FireAccurateShot extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(!Robot.limelight.hasTarget())
+    {
+      Robot.driveTrain.driveMotorsL(.2, .2);
+      Robot.driveTrain.driveMotorsR(-.2, -.2);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isFinished;
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -24,7 +24,6 @@ public class RobotPreferences {
     public static final double kFullRetractHeight = 0;
     public static final double kDefaultStart = 0;
     public static final double kLowerExtendHeight = 0;
-    public static final double kTimeToRotate = 0;//time needed to complete rotation control
 
 
     //speeds
@@ -71,10 +70,13 @@ public class RobotPreferences {
     public static final double kPortTargetBottomToPortCenter = 6.5;
     public static final double kFloorToLowPortCenter = 19;
     public static final double kDrivetrainWheelDiameterInches = 4.0;
+    public static final double kPreferredDistFromPort = 0;
 
+    //target center heights
     public static final double LowestPort = 19;//bottom
     public static final double HighPort = 47;
     public static final double Backport = 1;
+    public static final double LoadingBay = 0;
 	
 
 }

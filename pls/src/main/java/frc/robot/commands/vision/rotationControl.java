@@ -7,15 +7,9 @@
 
 package frc.robot.commands.vision;
 
-import javax.lang.model.util.ElementScanner6;
-import javax.swing.text.DefaultStyledDocument.ElementSpec;
-import javax.xml.namespace.QName;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.Robot;
-import frc.robot.subsystems.armControl;
 
 public class rotationControl extends Command 
 {

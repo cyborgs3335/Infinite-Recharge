@@ -13,8 +13,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.RobotPreferences;
-import frc.robot.commands.triggerIntake;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.

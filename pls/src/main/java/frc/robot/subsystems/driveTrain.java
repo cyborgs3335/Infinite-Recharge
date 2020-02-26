@@ -16,7 +16,6 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.RobotPreferences;
 import frc.robot.commands.whatOI;
 
 public class driveTrain extends Subsystem 
@@ -104,8 +103,6 @@ public class driveTrain extends Subsystem
   
   public void setBrake(boolean brake) 
   {
-		// Formerly: frontLeft.enableBrakeMode(brake);
-		// See https://github.com/CrossTheRoadElec/Phoenix-Documentation#installing-phoenix-framework-onto-your-frc-robot
 		NeutralMode mode = brake ? NeutralMode.Brake : NeutralMode.Coast;
 
         

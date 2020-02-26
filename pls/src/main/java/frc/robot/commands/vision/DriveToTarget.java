@@ -9,12 +9,14 @@ package frc.robot.commands.vision;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.vision.Limelight.Target;
 
 public class DriveToTarget extends Command {
   public DriveToTarget() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.limelight);
+    requires(Robot.driveTrain);
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +27,18 @@ public class DriveToTarget extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    
+    if(Robot.limelight.getTargetSelected() == Target.PORT)
+    {
+      
+    }
+    else if(Robot.limelight.getTargetSelected() == Target.BAY)
+    {
+
+    }
+    else if(Robot.limelight.getTargetSelected() == Target.BALL)
+    {
+
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
