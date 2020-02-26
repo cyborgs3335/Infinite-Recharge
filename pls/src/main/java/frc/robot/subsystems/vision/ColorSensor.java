@@ -31,18 +31,21 @@ public class ColorSensor extends Subsystem
   public ColorSensor()
   {
     cs = new ColorSensorV3(i2cPort);
+    //cs.configureColorSensor(res, rate, gain); Might be needed
     matcher = new ColorMatch();
+    
     colorChooser.setDefaultOption("green", 1);
     colorChooser.addOption("cyan", 2);
     colorChooser.addOption("red", 3);
     colorChooser.addOption("yellow", 4);
     SmartDashboard.putData("ColorChooser",colorChooser);
     SmartDashboard.putNumber("Number of Revs", 4);
-    //TODO: correct colortargets
+
     cyan = ColorMatch.makeColor(0,1,1);
     green = ColorMatch.makeColor(0,1,0);
     red = ColorMatch.makeColor(1,0,0);
     yellow = ColorMatch.makeColor(1,1,0);
+    
     matcher.addColorMatch(cyan);
     matcher.addColorMatch(green);
     matcher.addColorMatch(red);

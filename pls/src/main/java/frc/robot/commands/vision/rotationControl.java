@@ -7,15 +7,22 @@
 
 package frc.robot.commands.vision;
 
+import javax.lang.model.util.ElementScanner6;
+import javax.swing.text.DefaultStyledDocument.ElementSpec;
+import javax.xml.namespace.QName;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.Robot;
 import frc.robot.subsystems.armControl;
 
 public class rotationControl extends Command 
 {
 
+  int count;
   boolean isFinished = false;
+  Color prev,current;
 
   public rotationControl() 
   {
@@ -36,7 +43,22 @@ public class rotationControl extends Command
   @Override
   protected void execute() 
   {
-    Robot.colorSensor.onTarget();
+    count = 0;
+    Robot.colorSensor.rotatePanel(.5);
+    current = Robot.colorSensor.getDetected();
+    if(!(count >= 8))
+    {
+      if(prev == null || !current.equals(prev))
+      {
+        prev = current;
+        count++;
+      }
+    }
+    else
+    {
+      Robot.colorSensor.rotatePanel(0);
+      isFinished = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -50,7 +72,6 @@ public class rotationControl extends Command
   @Override
   protected void end() 
   {
-
   }
 
   // Called when another command which requires one or more of the same

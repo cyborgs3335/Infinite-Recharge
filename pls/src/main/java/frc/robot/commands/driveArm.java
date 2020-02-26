@@ -8,51 +8,48 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.commands.drive.Podracing;
-import frc.robot.commands.drive.TankDrive;
+import frc.robot.subsystems.armControl.armPosition;
+import frc.util.mapAxis;
 
-public class whatOI extends Command {
-  Podracing podracer;
-  TankDrive tank;
+public class driveArm extends Command {
+  double deadzone = .05;
   /**
-   * Creates a new whatOI.
+   * Creates a new armExtend.
    */
-  public whatOI() {
+  public driveArm() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.driveTrain);
-    podracer = new Podracing();
-    tank = new TankDrive();
+    requires(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("OI is online");
+   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.podrace)
+    if(!(Robot.armControl.getArmHeight().equals(armPosition.fullExtend) || Robot.armControl.getArmHeight().equals(armPosition.fullExtend)))
     {
-      System.out.println("now this is podracing");
-      podracer.execute();
+      Robot.armControl.moveArm(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
     }
     else
     {
-      
-      tank.execute();
+      System.out.println("You're at the max/min height");
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
-    System.out.println("OI was murdered or interrupted");
-    Robot.oi = new OI(Robot.podrace);
-    System.out.println("new OI generated");
+    Robot.armControl.moveArm(0);
+  }
+
+  @Override
+  protected void interrupted() {
+    end();
   }
 
   // Returns true when the command should end.

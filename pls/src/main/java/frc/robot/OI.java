@@ -33,17 +33,18 @@ public class OI
       mJoystick = new Joystick(0);
       mJoystick2 = new Joystick(1);
       //BUtton Info:
-      //UNUSED: 8, 9
-      //CONFLICTING: 2, 3, 4, 5, 10
+      //CONFLICTING: 4
       //DOUBLED: 1,6,7,11
       //Joystick1 buttons
       //-----------------
+      //UNUSED: 2,5,8,9
+      
       //intake
 
       //arm
-      int bArmExtend = 5;
+      //int bArmExtend = 5;
       int bShimmy = 3;
-      int bRetractArm = 4;
+      int bDriveArm = 4;
 
       //dump
       int bToggleDump = 10;
@@ -57,6 +58,7 @@ public class OI
 
       //Joystick2 buttons
       //-----------------
+      //UNUSED: 8,9
       //intake
       int bIntakeTrigger = 2;
       int bIntakeToggle = 7;
@@ -92,11 +94,11 @@ public class OI
       JoystickButton switchDrive2 = addButton(mJoystick2, bSwitchDrive, "Toggle DriveState");
       switchDrive2.whenPressed(new switchDrive());
 
-      JoystickButton retractArm = addButton(mJoystick, bRetractArm, "Retract Arm");
-      retractArm.whileHeld(new armRetract());
+      JoystickButton retractArm = addButton(mJoystick, bDriveArm, "Drive Arm");
+      retractArm.whileHeld(new driveArm());
 
-      JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
-      extendArm.whileHeld(new armExtend());
+      // JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
+      // extendArm.whileHeld(new driveArm());
 
       JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
       fullArmExtend.whenPressed(new armFullExtend());
@@ -129,19 +131,23 @@ public class OI
       System.out.println("tank");
       //Joystick1
       //-1 indicates command is not used
+      //Buttons
+      //-------
+      //UNUSED: 9
+
       //intake
       //int bIntakeTrigger = -1;
       int bIntakeToggle = 10;
-      //int bIntakeArmMotorToggle = 6;
-      //int bIntakeArmToggle = 6;
+      //int bIntakeArmMotorToggle = -1;
+      //int bIntakeArmToggle = -1;
 
       //arm
-      int bArmExtend = 8;
+      int bMoveArm = 8;
       int bFullArmExtend = 3;
       int bFullArmRetract = 2;
       int bShimmy = 4;
       //int bArmControlBoard = 10;
-      int bRetractArm = 9;
+      //int bRetractArm = 9;
 
       //dump
       int bToggleDump = 11;
@@ -151,7 +157,7 @@ public class OI
       int bTriggerShooter = 1;
 
       //switch drive
-      int bSwitchDrive = 7;
+      int bSwitchDrive = 6;
       
       
 
@@ -170,11 +176,11 @@ public class OI
       JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
       switchDrive.whenPressed(new switchDrive());
 
-      JoystickButton retractArm = addButton(mJoystick, bRetractArm, "Retract Arm");
-      retractArm.whileHeld(new armRetract());
+      JoystickButton driveArm = addButton(mJoystick, bMoveArm, "Drive Arm");
+      driveArm.toggleWhenPressed(new driveArm());
 
-      JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
-      extendArm.whileHeld(new armExtend());
+      // JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
+      // extendArm.whileHeld(new armExtend());
 
       JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
       fullArmExtend.whenPressed(new armFullExtend());

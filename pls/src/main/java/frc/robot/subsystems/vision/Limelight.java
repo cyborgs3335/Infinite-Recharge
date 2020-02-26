@@ -47,7 +47,7 @@ public class Limelight extends Subsystem implements IVisionTarget{
 
 	public enum Target {
 		PORT,
-		CONTROLBOARD,
+		BAY,
 		BALL;
 		
 		protected static Target[] targets = Target.values();
@@ -95,7 +95,7 @@ public class Limelight extends Subsystem implements IVisionTarget{
 
 	public Target getTargetSelected() {return mTargetSelected;}
 	
-	public void setSteam(StreamMode mode) {mStreamMode = mode;}
+	public void setStream(StreamMode mode) {mStreamMode = mode;}
 
 	private NetworkTableEntry getValue(String key) {return table.getTable("limelight").getEntry(key);}
 
