@@ -9,6 +9,7 @@ package frc.robot.commands.vision;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.vision.Limelight.Target;
 
 public class FindTarget extends Command {
 
@@ -19,6 +20,15 @@ public class FindTarget extends Command {
     // eg. requires(chassis);
     requires(Robot.limelight);
     requires(Robot.driveTrain);
+  }
+
+  public FindTarget(Target t) {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Robot.limelight);
+    requires(Robot.driveTrain);
+    
+    Robot.limelight.setPipeline(t);
   }
 
   // Called just before this Command runs the first time
@@ -57,5 +67,6 @@ public class FindTarget extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

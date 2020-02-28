@@ -18,6 +18,14 @@ public class DriveToTarget extends Command {
     requires(Robot.limelight);
     requires(Robot.driveTrain);
   }
+  public DriveToTarget(Target t) {
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Robot.limelight);
+    requires(Robot.driveTrain);
+
+    Robot.limelight.setPipeline(t);
+  }
 
   // Called just before this Command runs the first time
   @Override
@@ -56,5 +64,6 @@ public class DriveToTarget extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

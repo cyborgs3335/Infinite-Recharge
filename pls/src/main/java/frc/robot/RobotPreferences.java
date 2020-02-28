@@ -62,6 +62,8 @@ public class RobotPreferences {
     public static final double kShoot_P = 0;
     public static final double kShoot_I = 0;
     public static final double kShoot_D = 0;
+    public static final double kDistFromBaseMax = 0;
+    public static final double kDistFromBaseMin = 0;
 
     //vision
     public static final double kCameraDistanceFromFront = 17.75; 

@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
+import frc.robot.commands.auto.Default;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.vision.ColorSensor;
 import frc.robot.subsystems.vision.Limelight;
@@ -62,6 +63,8 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putBoolean("DriveMode",podrace);
+
+    m_autonomousCommand = new Default();
   }
 
   /**

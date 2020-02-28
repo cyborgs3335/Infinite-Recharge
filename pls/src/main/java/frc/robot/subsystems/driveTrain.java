@@ -169,6 +169,12 @@ public class driveTrain extends Subsystem
     rightFront.set(ControlMode.PercentOutput,rf);
 		rightBack.set(ControlMode.PercentOutput,rb);
   }
+
+  public void driveMotors(double l, double r)
+  {
+    driveMotorsL(l, l);
+    driveMotorsR(r,r);
+  }
   
   public void driveMotorsVision(double rf, double rb, double lf, double lb) {
 		int irf = (int) rf*4096;

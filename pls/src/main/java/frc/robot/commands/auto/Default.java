@@ -8,6 +8,10 @@
 package frc.robot.commands.auto;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
+import frc.robot.commands.*;
+import frc.robot.commands.vision.*;
+import frc.robot.subsystems.vision.Limelight.Target;
 
 public class Default extends CommandGroup {
   /**
@@ -15,7 +19,15 @@ public class Default extends CommandGroup {
    */
   public Default() 
   {
-    addSequential(command);
+    requires(Robot.driveTrain);
+    requires(Robot.shooter);
+    requires(Robot.dumper);
+    requires(Robot.limelight);
+
+    addSequential(new driveForward());
+    addSequential(new FindTarget(Target.PORT));
+    addSequential(new DriveToTarget(Target.PORT));
+    addSequential(new FireAccurateShot());
     // Add Commands here:
     // e.g. addSequential(new Command1());
     // addSequential(new Command2());

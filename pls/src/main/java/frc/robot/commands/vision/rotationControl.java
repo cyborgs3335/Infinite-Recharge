@@ -73,7 +73,7 @@ public class rotationControl extends Command
   @Override
   protected void interrupted() 
   {
-
+    end();
   }
 
 }
