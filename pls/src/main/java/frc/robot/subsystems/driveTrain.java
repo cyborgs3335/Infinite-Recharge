@@ -21,10 +21,12 @@ import frc.robot.commands.whatOI;
 public class driveTrain extends Subsystem 
 {
   private final TalonFX leftBack,leftFront,rightBack,rightFront;
-  //private final PigeonIMU pidgeon;
-  private int direction = RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
+  private final PigeonIMU pidgeon;
   private double voltageRampRateDefault;
   public Compressor comp;
+  private double[] YPR;//yaw,pitch,roll
+  private double heading;//direction in degrees
+
 
   /**
    * Creates a new driveTrain.
@@ -41,7 +43,8 @@ public class driveTrain extends Subsystem
     rightFront = new TalonFX(RobotMap.DRIVE_MOTOR_RIGHTF);
     rightFront.configFactoryDefault(100);
     //TODO:correct the talon the pigeon is attached to
-    //pidgeon = new PigeonIMU(rightFront);
+    pidgeon = new PigeonIMU(new TalonSRX(1239));
+    YPR = new double[3];
 
     comp = new Compressor(0);
     
@@ -135,9 +138,24 @@ public class driveTrain extends Subsystem
 		return rightBack.getSelectedSensorPosition();
   }
 
-  public void setDirection(int direction) 
+  public double getYaw()
   {
-		this.direction = direction * RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
+    return YPR[0];
+  }
+
+  public double getPitch()
+  {
+    return YPR[1];
+  }
+
+  public double getRoll()
+  {
+    return YPR[3];
+  }
+
+  public double getHeading()
+  {
+    return heading;
   }
   
   public void driveMotorsL(double lf, double lb) 
@@ -162,11 +180,14 @@ public class driveTrain extends Subsystem
 		leftBack.set(ControlMode.Position, leftBack.getSelectedSensorPosition() + ilb);
 		rightFront.set(ControlMode.Position, rightFront.getSelectedSensorPosition() + irf);
 		rightBack.set(ControlMode.Position, rightBack.getSelectedSensorPosition() + irb);
-	}
+  }
+  
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    heading = pidgeon.getAbsoluteCompassHeading();
+    pidgeon.getYawPitchRoll(YPR);
   }
 
   @Override
