@@ -38,7 +38,6 @@ public class RobotMap {
   	//intake constants
 	public static final int INTAKE_MOTOR_BELT = 5;
 	public static final int INTAKE_MOTOR_ARM = 10;
-	public static final int INTAKE_MOTOR_HOLD = 0;//TODO
 	public static final int INTAKE_SOLENOID_ARM = 0;
 	public static final int INTAKE_SOLENOID_ARM2 = 1;
 	//dumper constants
@@ -54,6 +53,7 @@ public class RobotMap {
 	public static final int SHOOT_MOTOR_FIRE = 3;
 	public static final int SHOOT_MOTOR_FIRE2 = 12;
 	public static final int SHOOT_MOTOR_PITCH = 6;
+	public static final int SHOOT_MOTOR_HOLD = 12;//TODO
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
