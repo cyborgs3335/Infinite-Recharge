@@ -56,10 +56,10 @@ public class ColorSensor extends Subsystem
   {
     switch(colorChooser.getSelected())
     {
-      case 1: return(getDetected().equals(green));
-      case 2: return(getDetected().equals(cyan));
-      case 3: return(getDetected().equals(red));
-      default : return(getDetected().equals(yellow));
+      case 4: return(getDetected().equals(green));//if we want yellow we look for green
+      case 3: return(getDetected().equals(cyan));//if want red, look for cyan
+      case 2: return(getDetected().equals(red));//if want cyan, look for red
+      default : return(getDetected().equals(yellow));//if want green, look for yellow
     }
   }
 

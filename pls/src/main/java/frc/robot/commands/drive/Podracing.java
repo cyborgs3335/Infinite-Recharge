@@ -48,16 +48,10 @@ public class Podracing{
   {
     double fr= Robot.oi.getJoystick().getRawAxis(1);
     double fl = Robot.oi.getJoystick2().getRawAxis(1);
-    double forwardRight = map(courseCorrect(fr));
-    double forwardLeft = map(courseCorrect(fl));
+    double forwardRight = map(fr);
+    double forwardLeft = map(fl);
     Robot.driveTrain.driveMotorsR(forwardRight, forwardRight);
     Robot.driveTrain.driveMotorsL(forwardLeft, forwardLeft);
     DriverStation.reportWarning("you are in the podracer now", true);
-  }
-
-  private double courseCorrect(double r)
-  {
-    double corrected = Math.round(r*10)/10;
-    return corrected;
   }
 }

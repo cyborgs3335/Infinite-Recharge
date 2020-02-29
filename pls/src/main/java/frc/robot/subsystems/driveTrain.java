@@ -26,7 +26,7 @@ public class driveTrain extends Subsystem
   private final PigeonIMU pidgeon;
   private double voltageRampRateDefault;
   public Compressor comp;
-  private double[] YPR,heading;//yaw,pitch,roll | x,y,z
+  private double[] YPR,heading;//yaw,pitch,roll | x,y,z | z is the one that tracks robot rotation
 
 
   /**

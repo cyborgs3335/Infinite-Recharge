@@ -40,7 +40,7 @@ public class rotationControl extends Command
     count = 0;
     Robot.colorSensor.rotatePanel(.5);
     current = Robot.colorSensor.getDetected();
-    if(!(count >= 8))
+    if(!(count >= 8*4))
     {
       if(prev == null || !current.equals(prev))
       {

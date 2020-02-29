@@ -19,11 +19,11 @@ public class RobotPreferences {
     //arm constants
     public static final double kWinchScalar = 0; //ticks per inch of hight on the arm
         //height of arm constants
-    public static final double kControlBoardHeight = 0;
-    public static final double kFullExtendHeight = 0;
-    public static final double kFullRetractHeight = 0;
+    public static final double kControlBoardHeight = 30.5;//done
+    public static final double kFullExtendHeight = 78 +(7/8d);//done
+    public static final double kFullRetractHeight = 0;//done
     public static final double kDefaultStart = 0;
-    public static final double kLowerExtendHeight = 0;
+    public static final double kLowerExtendHeight = 22.24;//done
 
 
     //speeds
@@ -69,16 +69,10 @@ public class RobotPreferences {
     public static final double kCameraDistanceFromFront = 17.75; 
     public static final double kCameraHeight = 36+(5d/8); 
     public static final double kCameraAngle = -18; 
-    public static final double kPortTargetBottomToPortCenter = 6.5;
-    public static final double kFloorToLowPortCenter = 19;
+    public static final double kPortTargetBottomToPortCenter = 15;//done
     public static final double kDrivetrainWheelDiameterInches = 4.0;
-    public static final double kPreferredDistFromPort = 0;
 
     //target center heights
-    public static final double LowestPort = 19;//bottom
-    public static final double HighPort = 47;
-    public static final double Backport = 1;
-    public static final double LoadingBay = 0;
-	
-
+    public static final double kFloorToPortCenter = 98.25;//done
+    public static final double LowestPort = 23;//done
 }

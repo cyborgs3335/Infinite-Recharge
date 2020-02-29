@@ -20,6 +20,7 @@ import frc.robot.RobotPreferences;
 import frc.robot.commands.DefaultHeight;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -43,10 +44,10 @@ public class armControl extends Subsystem {
   
   public double currentHeight;
 
-  public TalonSRX armMotorWinchL,armMotorWinchR;
+  public TalonSRX armMotorWinchL/*,armMotorWinchR*/;
   public TalonSRX armMotorRollerL;
   public TalonSRX armMotorRollerR;
-  //public DoubleSolenoid armSolenoidR,armSolenoidL;
+  public DoubleSolenoid armSolenoidR,armSolenoidL;
   
   public SensorCollection[] sensors = new SensorCollection[4];  
   private armPosition armHeight;
@@ -58,26 +59,23 @@ public class armControl extends Subsystem {
   public armControl() {
     armMotorWinchL = new TalonSRX(RobotMap.ARM_MOTOR_WINCHL);
     armMotorWinchL.configFactoryDefault(100);
-    armMotorWinchR = new TalonSRX(RobotMap.ARM_MOTOR_WINCHR);
-    armMotorWinchR.configFactoryDefault(100);
+    // armMotorWinchR = new TalonSRX(RobotMap.ARM_MOTOR_WINCHR);
+    // armMotorWinchR.configFactoryDefault(100);
     armMotorRollerR = new TalonSRX(RobotMap.ARM_MOTOR_RR);
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
-    // armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
-    // armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
+    armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
+    armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
 
     sensors[0] = armMotorWinchL.getSensorCollection();
-    sensors[1] = armMotorWinchR.getSensorCollection();
+    // sensors[1] = armMotorWinchR.getSensorCollection();
     sensors[2] = armMotorRollerR.getSensorCollection();
     sensors[3] = armMotorRollerL.getSensorCollection();
 
-    ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0,
-        10);
-    ErrorCode encoderPresentRL = armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
-        0, 10);
-    ErrorCode encoderPresentRR = armMotorRollerR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
-        0, 10);
+    ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+    ErrorCode encoderPresentRL = armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+    ErrorCode encoderPresentRR = armMotorRollerR.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
 
     if (encoderPresentW != ErrorCode.OK) {
       DriverStation.reportError("EncoderWinch is dead", false);
@@ -94,11 +92,12 @@ public class armControl extends Subsystem {
     armMotorWinchL.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorWinchL.configForwardSoftLimitEnable(false);
     armMotorWinchL.configReverseSoftLimitEnable(false);
-    armMotorWinchR.setNeutralMode(NeutralMode.Brake);
-    armMotorWinchR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
-    armMotorWinchR.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
-    armMotorWinchR.configForwardSoftLimitEnable(false);
-    armMotorWinchR.configReverseSoftLimitEnable(false);
+    // armMotorWinchR.setNeutralMode(NeutralMode.Brake);
+    // armMotorWinchR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    // armMotorWinchR.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    // armMotorWinchR.configForwardSoftLimitEnable(false);
+    // armMotorWinchR.configReverseSoftLimitEnable(false);
+    // arMotorWinchR.set(ControlMode.Position, 0);
     armMotorRollerR.setNeutralMode(NeutralMode.Brake);
     armMotorRollerR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorRollerR.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
@@ -115,18 +114,18 @@ public class armControl extends Subsystem {
     armHeight = armPosition.defaultStart;
 
     //pid for all motors (rollers L&R should be the same)
-    armMotorWinchL.config_kP(0,RobotPreferences.kArmW_P);
-    armMotorWinchL.config_kI(0,RobotPreferences.kArmW_I);
-    armMotorWinchL.config_kD(0,RobotPreferences.kArmW_D);
-    armMotorWinchR.config_kP(0,RobotPreferences.kArmW_P);
-    armMotorWinchR.config_kI(0,RobotPreferences.kArmW_I);
-    armMotorWinchR.config_kD(0,RobotPreferences.kArmW_D);
-    armMotorRollerR.config_kP(0,RobotPreferences.kArmRR_P);
-    armMotorRollerR.config_kI(0,RobotPreferences.kArmRR_I);
-    armMotorRollerR.config_kD(0,RobotPreferences.kArmRR_D);
-    armMotorRollerL.config_kP(0,RobotPreferences.kArmRL_P);
-    armMotorRollerL.config_kI(0,RobotPreferences.kArmRL_I);
-    armMotorRollerL.config_kD(0,RobotPreferences.kArmRL_D);
+    // armMotorWinchL.config_kP(0,RobotPreferences.kArmW_P);
+    // armMotorWinchL.config_kI(0,RobotPreferences.kArmW_I);
+    // armMotorWinchL.config_kD(0,RobotPreferences.kArmW_D);
+    // armMotorWinchR.config_kP(0,RobotPreferences.kArmW_P);
+    // armMotorWinchR.config_kI(0,RobotPreferences.kArmW_I);
+    // armMotorWinchR.config_kD(0,RobotPreferences.kArmW_D);
+    // armMotorRollerR.config_kP(0,RobotPreferences.kArmRR_P);
+    // armMotorRollerR.config_kI(0,RobotPreferences.kArmRR_I);
+    // armMotorRollerR.config_kD(0,RobotPreferences.kArmRR_D);
+    // armMotorRollerL.config_kP(0,RobotPreferences.kArmRL_P);
+    // armMotorRollerL.config_kI(0,RobotPreferences.kArmRL_I);
+    // armMotorRollerL.config_kD(0,RobotPreferences.kArmRL_D);
   }
 
   /**
@@ -155,7 +154,7 @@ public class armControl extends Subsystem {
       //TODO:make sure it works
       int targetSensorPosition = (int) Math.round(RobotPreferences.kWinchScalar * height);
       armMotorWinchL.set(ControlMode.Position, targetSensorPosition);
-      armMotorWinchR.set(ControlMode.Position, targetSensorPosition);
+      // armMotorWinchR.set(ControlMode.Position, targetSensorPosition);
       currentHeight = height;
    }
   }
@@ -170,7 +169,7 @@ public class armControl extends Subsystem {
   public void zeroEncoder()
   {
     armMotorWinchL.setSelectedSensorPosition(0,0,10);
-    armMotorWinchR.setSelectedSensorPosition(0,0,10);
+    // armMotorWinchR.setSelectedSensorPosition(0,0,10);
   }
 
   public int getEncoder()
@@ -181,22 +180,22 @@ public class armControl extends Subsystem {
   public void moveArm(double speed)
   {
     armMotorWinchL.set(ControlMode.PercentOutput, speed);
-    armMotorWinchR.set(ControlMode.PercentOutput, speed);
-    // if(speed < 0)
-    // {
-    //   armSolenoidL.set(Value.kReverse);
-    //   armSolenoidR.set(Value.kReverse);
-    // }
-    // else if(speed > 0)
-    // {
-    //   armSolenoidL.set(Value.kForward);
-    //   armSolenoidR.set(Value.kForward);
-    // }
-    // else
-    // {
-    //   armSolenoidL.set(Value.kOff);
-    //   armSolenoidR.set(Value.kOff);
-    // }
+    // armMotorWinchR.set(ControlMode.PercentOutput, speed);
+    if(speed < 0)
+    {
+      armSolenoidL.set(Value.kReverse);
+      armSolenoidR.set(Value.kReverse);
+    }
+    else if(speed > 0)
+    {
+      armSolenoidL.set(Value.kForward);
+      armSolenoidR.set(Value.kForward);
+    }
+    else
+    {
+      armSolenoidL.set(Value.kOff);
+      armSolenoidR.set(Value.kOff);
+    }
   }
 
   public void shimmy(double speed)

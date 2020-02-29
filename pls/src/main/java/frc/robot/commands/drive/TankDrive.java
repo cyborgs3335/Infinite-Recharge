@@ -78,16 +78,10 @@ public class TankDrive {
     //   fl = -1;
     // }
     
-    double forwardRight = map(courseCorrect(fr));
-    double forwardLeft = map(courseCorrect(fl));
+    double forwardRight = map(fr);
+    double forwardLeft = map(fl);
     Robot.driveTrain.driveMotorsR(forwardRight, forwardRight);
     Robot.driveTrain.driveMotorsL(forwardLeft, forwardLeft);
     DriverStation.reportWarning("you are in the single stick drive now", true);
     }
-
-  private double courseCorrect(double r)
-  {
-    double corrected = Math.round(r*10)/10;
-    return corrected;
-  }
 }
