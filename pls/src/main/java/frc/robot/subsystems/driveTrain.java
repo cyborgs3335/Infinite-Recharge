@@ -16,6 +16,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.whatOI;
 
@@ -42,9 +43,10 @@ public class driveTrain extends Subsystem
     rightBack.configFactoryDefault(100);
     rightFront = new TalonFX(RobotMap.DRIVE_MOTOR_RIGHTF);
     rightFront.configFactoryDefault(100);
-    //TODO:correct the talon the pigeon is attached to
-    pidgeon = new PigeonIMU(new TalonSRX(1239));
+    
+    pidgeon = new PigeonIMU(Robot.intake.beltDrive);
     YPR = new double[3];
+    heading = new double[3];
 
     comp = new Compressor(0);
     

@@ -28,7 +28,6 @@ import frc.robot.subsystems.vision.Limelight;
 public class Robot extends TimedRobot {
   
   public static boolean podrace = false;
-  public static Intake m_subsystem = new Intake();
   public static OI oi;
 
   Command m_autonomousCommand;
