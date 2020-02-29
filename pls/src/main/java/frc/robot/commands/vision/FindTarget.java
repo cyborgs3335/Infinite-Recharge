@@ -7,13 +7,17 @@
 
 package frc.robot.commands.vision;
 
+
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.vision.Limelight.Target;
 
 public class FindTarget extends Command {
 
-  boolean isFinished = false;
+  boolean isFinished,hasTarget;
+  Target t;
+  double yaw;
   
   public FindTarget() {
     // Use requires() here to declare subsystem dependencies
@@ -34,19 +38,55 @@ public class FindTarget extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    isFinished = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(!Robot.limelight.hasTarget())
+    t = Robot.limelight.getTargetSelected();
+    yaw = Robot.driveTrain.getYaw()%360; //the %360 removes excess if degrees are > 360, restricts yaw to -360 to 360
+    hasTarget = Robot.limelight.hasTarget();
+    if(t.equals(Target.PORT))
     {
-      Robot.driveTrain.driveMotorsL(.2, .2);
-      Robot.driveTrain.driveMotorsR(-.2, -.2);
+      if(((-90 <= yaw && yaw <= 90 )|| yaw < -270 || yaw > 270) && hasTarget)
+      {
+        isFinished = true;
+      }
+      else if((90 <= yaw && yaw <= 180))
+      {
+        Robot.driveTrain.driveMotors(.2, -.2);
+      }
+      else//(-90 to -180)
+      {
+        Robot.driveTrain.driveMotors(-.2, .2);
+      }
+    }
+    else if(t.equals(Target.BAY))
+    {
+      if(((90 > yaw && yaw <= 270) || (-270 <= yaw && yaw < -90)) && hasTarget)
+      {
+        isFinished = true;
+      }
+      else if((0 <= yaw && yaw <= 90) || (-270 <= yaw && yaw <= -360))
+      {
+        Robot.driveTrain.driveMotors(-.2, .2);
+      }
+      else
+      {
+        Robot.driveTrain.driveMotors(.2, -.2);
+      }
     }
     else
     {
-      isFinished  = true;
+        if(!hasTarget)
+      {
+        Robot.driveTrain.driveMotors(.2, -.2);
+      }
+      else
+      {
+        isFinished = true;
+      }
     }
   }
 
@@ -59,8 +99,7 @@ public class FindTarget extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.driveTrain.driveMotorsR(0, 0);
-    Robot.driveTrain.driveMotorsL(0, 0);
+    Robot.driveTrain.driveMotors(0, 0);
   }
 
   // Called when another command which requires one or more of the same

@@ -75,7 +75,7 @@ public class driveTrain extends Subsystem
 		// rightFront.config_kI(0, RobotPreferences.kI);
 		// rightBack.config_kI(0, RobotPreferences.kI);
 
-		double output = .75;//.75
+		//double output = .75;//.75
 
 		// leftFront.configPeakOutputForward(output); //30 is timeout
 		// leftBack.configPeakOutputForward(output);
