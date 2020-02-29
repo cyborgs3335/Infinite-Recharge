@@ -11,11 +11,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 
-public class shooter extends Subsystem {
+public class shooter extends SubsystemBase {
   Solenoid deploy/*,deploy2*/;
   TalonSRX launch, hold/*,launch2*/;
   /**
@@ -75,10 +75,5 @@ public class shooter extends Subsystem {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-  }
-
-  @Override
-  protected void initDefaultCommand() {
-
   }
 }

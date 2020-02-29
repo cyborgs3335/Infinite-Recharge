@@ -21,10 +21,10 @@ import frc.robot.commands.DefaultHeight;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
-public class armControl extends Subsystem {
+public class armControl extends SubsystemBase {
   
   public enum armPosition
   {
@@ -210,9 +210,9 @@ public class armControl extends Subsystem {
   }
 
 
-  @Override
-  protected void initDefaultCommand() {
-    // TODO: might not work
-    setDefaultCommand(new DefaultHeight());
-  }
+  //@Override
+  //protected void initDefaultCommand() {
+  //  // TODO: might not work
+  //  setDefaultCommand(new DefaultHeight());
+  //}
 }

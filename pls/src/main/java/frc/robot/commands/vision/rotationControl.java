@@ -7,12 +7,11 @@
 
 package frc.robot.commands.vision;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.Robot;
 
-public class rotationControl extends Command 
-{
+public class rotationControl extends CommandBase {
 
   int count;
   boolean isFinished = false;
@@ -22,20 +21,20 @@ public class rotationControl extends Command
   {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.colorSensor);
-    requires(Robot.armControl);
+    addRequirements(Robot.colorSensor);
+    addRequirements(Robot.armControl);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() 
+  public void initialize() 
   {
     
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() 
+  public void execute() 
   {
     count = 0;
     Robot.colorSensor.rotatePanel(.5);
@@ -57,23 +56,14 @@ public class rotationControl extends Command
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() 
+  public boolean isFinished() 
   {
     return isFinished;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() 
+  public void end(boolean interrupted) 
   {
   }
-
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() 
-  {
-    end();
-  }
-
 }

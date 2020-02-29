@@ -7,38 +7,34 @@
 
 package frc.robot.commands.vision;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.vision.Limelight.Target;
 
-public class FindTarget extends Command {
+public class FindTarget extends CommandBase {
 
   boolean isFinished = false;
   
   public FindTarget() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.limelight);
-    requires(Robot.driveTrain);
+    addRequirements(Robot.limelight);
+    addRequirements(Robot.driveTrain);
   }
 
   public FindTarget(Target t) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.limelight);
-    requires(Robot.driveTrain);
-    
+    this();
     Robot.limelight.setPipeline(t);
   }
 
   // Called just before this Command runs the first time
   @Override
-  protected void initialize() {
+  public void initialize() {
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  public void execute() {
     if(!Robot.limelight.hasTarget())
     {
       Robot.driveTrain.driveMotorsL(.2, .2);
@@ -52,21 +48,15 @@ public class FindTarget extends Command {
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
+  public boolean isFinished() {
     return isFinished;
   }
 
   // Called once after isFinished returns true
   @Override
-  protected void end() {
+  public void end(boolean interrupted) {
     Robot.driveTrain.driveMotorsR(0, 0);
     Robot.driveTrain.driveMotorsL(0, 0);
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-    end();
-  }
 }

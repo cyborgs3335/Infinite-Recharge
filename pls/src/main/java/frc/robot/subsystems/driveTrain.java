@@ -13,20 +13,20 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
-import edu.wpi.first.wpilibj.Solenoid;
+//import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Compressor;
 //import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.whatOI;
+//import frc.robot.commands.whatOI;
 
 public class driveTrain extends SubsystemBase {
   //private final TalonSRX leftBack,leftFront,rightBack,rightFront;
   private final TalonFX leftBack,leftFront,rightBack,rightFront;
   private final PigeonIMU pidgeon;
-  private final Solenoid solenoid1, solenoid2;
+  //private final Solenoid solenoid1, solenoid2;
   private int direction = RobotMap.DRIVE_TRAIN_FORWARD_DIRECTION;
   private double voltageRampRateDefault;
   public Compressor comp;
@@ -209,9 +209,4 @@ public class driveTrain extends SubsystemBase {
     SmartDashboard.putNumber("y angle", heading[1]);
     SmartDashboard.putNumber("z angle", heading[2]);
   }
-
-  //@Override
-  //protected void initDefaultCommand() {
-  //  setDefaultCommand(new whatOI());
-  //}
 }

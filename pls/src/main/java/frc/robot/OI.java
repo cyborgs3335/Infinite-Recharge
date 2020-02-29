@@ -8,7 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SendableBuilderImpl;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 
@@ -209,7 +210,13 @@ public class OI
   public JoystickButton addButton(Joystick j, int k, String key)
   {
     JoystickButton test = new JoystickButton(j, k);
-    SmartDashboard.putData(key, test);
+    // TODO find way to update dashboard with joystick button status
+    //SmartDashboard.putData(key, test);
+    //SmartDashboard.put
+    //SendableBuilderImpl builder = new SendableBuilderImpl();
+    //builder.setSmartDashboardType("Button");
+    //builder.setSafeState(() -> m_sendablePressed = false);
+    //builder.addBooleanProperty("pressed", this::grab, value -> m_sendablePressed = value);
     return test;
   }
 

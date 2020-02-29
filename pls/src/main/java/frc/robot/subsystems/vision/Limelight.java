@@ -2,7 +2,7 @@ package frc.robot.subsystems.vision;
 
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * 
  */
 
-public class Limelight extends Subsystem implements IVisionTarget{
+public class Limelight extends SubsystemBase implements IVisionTarget{
 	private NetworkTableInstance table = null;
 	private static Limelight mInstance;
 
@@ -168,10 +168,4 @@ public class Limelight extends Subsystem implements IVisionTarget{
 		public CameraMode cameraMode;
 	}
 
-	@Override
-	protected void initDefaultCommand() {
-
-	}
-
-	
 }

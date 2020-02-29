@@ -11,13 +11,13 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
-public class Intake extends Subsystem {
+public class Intake extends SubsystemBase {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   TalonSRX beltDrive/*, armDrive*/;
@@ -59,12 +59,5 @@ public class Intake extends Subsystem {
   {
     //armExtend.set(s);
     //armExtend2.set(s);
-  }
-
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(null);
   }
 }

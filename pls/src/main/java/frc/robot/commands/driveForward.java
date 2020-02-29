@@ -7,16 +7,16 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class driveForward extends Command {
+public class driveForward extends CommandBase {
   /**
    * Creates a new driveForward.
    */
   public driveForward() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.driveTrain);
+    addRequirements(Robot.driveTrain);
   }
 
   // Called when the command is initially scheduled.
@@ -33,7 +33,7 @@ public class driveForward extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
     Robot.driveTrain.driveMotorsL(0, 0);
     Robot.driveTrain.driveMotorsR(0, 0);
   }

@@ -7,17 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.util.mapAxis;
 
-public class toggleIntakeArmMotor extends Command {
+public class toggleIntakeArmMotor extends CommandBase {
   /**
    * Creates a new toggleIntakeArmMotor.
    */
   public toggleIntakeArmMotor() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.intake);
+    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
@@ -34,7 +34,7 @@ public class toggleIntakeArmMotor extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
     Robot.intake.driveArmMotor(0, false);
   }
 

@@ -17,8 +17,7 @@ import frc.util.mapAxis;
 public class triggerIntake extends CommandBase {
   public triggerIntake() {
     // Use requires() here to declare subsystem dependencies
-    addRequirements(Robot.m_subsystem);
-    //requires(Robot.intake);
+    addRequirements(Robot.intake);
   }
 
   // cool!

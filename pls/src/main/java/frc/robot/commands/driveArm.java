@@ -7,19 +7,19 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.subsystems.armControl.armPosition;
 import frc.util.mapAxis;
 
-public class driveArm extends Command {
+public class driveArm extends CommandBase {
   double deadzone = .05;
   /**
    * Creates a new armExtend.
    */
   public driveArm() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
+    addRequirements(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.
@@ -43,13 +43,8 @@ public class driveArm extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
     Robot.armControl.moveArm(0);
-  }
-
-  @Override
-  protected void interrupted() {
-    end();
   }
 
   // Returns true when the command should end.

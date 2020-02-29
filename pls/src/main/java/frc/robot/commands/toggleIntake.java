@@ -12,14 +12,14 @@ import frc.robot.Robot;
 import frc.util.mapAxis;
 
 public class toggleIntake extends CommandBase {
-  private boolean run;      
+  //private boolean run;      
 
   /**
    * Creates a new toggleIntake.
    */
   public toggleIntake() {
     // Use addRequirements() here to declare subsystem dependencies.\
-    requires(Robot.intake);
+    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.

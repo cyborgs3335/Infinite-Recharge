@@ -7,13 +7,13 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.commands.drive.Podracing;
 import frc.robot.commands.drive.TankDrive;
 
-public class whatOI extends Command {
+public class whatOI extends CommandBase {
   Podracing podracer;
   TankDrive tank;
   /**
@@ -21,7 +21,7 @@ public class whatOI extends Command {
    */
   public whatOI() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.driveTrain);
+    addRequirements(Robot.driveTrain);
     podracer = new Podracing();
     tank = new TankDrive();
   }
@@ -49,7 +49,7 @@ public class whatOI extends Command {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end() {
+  public void end(boolean interrupted) {
     System.out.println("OI was murdered or interrupted");
     Robot.oi = new OI(Robot.podrace);
     System.out.println("new OI generated");

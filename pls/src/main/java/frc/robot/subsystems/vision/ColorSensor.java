@@ -11,7 +11,7 @@ import com.revrobotics.ColorMatch;
 import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.I2C;
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
@@ -20,8 +20,7 @@ import frc.robot.Robot;
 /**
  * Add your docs here.
  */
-public class ColorSensor extends Subsystem 
-{
+public class ColorSensor extends SubsystemBase {
   ColorSensorV3 cs;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   ColorMatch matcher;
@@ -76,12 +75,5 @@ public class ColorSensor extends Subsystem
   public int getDistance()
   {
     return cs.getProximity();
-  }
-
-
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
   }
 }

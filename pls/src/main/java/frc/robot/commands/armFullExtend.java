@@ -19,7 +19,7 @@ public class armFullExtend extends CommandBase {
    */
   public armFullExtend() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
+    addRequirements(Robot.armControl);
   }
 
   // Called when the command is initially scheduled.

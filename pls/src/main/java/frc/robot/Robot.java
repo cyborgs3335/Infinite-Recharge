@@ -16,10 +16,11 @@ import frc.robot.commands.triggerIntake;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.armControl;
 //import frc.robot.commands.*;
-//import frc.robot.commands.auto.Default;
-//import frc.robot.subsystems.*;
-//import frc.robot.subsystems.vision.ColorSensor;
-//import frc.robot.subsystems.vision.Limelight;
+import frc.robot.commands.whatOI;
+import frc.robot.commands.auto.Default;
+import frc.robot.subsystems.*;
+import frc.robot.subsystems.vision.ColorSensor;
+import frc.robot.subsystems.vision.Limelight;
 
 /**
  * The VM is configured to automatically run this class, and to call the
