@@ -16,13 +16,13 @@ import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 
 public class shooter extends Subsystem {
-  //Solenoid deploy,deploy2;
+  Solenoid deploy/*,deploy2*/;
   TalonSRX launch,launch2;
   /**
    * Creates a new shooter.
    */
   public shooter() {
-      // deploy = new Solenoid(RobotMap.SHOOT_PCM, RobotMap.SHOOT_SOLENOID);
+      deploy = new Solenoid(RobotMap.SHOOT_PCM, RobotMap.SHOOT_SOLENOID);
       // deploy2 = new Solenoid(RobotMap.SHOOT_PCM2,RobotMap.SHOOT_SOLENOID2);
       launch = new TalonSRX(RobotMap.SHOOT_MOTOR_FIRE);
       launch2 = new TalonSRX(RobotMap.SHOOT_MOTOR_FIRE2);
@@ -58,13 +58,15 @@ public class shooter extends Subsystem {
 
   public void revMotor(double speed)
   {
+    setShooter(true);
     launch.set(ControlMode.PercentOutput, speed);
     launch2.set(ControlMode.PercentOutput,speed);
+    setShooter(false);
   }
 
   public void setShooter(boolean isOn)
   {
-    // deploy.set(isOn);
+    deploy.set(isOn);
     // deploy2.set(isOn);
   }
 

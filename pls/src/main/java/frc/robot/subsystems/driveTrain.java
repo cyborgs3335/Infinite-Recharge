@@ -15,6 +15,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.whatOI;
 
@@ -24,8 +25,7 @@ public class driveTrain extends Subsystem
   private final PigeonIMU pidgeon;
   private double voltageRampRateDefault;
   public Compressor comp;
-  private double[] YPR;//yaw,pitch,roll
-  private double heading;//direction in degrees
+  private double[] YPR,heading;//yaw,pitch,roll | x,y,z
 
 
   /**
@@ -82,7 +82,9 @@ public class driveTrain extends Subsystem
 		// leftFront.configPeakOutputReverse(-output);
 		// leftBack.configPeakOutputReverse(-output);
 		// rightFront.configPeakOutputReverse(-output);
-		// rightBack.configPeakOutputReverse(-output);
+    // rightBack.configPeakOutputReverse(-output);
+    
+    
 
   }
 
@@ -153,7 +155,7 @@ public class driveTrain extends Subsystem
     return YPR[3];
   }
 
-  public double getHeading()
+  public double[] getHeading()
   {
     return heading;
   }
@@ -192,8 +194,14 @@ public class driveTrain extends Subsystem
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    heading = pidgeon.getAbsoluteCompassHeading();
+    pidgeon.getAccumGyro(heading);
     pidgeon.getYawPitchRoll(YPR);
+    SmartDashboard.putNumber("roll", YPR[2]);
+    SmartDashboard.putNumber("yaw", YPR[0]);
+    SmartDashboard.putNumber("pitch", YPR[1]);
+    SmartDashboard.putNumber("x angle", heading[0]);
+    SmartDashboard.putNumber("y angle", heading[1]);
+    SmartDashboard.putNumber("z angle", heading[2]);
   }
 
   @Override

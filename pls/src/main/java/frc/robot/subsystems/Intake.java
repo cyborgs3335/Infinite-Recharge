@@ -20,18 +20,18 @@ import frc.robot.RobotMap;
 public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  TalonSRX beltDrive;
-  TalonSRX armDrive;
-  Solenoid armExtend = new Solenoid(0, 0); 
-  Solenoid armExtend2 = new Solenoid(0,1);
+  TalonSRX beltDrive, armDrive, holdDrive;
+  Solenoid armExtend; 
+  //Solenoid armExtend2 = new Solenoid(0,1);
   public Intake()
   {
     armExtend = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM);
-    armExtend2 = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM2);
+    //armExtend2 = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM2);
     armDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_ARM);
     armDrive.configFactoryDefault(100);
     beltDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_BELT);
     beltDrive.configFactoryDefault(100);
+    holdDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_HOLD);
 
     //armDrive pid
     // armDrive.config_kP(0, RobotPreferences.kIntakeA_P);
@@ -48,7 +48,6 @@ public class Intake extends Subsystem {
   {
     beltDrive.set(ControlMode.PercentOutput, speed);
     beltDrive.setInverted(isInverted);
-    driveArmMotor(speed, isInverted);
   }
 
   public void driveArmMotor(double speed, boolean isInverted)
@@ -57,10 +56,15 @@ public class Intake extends Subsystem {
     armDrive.setInverted(isInverted);
   }
 
+  public void driveHoldMotor()
+  {
+    holdDrive.set(ControlMode.PercentOutput, .5);
+  }
+
   public void extendArm(boolean s)
   {
     armExtend.set(s);
-    armExtend2.set(s);
+    //armExtend2.set(s);
   }
 
   @Override

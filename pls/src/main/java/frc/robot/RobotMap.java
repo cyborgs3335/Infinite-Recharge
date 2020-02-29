@@ -38,6 +38,7 @@ public class RobotMap {
   	//intake constants
 	public static final int INTAKE_MOTOR_BELT = 5;
 	public static final int INTAKE_MOTOR_ARM = 10;
+	public static final int INTAKE_MOTOR_HOLD = 0;//TODO
 	public static final int INTAKE_SOLENOID_ARM = 0;
 	public static final int INTAKE_SOLENOID_ARM2 = 1;
 	//dumper constants
