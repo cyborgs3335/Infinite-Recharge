@@ -62,7 +62,7 @@ public class shooter extends Subsystem {
   {
     setShooter(true);
     launch.set(ControlMode.PercentOutput, speed);
-    hold.set(ControlMode.PercentOutput,.5);
+    hold.set(ControlMode.PercentOutput,.75);
     //launch2.set(ControlMode.PercentOutput,speed);
   }
 
