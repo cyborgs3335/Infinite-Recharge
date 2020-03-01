@@ -20,68 +20,76 @@ import frc.robot.Robot;
 /**
  * Add your docs here.
  */
-public class ColorSensor extends Subsystem 
-{
+public class ColorSensor extends Subsystem {
   ColorSensorV3 cs;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   ColorMatch matcher;
-  Color cyan,green,red,yellow;
+  Color cyan, green, red, yellow;
   SendableChooser<Integer> colorChooser = new SendableChooser<Integer>();
 
-  public ColorSensor()
-  {
+  public ColorSensor() {
     cs = new ColorSensorV3(i2cPort);
-    //cs.configureColorSensor(res, rate, gain); Might be needed
+    // cs.configureColorSensor(res, rate, gain); Might be needed
     matcher = new ColorMatch();
-    
+
     colorChooser.setDefaultOption("green", 1);
     colorChooser.addOption("cyan", 2);
     colorChooser.addOption("red", 3);
     colorChooser.addOption("yellow", 4);
-    SmartDashboard.putData("ColorChooser",colorChooser);
+    SmartDashboard.putData("ColorChooser", colorChooser);
     SmartDashboard.putNumber("Number of Revs", 4);
 
-    cyan = ColorMatch.makeColor(0,1,1);
-    green = ColorMatch.makeColor(0,1,0);
-    red = ColorMatch.makeColor(1,0,0);
-    yellow = ColorMatch.makeColor(1,1,0);
-    
+    cyan = ColorMatch.makeColor(.143, .427 , .429);
+    green = ColorMatch.makeColor(.197, .561, .240);
+    red = ColorMatch.makeColor(.561, .232, .114);
+    yellow = ColorMatch.makeColor(.316, .524, .113);
+
     matcher.addColorMatch(cyan);
     matcher.addColorMatch(green);
     matcher.addColorMatch(red);
     matcher.addColorMatch(yellow);
   }
 
-  public boolean onTarget()
-  {
-    switch(colorChooser.getSelected())
-    {
-      case 4: return(getDetected().equals(green));//if we want yellow we look for green
-      case 3: return(getDetected().equals(cyan));//if want red, look for cyan
-      case 2: return(getDetected().equals(red));//if want cyan, look for red
-      default : return(getDetected().equals(yellow));//if want green, look for yellow
+  public boolean onTarget() {
+    switch (colorChooser.getSelected()) {
+    case 4:
+      return (getDetected().equals(green));// if we want yellow we look for green
+    case 3:
+      return (getDetected().equals(cyan));// if want red, look for cyan
+    case 2:
+      return (getDetected().equals(red));// if want cyan, look for red
+    default:
+      return (getDetected().equals(yellow));// if want green, look for yellow
     }
   }
 
-  public void rotatePanel(double speed)
-  {
+  public void rotatePanel(double speed) {
     Robot.armControl.shimmy(speed);
   }
 
-  public Color getDetected()
-  {
+  public Color getDetected() {
     return matcher.matchClosestColor(cs.getColor()).color;
   }
 
-  public int getDistance()
-  {
+  public int getDistance() {
     return cs.getProximity();
   }
-
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  @Override
+  public void periodic() {
+    if(getDetected().equals(green))
+    SmartDashboard.putString("ColorDetected", "green");
+    if(getDetected().equals(cyan))
+    SmartDashboard.putString("ColorDetected", "cyan");
+    if(getDetected().equals(red))
+    SmartDashboard.putString("ColorDetected", "red");
+    if(getDetected().equals(yellow))
+    SmartDashboard.putString("ColorDetected", "yellow");
   }
 }

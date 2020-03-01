@@ -53,10 +53,10 @@ public class driveTrain extends Subsystem
 		double voltageRampRate = 6;//20;
 		setRampRate(voltageRampRate);
 
-    leftFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);//10ms
-		leftBack.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rightFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rightBack.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+    leftFront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);//10ms
+		leftBack.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
+		rightFront.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
+		rightBack.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, 0, 10);
 		rightFront.setInverted(true);
 		rightBack.setInverted(true);
         
