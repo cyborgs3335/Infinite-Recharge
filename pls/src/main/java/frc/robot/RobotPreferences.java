@@ -17,13 +17,15 @@ public class RobotPreferences {
     //TODO: set all constants in Inches
 
     //arm constants
-    public static final double kWinchScalar = 0; //ticks per inch of hight on the arm
+    public static final double armheight = 22.25;                     //4096 ticks per revolution, 1 rev = 7d/6 inch
+    public static final double kWinchScalar = 4096/(7d/6);//done //ticks per inch of hight on the arm
         //height of arm constants
-    public static final double kControlBoardHeight = 30.5;//done
-    public static final double kFullExtendHeight = 78 +(7/8d);//done
+    public static final double kControlBoardHeight = 30.5 - armheight;//done
+    public static final double kFullExtendHeight = 78 +(7/8d) - armheight;//done
     public static final double kFullRetractHeight = 0;//done
-    public static final double kDefaultStart = 0;
-    public static final double kLowerExtendHeight = 22.24;//done
+    public static final double kDefaultStart = kFullRetractHeight;
+    public static final double kLowerExtendHeight = 22.24 - armheight ;//done
+
 
 
     //speeds

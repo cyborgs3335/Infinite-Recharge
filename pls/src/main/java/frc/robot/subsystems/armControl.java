@@ -14,10 +14,11 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
-import frc.robot.commands.DefaultHeight;
+//import frc.robot.commands.DefaultHeight;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
@@ -44,12 +45,10 @@ public class armControl extends SubsystemBase {
   
   public double currentHeight;
 
-  public TalonSRX armMotorWinchL/*,armMotorWinchR*/;
-  public TalonSRX armMotorRollerL;
-  public TalonSRX armMotorRollerR;
+  public TalonFX armMotorWinchL/*,armMotorWinchR*/;
+  public VictorSPX armMotorRollerL,armMotorRollerR;
   public DoubleSolenoid armSolenoidR,armSolenoidL;
   
-  public SensorCollection[] sensors = new SensorCollection[4];  
   private armPosition armHeight;
   private boolean isSafe;
   
@@ -57,21 +56,16 @@ public class armControl extends SubsystemBase {
    * Creates a new armControl.
    */
   public armControl() {
-    armMotorWinchL = new TalonSRX(RobotMap.ARM_MOTOR_WINCHL);
+    armMotorWinchL = new TalonFX(RobotMap.ARM_MOTOR_WINCHL);
     armMotorWinchL.configFactoryDefault(100);
     // armMotorWinchR = new TalonSRX(RobotMap.ARM_MOTOR_WINCHR);
     // armMotorWinchR.configFactoryDefault(100);
-    armMotorRollerR = new TalonSRX(RobotMap.ARM_MOTOR_RR);
+    armMotorRollerR = new VictorSPX(RobotMap.ARM_MOTOR_RR);
     armMotorRollerR.configFactoryDefault(100);
-    armMotorRollerL = new TalonSRX(RobotMap.ARM_MOTOR_RL);
+    armMotorRollerL = new VictorSPX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
     armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
     armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
-
-    sensors[0] = armMotorWinchL.getSensorCollection();
-    // sensors[1] = armMotorWinchR.getSensorCollection();
-    sensors[2] = armMotorRollerR.getSensorCollection();
-    sensors[3] = armMotorRollerL.getSensorCollection();
 
     ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
     ErrorCode encoderPresentRL = armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
@@ -99,12 +93,12 @@ public class armControl extends SubsystemBase {
     // armMotorWinchR.configReverseSoftLimitEnable(false);
     // arMotorWinchR.set(ControlMode.Position, 0);
     armMotorRollerR.setNeutralMode(NeutralMode.Brake);
-    armMotorRollerR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    //armMotorRollerR.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorRollerR.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorRollerR.configForwardSoftLimitEnable(false);
     armMotorRollerR.configReverseSoftLimitEnable(false);
     armMotorRollerL.setNeutralMode(NeutralMode.Brake);
-    armMotorRollerL.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
+    //armMotorRollerL.configReverseLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorRollerL.configForwardLimitSwitchSource(LimitSwitchSource.Deactivated, LimitSwitchNormal.Disabled);
     armMotorRollerL.configForwardSoftLimitEnable(false);
     armMotorRollerL.configReverseSoftLimitEnable(false);

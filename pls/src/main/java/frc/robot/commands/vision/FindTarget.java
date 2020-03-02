@@ -30,19 +30,37 @@ public class FindTarget extends CommandBase {
   // Called just before this Command runs the first time
   @Override
   public void initialize() {
+    isFinished = false;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   public void execute() {
-    if(!Robot.limelight.hasTarget())
-    {
-      Robot.driveTrain.driveMotorsL(.2, .2);
-      Robot.driveTrain.driveMotorsR(-.2, -.2);
-    }
-    else
-    {
-      isFinished  = true;
+    Target t = Robot.limelight.getTargetSelected();
+    double yaw = Robot.driveTrain.getYaw()%360; //the %360 removes excess if degrees are > 360, restricts yaw to -360 to 360
+    boolean hasTarget = Robot.limelight.hasTarget();
+    if (t.equals(Target.PORT)) {
+      if (((-90 <= yaw && yaw <= 90 )|| yaw < -270 || yaw > 270) && hasTarget) {
+        isFinished = true;
+      } else if ((90 <= yaw && yaw <= 180)) {
+        Robot.driveTrain.driveMotors(.2, -.2);
+      } else { //(-90 to -180)
+        Robot.driveTrain.driveMotors(-.2, .2);
+      }
+    } else if (t.equals(Target.BAY)) {
+      if (((90 > yaw && yaw <= 270) || (-270 <= yaw && yaw < -90)) && hasTarget) {
+        isFinished = true;
+      } else if ((0 <= yaw && yaw <= 90) || (-270 <= yaw && yaw <= -360)) {
+        Robot.driveTrain.driveMotors(-.2, .2);
+      } else {
+        Robot.driveTrain.driveMotors(.2, -.2);
+      }
+    } else {
+      if (!hasTarget) {
+        Robot.driveTrain.driveMotors(.2, -.2);
+      } else {
+        isFinished = true;
+      }
     }
   }
 
@@ -55,8 +73,7 @@ public class FindTarget extends CommandBase {
   // Called once after isFinished returns true
   @Override
   public void end(boolean interrupted) {
-    Robot.driveTrain.driveMotorsR(0, 0);
-    Robot.driveTrain.driveMotorsL(0, 0);
+    Robot.driveTrain.driveMotors(0, 0);
   }
 
 }

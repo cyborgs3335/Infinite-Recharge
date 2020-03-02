@@ -13,7 +13,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
-import frc.robot.RobotPreferences;
 
 public class shooter extends SubsystemBase {
   Solenoid deploy/*,deploy2*/;
@@ -62,7 +61,7 @@ public class shooter extends SubsystemBase {
   {
     setShooter(true);
     launch.set(ControlMode.PercentOutput, speed);
-    hold.set(ControlMode.PercentOutput,.5);
+    hold.set(ControlMode.PercentOutput,.75);
     //launch2.set(ControlMode.PercentOutput,speed);
   }
 

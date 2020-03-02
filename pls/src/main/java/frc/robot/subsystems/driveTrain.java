@@ -57,14 +57,16 @@ public class driveTrain extends SubsystemBase {
 		double voltageRampRate = 6;//20;
 		setRampRate(voltageRampRate);
 
-    leftFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);//10ms
-		leftBack.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rightFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rightBack.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rightFront.setInverted(true);
-		rightBack.setInverted(true);
-        
-		//PID
+    //FeedbackDevice feedbackDevice = FeedbackDevice.CTRE_MagEncoder_Relative;
+    FeedbackDevice feedbackDevice = FeedbackDevice.IntegratedSensor;
+    leftFront.configSelectedFeedbackSensor(feedbackDevice, 0, 10);//10ms
+    leftBack.configSelectedFeedbackSensor(feedbackDevice, 0, 10);
+    rightFront.configSelectedFeedbackSensor(feedbackDevice, 0, 10);
+    rightBack.configSelectedFeedbackSensor(feedbackDevice, 0, 10);
+    rightFront.setInverted(true);
+    rightBack.setInverted(true);
+
+    //PID
 
 		// leftFront.config_kD(0, RobotPreferences.kD);
 		// leftBack.config_kD(0, RobotPreferences.kD);
@@ -79,7 +81,7 @@ public class driveTrain extends SubsystemBase {
 		// rightFront.config_kI(0, RobotPreferences.kI);
 		// rightBack.config_kI(0, RobotPreferences.kI);
 
-		double output = .75;//.75
+		//double output = .75;//.75
 
 		// leftFront.configPeakOutputForward(output); //30 is timeout
 		// leftBack.configPeakOutputForward(output);
