@@ -8,16 +8,24 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 
 public class driveLeft extends CommandBase {
+  double s;
+  boolean isFinished = false;
   /**
    * Creates a new driveBackward.
    */
   public driveLeft() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.driveTrain);
-    //requires(Robot.driveTrain);
+  }
+
+  public driveLeft(double sec) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.driveTrain);
+    s = sec;
   }
 
   // Called when the command is initially scheduled.
@@ -30,6 +38,11 @@ public class driveLeft extends CommandBase {
   public void execute() {
     Robot.driveTrain.driveMotorsL(-.2, -.2);
     Robot.driveTrain.driveMotorsR(.2, .2);
+    if (s != 0.0) {
+      WaitCommand w = new WaitCommand(s);
+      w.initialize();
+      isFinished = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -42,6 +55,6 @@ public class driveLeft extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isFinished;
   }
 }
