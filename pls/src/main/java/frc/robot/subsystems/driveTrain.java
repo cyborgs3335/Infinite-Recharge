@@ -58,8 +58,8 @@ public class driveTrain extends SubsystemBase {
 		double voltageRampRate = 6;//20;
 		setRampRate(voltageRampRate);
 
-    //FeedbackDevice feedbackDevice = FeedbackDevice.CTRE_MagEncoder_Relative;
-    FeedbackDevice feedbackDevice = FeedbackDevice.IntegratedSensor;
+    FeedbackDevice feedbackDevice = FeedbackDevice.CTRE_MagEncoder_Relative;
+    //FeedbackDevice feedbackDevice = FeedbackDevice.IntegratedSensor;
     leftFront.configSelectedFeedbackSensor(feedbackDevice, 0, 10);//10ms
     leftBack.configSelectedFeedbackSensor(feedbackDevice, 0, 10);
     rightFront.configSelectedFeedbackSensor(feedbackDevice, 0, 10);
