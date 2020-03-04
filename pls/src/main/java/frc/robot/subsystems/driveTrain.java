@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
@@ -191,7 +192,22 @@ public class driveTrain extends Subsystem
 		rightFront.set(ControlMode.Position, rightFront.getSelectedSensorPosition() + irf);
 		rightBack.set(ControlMode.Position, rightBack.getSelectedSensorPosition() + irb);
   }
-  
+
+  /**
+   * Turn the robot by the specified angle (in degrees).
+   * @param angleDeg positive angle is clockwise motion, negative angle is counter-clockwise
+   */
+  public void turn(double angleDeg) {
+    // Use approximation of distance = radius * theta (in radians)
+    double drivetrainRadius = 12.0; // inches TODO FIXME
+    double fudgeFactor = 1.0; // TODO FIXME -- take actual measurements
+    double dist = fudgeFactor * drivetrainRadius * Math.toRadians(angleDeg);
+    int idist = (int) dist * 4096;
+    leftFront.set(TalonFXControlMode.MotionMagic, leftFront.getSelectedSensorPosition() + idist);
+    leftBack.set(TalonFXControlMode.MotionMagic, leftBack.getSelectedSensorPosition() + idist);
+    rightFront.set(TalonFXControlMode.MotionMagic, rightFront.getSelectedSensorPosition() - idist);
+    rightBack.set(TalonFXControlMode.MotionMagic, rightBack.getSelectedSensorPosition() - idist);
+  }
 
   @Override
   public void periodic() {
