@@ -21,12 +21,12 @@ public class Intake extends SubsystemBase {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   TalonSRX beltDrive/*, armDrive*/;
-  // Solenoid armExtend = new Solenoid(7); 
-  Solenoid armExtend2;
+  Solenoid armExtend;
+  //Solenoid armExtend2;
   public Intake()
   {
-    // armExtend = new Solenoid(RobotMap.INTAKE_SOLENOID_ARM);
-    armExtend2 = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM2);
+    armExtend = new Solenoid(RobotMap.INTAKE_SOLENOID_ARM);
+    //armExtend2 = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM2);
     //armDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_ARM);
     //armDrive.configFactoryDefault(100);
     beltDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_BELT);
@@ -57,7 +57,7 @@ public class Intake extends SubsystemBase {
 
   public void extendArm(boolean s)
   {
-    //armExtend.set(s);
+    armExtend.set(s);
     //armExtend2.set(s);
   }
 }
