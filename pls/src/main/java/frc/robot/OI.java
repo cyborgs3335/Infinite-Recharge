@@ -62,7 +62,7 @@ public class OI
       //intake
       int bIntakeTrigger = 2;
       int bIntakeToggle = 7;
-      int bIntakeArmMotorToggle = 10;
+      //int bIntakeArmMotorToggle = 10;
       int bIntakeArmToggle = 10;
 
       //arm
@@ -83,8 +83,8 @@ public class OI
       JoystickButton toggleIntake2 = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
       toggleIntake2.toggleWhenPressed(new toggleIntake());
 
-      JoystickButton toggleIntakeArmMotor = addButton(mJoystick2, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
-      toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
+      // JoystickButton toggleIntakeArmMotor = addButton(mJoystick2, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
+      // toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
 
       JoystickButton toggleIntakeArm = addButton(mJoystick2, bIntakeArmToggle, "Toggle Intake Arm");
       toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
@@ -133,13 +133,13 @@ public class OI
       //-1 indicates command is not used
       //Buttons
       //-------
-      //UNUSED: 9
+      //UNUSED: 7,9
 
       //intake
       //int bIntakeTrigger = -1;
       int bIntakeToggle = 10;
       //int bIntakeArmMotorToggle = -1;
-      //int bIntakeArmToggle = -1;
+      int bIntakeArmToggle = 5;
 
       //arm
       int bMoveArm = 8;
@@ -170,8 +170,8 @@ public class OI
       // JoystickButton toggleIntakeArmMotor = addButton(mJoystick, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
       // toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
 
-      // JoystickButton toggleIntakeArm = addButton(mJoystick, bIntakeArmToggle, "Toggle Intake Arm");
-      //toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
+      JoystickButton toggleIntakeArm = addButton(mJoystick, bIntakeArmToggle, "Toggle Intake Arm");
+      toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
 
       JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
       switchDrive.whenPressed(new switchDrive());
