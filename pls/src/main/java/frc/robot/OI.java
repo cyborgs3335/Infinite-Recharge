@@ -37,7 +37,7 @@ public class OI
       //DOUBLED: 1,6,7,11
       //Joystick1 buttons
       //-----------------
-      //UNUSED: 2,5,8,9
+      //UNUSED: 2,5,8
       
       //intake
 
@@ -48,6 +48,7 @@ public class OI
 
       //dump
       int bToggleDump = 10;
+      int bToggleFlap = 9;
 
       //shooter
       int bToggleShooter = 11;
@@ -114,6 +115,9 @@ public class OI
 
       JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
       toggleDump.toggleWhenPressed(new toggleDump());
+
+      JoystickButton toggleFlap = addButton(mJoystick, bToggleFlap, "toggle flap");
+      toggleFlap.toggleWhenPressed(new toggleFlap());
 
       JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
       toggleShooter.toggleWhenPressed(new toggleShooter());
