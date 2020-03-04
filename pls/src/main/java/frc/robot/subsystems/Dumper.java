@@ -14,14 +14,18 @@ import frc.robot.RobotMap;
 
 public class Dumper extends SubsystemBase {
 
-  public Solenoid dump/*,dump2*/;
+  public Solenoid dump/*,dump2*/,flap;
   /**
    * Creates a new Dumper.
    */
   public Dumper() {
     dump = new Solenoid(RobotMap.DUMP_PCM , RobotMap.DUMP_SOLENOID);
+    flap = new Solenoid(RobotMap.DUMP_PCM, RobotMap.DUMP_SOLENOID2);
     // dump2 = new Solenoid(RobotMap.DUMP_PCM2, RobotMap.DUMP_SOLENOID2);
-    
+  }
+
+  public void  flap(boolean d) {
+    flap.set(d);
   }
 
   public void dump(boolean d)
