@@ -16,11 +16,13 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.robot.commands.DefaultHeight;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -48,6 +50,7 @@ public class armControl extends Subsystem {
   public TalonFX armMotorWinchL/*,armMotorWinchR*/;
   public VictorSPX armMotorRollerL,armMotorRollerR;
   public DoubleSolenoid armSolenoidR,armSolenoidL;
+  public Solenoid brake;
   
   private armPosition armHeight;
   private boolean isSafe;
@@ -64,8 +67,10 @@ public class armControl extends Subsystem {
     armMotorRollerR.configFactoryDefault(100);
     armMotorRollerL = new VictorSPX(RobotMap.ARM_MOTOR_RL);
     armMotorRollerL.configFactoryDefault(100);
-    armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
+    //armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
     armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
+    brake = new Solenoid(RobotMap.ARM_PCM_SOLENOIDB, RobotMap.ARM_SOLENOID_BRAKE);
+    brake.set(false);
 
     ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
     ErrorCode encoderPresentRL = armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
@@ -120,6 +125,15 @@ public class armControl extends Subsystem {
     // armMotorRollerL.config_kP(0,RobotPreferences.kArmRL_P);
     // armMotorRollerL.config_kI(0,RobotPreferences.kArmRL_I);
     // armMotorRollerL.config_kD(0,RobotPreferences.kArmRL_D);
+  }
+
+  public void brake(boolean t)
+  {
+    if(t)
+    {
+      moveArm(.1);
+    }
+    brake.set(!t);
   }
 
   /**

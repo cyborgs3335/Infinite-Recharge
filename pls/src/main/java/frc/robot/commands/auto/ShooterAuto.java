@@ -13,11 +13,11 @@ import frc.robot.commands.*;
 import frc.robot.commands.vision.*;
 import frc.robot.subsystems.vision.Limelight.Target;
 
-public class Default extends CommandGroup {
+public class ShooterAuto extends CommandGroup {
   /**
    * Add your docs here.
    */
-  public Default() 
+  public ShooterAuto() 
   {
     requires(Robot.driveTrain);
     requires(Robot.shooter);
