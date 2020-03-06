@@ -131,7 +131,12 @@ public class armControl extends Subsystem {
   {
     if(t)
     {
-      moveArm(.1);
+      if(getArmHeight().equals(armPosition.fullExtend))
+        moveArm(.1);
+      else if(getArmHeight().equals(armPosition.fullRetract))
+        moveArm(.1);
+      else
+        moveArm(.1);
     }
     brake.set(!t);
   }

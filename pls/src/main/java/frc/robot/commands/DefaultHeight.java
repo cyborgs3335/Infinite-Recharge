@@ -30,6 +30,7 @@ public class DefaultHeight extends Command {
   protected void execute() {
     Robot.armControl.setArmHeight(RobotPreferences.kDefaultStart);
     Robot.armControl.setArmPosition(armPosition.defaultStart);
+    Robot.armControl.brake(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -41,6 +42,7 @@ public class DefaultHeight extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    Robot.armControl.brake(true);
   }
 
   // Called when another command which requires one or more of the same

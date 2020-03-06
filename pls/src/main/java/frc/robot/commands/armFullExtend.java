@@ -25,8 +25,9 @@ public class armFullExtend extends Command{
   @Override
   public void initialize() {
     
-      Robot.armControl.setArmHeight(RobotPreferences.kFullExtendHeight);
-      Robot.armControl.setArmPosition(armPosition.fullExtend);
+    Robot.armControl.setArmHeight(RobotPreferences.kFullExtendHeight);
+    Robot.armControl.setArmPosition(armPosition.fullExtend);
+    Robot.armControl.brake(false);
     
   }
 
@@ -38,6 +39,7 @@ public class armFullExtend extends Command{
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
+    Robot.armControl.brake(true);
   }
 
   // Returns true when the command should end.

@@ -34,6 +34,7 @@ public class driveArm extends Command {
     if(!(Robot.armControl.getArmHeight().equals(armPosition.fullExtend) || Robot.armControl.getArmHeight().equals(armPosition.fullExtend)))
     {
       Robot.armControl.moveArm(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
+      Robot.armControl.brake(false);
     }
     else
     {
@@ -45,6 +46,7 @@ public class driveArm extends Command {
   @Override
   public void end() {
     Robot.armControl.moveArm(0);
+    Robot.armControl.brake(true);
   }
 
   @Override

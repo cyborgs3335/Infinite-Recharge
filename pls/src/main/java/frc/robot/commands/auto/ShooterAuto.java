@@ -24,7 +24,7 @@ public class ShooterAuto extends CommandGroup {
     requires(Robot.dumper);
     requires(Robot.limelight);
 
-    addSequential(new driveForward());
+    addSequential(new driveForward(1));
     // TODO: add back in when robot vision and motion magic turning is finished
     // addSequential(new FindTarget(Target.PORT));
     // addSequential(new DriveToTarget(Target.PORT));

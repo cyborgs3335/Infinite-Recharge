@@ -26,6 +26,7 @@ public class armControlBoard extends Command {
   public void initialize() {
     Robot.armControl.setArmHeight(RobotPreferences.kControlBoardHeight);
     Robot.armControl.setArmPosition(armPosition.controlboard);
+    Robot.armControl.brake(false);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,6 +37,7 @@ public class armControlBoard extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
+    Robot.armControl.brake(true);
   }
 
   // Returns true when the command should end.

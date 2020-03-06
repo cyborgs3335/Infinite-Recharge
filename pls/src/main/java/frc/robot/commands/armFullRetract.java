@@ -27,6 +27,7 @@ public class armFullRetract extends Command {
     
     Robot.armControl.setArmHeight(RobotPreferences.kFullRetractHeight);
     Robot.armControl.setArmPosition(armPosition.fullRetract);
+    Robot.armControl.brake(false);
     
   }
 
@@ -38,6 +39,7 @@ public class armFullRetract extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
+    Robot.armControl.brake(true);
   }
 
   // Returns true when the command should end.
