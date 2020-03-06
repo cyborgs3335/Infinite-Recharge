@@ -49,7 +49,7 @@ public class armControl extends Subsystem {
 
   public TalonFX armMotorWinchL/*,armMotorWinchR*/;
   public VictorSPX armMotorRollerL,armMotorRollerR;
-  public DoubleSolenoid armSolenoidR,armSolenoidL;
+  public DoubleSolenoid /*armSolenoidR,*/armSolenoidL;
   public Solenoid brake;
   
   private armPosition armHeight;
@@ -70,7 +70,9 @@ public class armControl extends Subsystem {
     //armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
     armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
     brake = new Solenoid(RobotMap.ARM_PCM_SOLENOIDB, RobotMap.ARM_SOLENOID_BRAKE);
+
     brake.set(false);
+    armSolenoidL.set(Value.kForward);
 
     ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
     ErrorCode encoderPresentRL = armMotorRollerL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
@@ -141,6 +143,11 @@ public class armControl extends Subsystem {
     brake.set(!t);
   }
 
+  public void setSolenoid(Value v)
+  {
+    armSolenoidL.set(v);
+  }
+
   /**
    * @return the isSafe
    */
@@ -194,21 +201,6 @@ public class armControl extends Subsystem {
   {
     armMotorWinchL.set(ControlMode.PercentOutput, speed);
     // armMotorWinchR.set(ControlMode.PercentOutput, speed);
-    if(speed < 0)
-    {
-      armSolenoidL.set(Value.kReverse);
-      armSolenoidR.set(Value.kReverse);
-    }
-    else if(speed > 0)
-    {
-      armSolenoidL.set(Value.kForward);
-      armSolenoidR.set(Value.kForward);
-    }
-    else
-    {
-      armSolenoidL.set(Value.kOff);
-      armSolenoidR.set(Value.kOff);
-    }
   }
 
   public void shimmy(double speed)

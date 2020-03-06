@@ -70,6 +70,7 @@ public class OI
       int bFullArmExtend = 4;
       int bFullArmRetract = 5;
       int bArmControlBoard = 3;
+      int bClimb = 9;
 
       //dump
 
@@ -101,14 +102,17 @@ public class OI
       // JoystickButton extendArm = addButton(mJoystick, bArmExtend, "Extend Arm");
       // extendArm.whileHeld(new driveArm());
 
-      JoystickButton fullArmExtend = addButton(mJoystick, bFullArmExtend, "Full Extend Arm");
+      JoystickButton fullArmExtend = addButton(mJoystick2, bFullArmExtend, "Full Extend Arm");
       fullArmExtend.whenPressed(new armFullExtend());
 
-      JoystickButton fullArmRetract = addButton(mJoystick, bFullArmRetract, "Full Retract Arm");
+      JoystickButton fullArmRetract = addButton(mJoystick2, bFullArmRetract, "Full Retract Arm");
       fullArmRetract.whenPressed(new armFullRetract());
 
-      JoystickButton armControlBoard = addButton(mJoystick, bArmControlBoard, "arm to control board");
+      JoystickButton armControlBoard = addButton(mJoystick2, bArmControlBoard, "arm to control board");
       armControlBoard.whenPressed(new armControlBoard());
+      
+      JoystickButton armClimb = addButton(mJoystick2, bClimb, "Climb");
+      armClimb.toggleWhenPressed(new armClimb());
 
       JoystickButton shimmyLeft = addButton(mJoystick, bShimmy, "Shimmy");
       shimmyLeft.whileHeld(new shimmy());
@@ -137,7 +141,7 @@ public class OI
       //-1 indicates command is not used
       //Buttons
       //-------
-      //UNUSED: 7,9
+      //UNUSED: 7
 
       //intake
       //int bIntakeTrigger = -1;
@@ -150,6 +154,7 @@ public class OI
       int bFullArmExtend = 3;
       int bFullArmRetract = 2;
       int bShimmy = 4;
+      int bClimb = 9;
       //int bArmControlBoard = 10;
       //int bRetractArm = 9;
 
@@ -197,6 +202,9 @@ public class OI
 
       JoystickButton shimmyLeft = addButton(mJoystick, bShimmy, "Shimmy");
       shimmyLeft.whileHeld(new shimmy());
+
+      JoystickButton armClimb = addButton(mJoystick, bClimb, "Climb");
+      armClimb.toggleWhenPressed(new armClimb());
 
       JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
       toggleDump.toggleWhenPressed(new toggleDump());
