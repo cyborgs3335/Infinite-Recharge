@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
@@ -38,6 +39,7 @@ public class switchDrive extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    SmartDashboard.putBoolean("what drive", Robot.podrace);
   }
 
   // Called when another command which requires one or more of the same

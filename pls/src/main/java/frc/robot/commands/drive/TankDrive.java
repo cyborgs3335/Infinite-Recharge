@@ -17,7 +17,7 @@ public class TankDrive {
 
   //not a command
 
-  double deadzone = .1;
+  double deadzone = .2;
 
   public TankDrive(){
       Robot.driveTrain.setBrake(false);

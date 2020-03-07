@@ -16,7 +16,6 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.robot.commands.DefaultHeight;
@@ -25,6 +24,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
 public class armControl extends Subsystem {
@@ -54,6 +54,8 @@ public class armControl extends Subsystem {
   
   private armPosition armHeight;
   private boolean isSafe;
+
+  public WaitCommand w = new WaitCommand(.5);
   
   /**
    * Creates a new armControl.
@@ -71,7 +73,7 @@ public class armControl extends Subsystem {
     armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
     brake = new Solenoid(RobotMap.ARM_PCM_SOLENOIDB, RobotMap.ARM_SOLENOID_BRAKE);
 
-    brake.set(false);
+    brake.set(true);
     armSolenoidL.set(Value.kForward);
 
     ErrorCode encoderPresentW = armMotorWinchL.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
@@ -115,9 +117,9 @@ public class armControl extends Subsystem {
     armHeight = armPosition.defaultStart;
 
     //pid for all motors (rollers L&R should be the same)
-    // armMotorWinchL.config_kP(0,RobotPreferences.kArmW_P);
-    // armMotorWinchL.config_kI(0,RobotPreferences.kArmW_I);
-    // armMotorWinchL.config_kD(0,RobotPreferences.kArmW_D);
+    armMotorWinchL.config_kP(0,RobotPreferences.kArmW_P);
+    armMotorWinchL.config_kI(0,RobotPreferences.kArmW_I);
+    armMotorWinchL.config_kD(0,RobotPreferences.kArmW_D);
     // armMotorWinchR.config_kP(0,RobotPreferences.kArmW_P);
     // armMotorWinchR.config_kI(0,RobotPreferences.kArmW_I);
     // armMotorWinchR.config_kD(0,RobotPreferences.kArmW_D);
@@ -218,6 +220,6 @@ public class armControl extends Subsystem {
   @Override
   protected void initDefaultCommand() {
     // TODO: might not work
-    setDefaultCommand(new DefaultHeight());
+    //setDefaultCommand(new DefaultHeight());
   }
 }

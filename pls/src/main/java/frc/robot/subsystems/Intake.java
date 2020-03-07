@@ -10,7 +10,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 
@@ -21,11 +23,11 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   TalonSRX beltDrive/*, armDrive*/;
-  Solenoid armExtend; 
-  //Solenoid armExtend2;
+  DoubleSolenoid armExtend; 
+  //Solenoid armExtend;
   public Intake()
   {
-    armExtend = new Solenoid(RobotMap.INTAKE_SOLENOID_ARM);
+    armExtend = new DoubleSolenoid(RobotMap.INTAKE_SOLENOID_ARM,RobotMap.INTAKE_SOLENOID_ARM2);
     //armExtend2 = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM2);
     //armDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_ARM);
     //armDrive.configFactoryDefault(100);
@@ -55,11 +57,21 @@ public class Intake extends Subsystem {
     // armDrive.setInverted(isInverted);
   }
 
-  public void extendArm(boolean s)
+  public void extendArm(Value v)
   {
-    armExtend.set(s);
+    armExtend.set(v);
     //armExtend2.set(s);
   }
+
+  // public String get()
+  // {
+    // if(armExtend.get().equals(Value.kForward))
+    //   return "forward";
+    // if(armExtend.get().equals(Value.kReverse))
+    //   return "reverse";
+    // else
+    //   return "off";
+  // }
 
   @Override
   public void initDefaultCommand() {

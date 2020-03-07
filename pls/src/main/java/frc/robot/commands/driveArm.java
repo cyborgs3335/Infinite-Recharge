@@ -33,11 +33,13 @@ public class driveArm extends Command {
   public void execute() {
     if(!(Robot.armControl.getArmHeight().equals(armPosition.fullExtend) || Robot.armControl.getArmHeight().equals(armPosition.fullExtend)))
     {
-      Robot.armControl.moveArm(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
+      double mapped = mapAxis.map(Robot.oi.getJoystick().getRawAxis(2))/2;
+      Robot.armControl.moveArm(mapped);
       Robot.armControl.brake(false);
     }
     else
     {
+      Robot.armControl.moveArm(0);
       System.out.println("You're at the max/min height");
     }
   }

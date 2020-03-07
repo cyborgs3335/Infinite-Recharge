@@ -107,6 +107,11 @@ public class driveTrain extends Subsystem
 		double voltageRampRate = voltageRampRateDefault;
 		setRampRate(voltageRampRate);
   }
+
+  public double getVoltage()
+  {
+    return leftFront.getMotorOutputVoltage();
+  }
   
   public void setBrake(boolean brake) 
   {

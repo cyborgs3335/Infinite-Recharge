@@ -20,6 +20,7 @@ public class driveForward extends Command {
   public driveForward() {
     // Use addRequirements() here to declare subsystem dependencies.
     requires(Robot.driveTrain);
+    s = 0;
   }
 
   public driveForward(double sec) {
@@ -37,13 +38,18 @@ public class driveForward extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.driveTrain.driveMotorsL(.2, .2);
-    Robot.driveTrain.driveMotorsR(.2,.2);
+    Robot.driveTrain.driveMotorsL(.5, .5);
+    Robot.driveTrain.driveMotorsR(.5,.5);
     if(s != 0.0)
     {
       WaitCommand w = new WaitCommand(s);
       w.initialize();
       isFinished = true;
+    }
+    else
+    {
+      double prev = Robot.driveTrain.getVoltage();
+      //if(Robot.driveTrain.getVoltage())
     }
   }
 

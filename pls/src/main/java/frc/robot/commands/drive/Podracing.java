@@ -15,7 +15,7 @@ public class Podracing{
    * Creates a new Podracing.
    */
   //not a command
-  double deadzone = .1;
+  double deadzone = .2;
 
   public Podracing()
   {

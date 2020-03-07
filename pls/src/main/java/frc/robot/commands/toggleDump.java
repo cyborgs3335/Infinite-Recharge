@@ -26,6 +26,7 @@ public class toggleDump extends Command {
   @Override
   protected void execute() {
     Robot.dumper.dump(true);
+    Robot.dumper.flap(true);
     //System.out.println(Robot.dumper.checkState());
   }
 
@@ -39,13 +40,14 @@ public class toggleDump extends Command {
   @Override
   protected void end() {
     Robot.dumper.dump(false);
+    Robot.dumper.flap(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
+    
   }
   
 }

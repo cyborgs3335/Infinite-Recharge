@@ -38,6 +38,11 @@ public class toggleIntake extends Command {
     Robot.intake.driveBeltMotor(0, false);
   }
 
+  @Override
+  protected void interrupted() {
+    end();
+  }
+
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {

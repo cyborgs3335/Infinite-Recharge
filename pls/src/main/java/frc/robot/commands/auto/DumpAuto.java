@@ -7,7 +7,9 @@
 
 package frc.robot.commands.auto;
 
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.Robot;
 import frc.robot.commands.*;
 import frc.robot.commands.vision.*;
@@ -24,7 +26,10 @@ public class DumpAuto extends CommandGroup {
     requires(Robot.dumper);
     requires(Robot.limelight);
 
-    addSequential(new driveForward(1));
+    addSequential(new driveForward(.2));
+    // addSequential(new toggleDump());
+    // addSequential(new WaitCommand(.3));
+    // addSequential(new toggleDump());
     // TODO: add back in when robot vision and motion magic turning is finished
     // addSequential(new FindTarget(Target.PORT));
     // addSequential(new DriveToTarget(Target.PORT));

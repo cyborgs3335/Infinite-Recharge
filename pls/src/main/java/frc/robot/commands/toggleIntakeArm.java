@@ -7,7 +7,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 
 public class toggleIntakeArm extends Command {
@@ -22,21 +24,24 @@ public class toggleIntakeArm extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.intake.extendArm(true);
+    Robot.intake.extendArm(Value.kForward);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
-    Robot.intake.extendArm(false);
+    Robot.intake.extendArm(Value.kReverse);
   }
 
+  @Override
+  protected void interrupted() {
+    end();
+  }
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {

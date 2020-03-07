@@ -31,9 +31,9 @@ public class Dumper extends Subsystem{
     // dump2.set(!d);
   }
 
-  public void  flap(boolean d)
+  public void  flap(boolean v)
   {
-    flap.set(d);
+    flap.set(v);
   }
   
   public boolean checkState()

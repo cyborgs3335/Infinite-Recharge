@@ -50,13 +50,13 @@ public class RobotPreferences {
     
 
     //arm pid
-    public static final double kArmW_P = .1;
+    public static final double kArmW_P = .05;
     public static final double kArmW_I = 0;
     public static final double kArmW_D = 0;
-    public static final double kArmRR_P = .1;
+    public static final double kArmRR_P = .05;
     public static final double kArmRR_I = 0;
     public static final double kArmRR_D = 0;
-    public static final double kArmRL_P = .1;
+    public static final double kArmRL_P = .05;
     public static final double kArmRL_I = 0;
     public static final double kArmRL_D = 0;
 

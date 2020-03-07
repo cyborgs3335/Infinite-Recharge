@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
+import frc.robot.commands.vision.positionControl;
+import frc.robot.commands.vision.rotationControl;
 
 
 
@@ -45,6 +47,8 @@ public class OI
       //int bArmExtend = 5;
       int bShimmy = 3;
       int bDriveArm = 4;
+      int bPosControl = 8;
+      int bRotControl = 2;
 
       //dump
       int bToggleDump = 10;
@@ -112,10 +116,17 @@ public class OI
       armControlBoard.whenPressed(new armControlBoard());
       
       JoystickButton armClimb = addButton(mJoystick2, bClimb, "Climb");
-      armClimb.toggleWhenPressed(new armClimb());
+      //armClimb.toggleWhenPressed(new armClimb());
+      armClimb.whileHeld(new armClimb());
 
       JoystickButton shimmyLeft = addButton(mJoystick, bShimmy, "Shimmy");
       shimmyLeft.whileHeld(new shimmy());
+
+      JoystickButton posControl = addButton(mJoystick, bPosControl, "activiate position control");
+      posControl.whenPressed(new positionControl());
+
+      JoystickButton rotControl = addButton(mJoystick, bRotControl, "activate rotation control");
+      rotControl.whenPressed(new rotationControl());
 
       JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
       toggleDump.toggleWhenPressed(new toggleDump());
@@ -141,7 +152,7 @@ public class OI
       //-1 indicates command is not used
       //Buttons
       //-------
-      //UNUSED: 7
+      //UNUSED: 
 
       //intake
       //int bIntakeTrigger = -1;
@@ -160,6 +171,7 @@ public class OI
 
       //dump
       int bToggleDump = 11;
+      int bFlap =7;
 
       //shooter
       //int bToggleShooter = -1;
@@ -204,10 +216,14 @@ public class OI
       shimmyLeft.whileHeld(new shimmy());
 
       JoystickButton armClimb = addButton(mJoystick, bClimb, "Climb");
-      armClimb.toggleWhenPressed(new armClimb());
+      //armClimb.toggleWhenPressed(new armClimb());
+      armClimb.whileHeld(new armClimb());
 
       JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
       toggleDump.toggleWhenPressed(new toggleDump());
+
+      JoystickButton toggleFlap = addButton(mJoystick, bFlap, "toggle Flap");
+      toggleFlap.toggleWhenPressed(new toggleFlap());
 
       // JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
       // toggleShooter.toggleWhenPressed(new toggleShooter());
