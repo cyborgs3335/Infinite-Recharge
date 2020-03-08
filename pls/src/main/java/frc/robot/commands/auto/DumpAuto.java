@@ -22,11 +22,14 @@ public class DumpAuto extends CommandGroup {
   public DumpAuto() 
   {
     requires(Robot.driveTrain);
-    requires(Robot.shooter);
+    // requires(Robot.shooter);
     requires(Robot.dumper);
     requires(Robot.limelight);
 
-    addSequential(new driveForward(.2));
+    addSequential(new driveForward());
+    // addParallel(new WaitCommand(1));
+    // addSequential(new stopDrive());
+    //addSequential(new stopDrive());
     // addSequential(new toggleDump());
     // addSequential(new WaitCommand(.3));
     // addSequential(new toggleDump());

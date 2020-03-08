@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class toggleDump extends Command {
+  boolean isFinished;
   public toggleDump() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -20,13 +21,16 @@ public class toggleDump extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    // Robot.dumper.dump(true);
+    // Robot.dumper.flap(true);
+    Robot.dumper.togDump = !Robot.dumper.togDump;
+    isFinished = true;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.dumper.dump(true);
-    Robot.dumper.flap(true);
+    
     //System.out.println(Robot.dumper.checkState());
   }
 
@@ -39,15 +43,15 @@ public class toggleDump extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.dumper.dump(false);
-    Robot.dumper.flap(false);
+    // Robot.dumper.dump(false);
+    // Robot.dumper.flap(false);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    
+    end();
   }
   
 }

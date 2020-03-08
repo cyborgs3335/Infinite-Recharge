@@ -23,11 +23,14 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   TalonSRX beltDrive/*, armDrive*/;
+  public boolean beltRun,armTrigger;
   DoubleSolenoid armExtend; 
   //Solenoid armExtend;
   public Intake()
   {
-    armExtend = new DoubleSolenoid(RobotMap.INTAKE_SOLENOID_ARM,RobotMap.INTAKE_SOLENOID_ARM2);
+    //armExtend = new DoubleSolenoid(RobotMap.INTAKE_SOLENOID_ARM,RobotMap.INTAKE_SOLENOID_ARM2);
+    beltRun = armTrigger = false;
+    armExtend = new DoubleSolenoid(5, 4);
     //armExtend2 = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM2);
     //armDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_ARM);
     //armDrive.configFactoryDefault(100);
@@ -45,10 +48,14 @@ public class Intake extends Subsystem {
     // beltDrive.config_kD(0, RobotPreferences.kIntakeB_D);
   }
 
-  public void driveBeltMotor(double speed, boolean isInverted)
+  public void driveBeltMotor()
   {
-    beltDrive.set(ControlMode.PercentOutput, speed);
-    beltDrive.setInverted(isInverted);
+    beltDrive.set(ControlMode.PercentOutput, -.8);
+  }
+
+  public void stopBeltMotor()
+  {
+    beltDrive.set(ControlMode.PercentOutput, 0);
   }
 
   public void driveArmMotor(double speed, boolean isInverted)
@@ -72,6 +79,23 @@ public class Intake extends Subsystem {
     // else
     //   return "off";
   // }
+
+  @Override
+  public void periodic() {
+    // TODO Auto-generated method stub
+    super.periodic();
+    if(beltRun)
+      driveBeltMotor();
+    else
+      stopBeltMotor();
+
+    if(armTrigger)
+      extendArm(Value.kForward);
+    else
+      extendArm(Value.kReverse);
+  }
+
+  
 
   @Override
   public void initDefaultCommand() {

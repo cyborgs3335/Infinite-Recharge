@@ -16,9 +16,11 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
 import frc.robot.commands.DefaultHeight;
+import frc.util.mapAxis;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -54,6 +56,7 @@ public class armControl extends Subsystem {
   
   private armPosition armHeight;
   private boolean isSafe;
+  public boolean driveArms;
 
   public WaitCommand w = new WaitCommand(.5);
   
@@ -72,6 +75,7 @@ public class armControl extends Subsystem {
     //armSolenoidR = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDR, RobotMap.ARM_SOLENOID_ARMRF, RobotMap.ARM_SOLENOID_ARMRR);
     armSolenoidL = new DoubleSolenoid(RobotMap.ARM_PCM_SOLENOIDL, RobotMap.ARM_SOLENOID_ARMLF, RobotMap.ARM_SOLENOID_ARMLR);
     brake = new Solenoid(RobotMap.ARM_PCM_SOLENOIDB, RobotMap.ARM_SOLENOID_BRAKE);
+    driveArms = false;
 
     brake.set(true);
     armSolenoidL.set(Value.kForward);
@@ -214,6 +218,21 @@ public class armControl extends Subsystem {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    super.periodic();
+    if(driveArms)
+    {
+      if(!(getArmHeight().equals(armPosition.fullExtend) || getArmHeight().equals(armPosition.fullExtend)))
+      {
+        double mapped = mapAxis.map(Robot.oi.getJoystick().getRawAxis(2))/2;
+        moveArm(mapped);
+        brake(false);
+      }
+      else
+      {
+        moveArm(0);
+        System.out.println("You're at the max/min height");
+      }
+    }
   }
 
 

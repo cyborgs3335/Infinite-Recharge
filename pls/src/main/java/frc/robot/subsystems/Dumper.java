@@ -14,6 +14,7 @@ import frc.robot.RobotMap;
 public class Dumper extends Subsystem{
 
   public Solenoid dump/*,dump2*/,flap;
+  public boolean togDump, togFlap;
   /**
    * Creates a new Dumper.
    */
@@ -21,7 +22,7 @@ public class Dumper extends Subsystem{
     dump = new Solenoid(RobotMap.DUMP_PCM , RobotMap.DUMP_SOLENOID);
     flap = new Solenoid(RobotMap.DUMP_PCM, RobotMap.DUMP_SOLENOID2);
     // dump2 = new Solenoid(RobotMap.DUMP_PCM2, RobotMap.DUMP_SOLENOID2);
-    
+    togDump = togFlap = false;
   }
 
   public void dump(boolean d)
@@ -31,7 +32,7 @@ public class Dumper extends Subsystem{
     // dump2.set(!d);
   }
 
-  public void  flap(boolean v)
+  public void flap(boolean v)
   {
     flap.set(v);
   }
@@ -44,6 +45,16 @@ public class Dumper extends Subsystem{
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    super.periodic();
+    if(togDump)
+      dump(true);
+    else
+      dump(false);
+    
+    if(togFlap)
+      flap(true);
+    else
+      flap(false);
   }
 
   @Override

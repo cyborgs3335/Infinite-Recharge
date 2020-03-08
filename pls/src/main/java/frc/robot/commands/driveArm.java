@@ -14,6 +14,7 @@ import frc.util.mapAxis;
 
 public class driveArm extends Command {
   double deadzone = .05;
+  boolean isFinished;
   /**
    * Creates a new armExtend.
    */
@@ -25,30 +26,21 @@ public class driveArm extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-   
+    Robot.armControl.driveArms = !Robot.armControl.driveArms;
+    isFinished = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(!(Robot.armControl.getArmHeight().equals(armPosition.fullExtend) || Robot.armControl.getArmHeight().equals(armPosition.fullExtend)))
-    {
-      double mapped = mapAxis.map(Robot.oi.getJoystick().getRawAxis(2))/2;
-      Robot.armControl.moveArm(mapped);
-      Robot.armControl.brake(false);
-    }
-    else
-    {
-      Robot.armControl.moveArm(0);
-      System.out.println("You're at the max/min height");
-    }
+    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
-    Robot.armControl.moveArm(0);
-    Robot.armControl.brake(true);
+    // Robot.armControl.moveArm(0);
+    // Robot.armControl.brake(true);
   }
 
   @Override

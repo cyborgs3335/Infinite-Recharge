@@ -33,17 +33,17 @@ public class driveForward extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.driveTrain.driveMotors(.1, .1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.driveTrain.driveMotorsL(.5, .5);
-    Robot.driveTrain.driveMotorsR(.5,.5);
+    
     if(s != 0.0)
     {
-      WaitCommand w = new WaitCommand(s);
-      w.initialize();
+      System.out.println("pls");
+      
       isFinished = true;
     }
     else
@@ -51,6 +51,10 @@ public class driveForward extends Command {
       double prev = Robot.driveTrain.getVoltage();
       //if(Robot.driveTrain.getVoltage())
     }
+    System.out.println("here");
+    new WaitCommand(1000);
+    System.out.println("here120392138");
+    //Robot.driveTrain.driveMotors(0, 0);
   }
 
   // Called once the command ends or is interrupted.

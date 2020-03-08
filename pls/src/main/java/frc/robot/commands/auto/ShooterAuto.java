@@ -20,7 +20,7 @@ public class ShooterAuto extends CommandGroup {
   public ShooterAuto() 
   {
     requires(Robot.driveTrain);
-    requires(Robot.shooter);
+    // requires(Robot.shooter);
     requires(Robot.dumper);
     requires(Robot.limelight);
 

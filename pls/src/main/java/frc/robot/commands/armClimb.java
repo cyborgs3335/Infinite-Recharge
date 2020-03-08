@@ -23,17 +23,19 @@ public class armClimb extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.armControl.brake(true);
     Robot.armControl.moveArm(.5);
     WaitCommand w = new WaitCommand(.02);
     w.initialize();
-    Robot.armControl.brake(false);
-    Robot.armControl.setSolenoid(Value.kReverse);
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
     //Robot.armControl.moveArm(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
+    Robot.armControl.brake(false);
+    Robot.armControl.setSolenoid(Value.kReverse);
   }
 
   // Make this return true when this Command no longer needs to run execute()

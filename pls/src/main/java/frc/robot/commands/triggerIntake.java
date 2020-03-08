@@ -30,7 +30,7 @@ public class triggerIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.intake.driveBeltMotor(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)), false);
+    Robot.intake.driveBeltMotor();
 
   }
 
@@ -43,7 +43,7 @@ public class triggerIntake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.driveBeltMotor(0, false);
+    Robot.intake.stopBeltMotor();
   }
 
   // Called when another command which requires one or more of the same

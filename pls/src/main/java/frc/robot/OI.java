@@ -134,15 +134,15 @@ public class OI
       JoystickButton toggleFlap = addButton(mJoystick, bToggleFlap, "toggle flap");
       toggleFlap.toggleWhenPressed(new toggleFlap());
 
-      JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
-      toggleShooter.toggleWhenPressed(new toggleShooter());
-      JoystickButton toggleShooter2 = addButton(mJoystick2, bToggleShooter, "toggle shooter");
-      toggleShooter2.toggleWhenPressed(new toggleShooter());
+      // JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
+      // toggleShooter.toggleWhenPressed(new toggleShooter());
+      // JoystickButton toggleShooter2 = addButton(mJoystick2, bToggleShooter, "toggle shooter");
+      // toggleShooter2.toggleWhenPressed(new toggleShooter());
 
-      JoystickButton triggerShooter = addButton(mJoystick, bTriggerShooter, "trigger shooter");
-      triggerShooter.whileHeld(new triggerShooter());
-      JoystickButton triggerShooter2 = addButton(mJoystick2, bTriggerShooter, "trigger shooter");
-      triggerShooter2.whileHeld(new triggerShooter());
+      // JoystickButton triggerShooter = addButton(mJoystick, bTriggerShooter, "trigger shooter");
+      // triggerShooter.whileHeld(new triggerShooter());
+      // JoystickButton triggerShooter2 = addButton(mJoystick2, bTriggerShooter, "trigger shooter");
+      // triggerShooter2.whileHeld(new triggerShooter());
     }
     else
     {
@@ -186,13 +186,13 @@ public class OI
       // intakePC.whileHeld(new triggerIntake());
 
       JoystickButton toggleIntake = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
-      toggleIntake.toggleWhenPressed(new toggleIntake());
+      toggleIntake.whenPressed(new toggleIntake());
 
       // JoystickButton toggleIntakeArmMotor = addButton(mJoystick, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
       // toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
 
       JoystickButton toggleIntakeArm = addButton(mJoystick, bIntakeArmToggle, "Toggle Intake Arm");
-      toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
+      toggleIntakeArm.whenPressed(new toggleIntakeArm());
 
       JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
       switchDrive.whenPressed(new switchDrive());
@@ -220,16 +220,16 @@ public class OI
       armClimb.whileHeld(new armClimb());
 
       JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
-      toggleDump.toggleWhenPressed(new toggleDump());
+      toggleDump.whenPressed(new toggleDump());
 
       JoystickButton toggleFlap = addButton(mJoystick, bFlap, "toggle Flap");
-      toggleFlap.toggleWhenPressed(new toggleFlap());
+      toggleFlap.whenPressed(new toggleFlap());
 
       // JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
       // toggleShooter.toggleWhenPressed(new toggleShooter());
 
-      JoystickButton triggerShooter = addButton(mJoystick, bTriggerShooter, "trigger shooter");
-      triggerShooter.whileHeld(new triggerShooter());
+      // JoystickButton triggerShooter = addButton(mJoystick, bTriggerShooter, "trigger shooter");
+      // triggerShooter.whileHeld(new triggerShooter());
     }
     
   }

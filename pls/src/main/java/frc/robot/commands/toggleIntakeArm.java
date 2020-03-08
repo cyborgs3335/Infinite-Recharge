@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Robot;
 
 public class toggleIntakeArm extends Command {
+  boolean isFinished;
   /**
    * Creates a new extendIntakeArm.
    */
@@ -24,7 +25,9 @@ public class toggleIntakeArm extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.intake.extendArm(Value.kForward);
+    //Robot.intake.driveBeltMotor();
+    Robot.intake.armTrigger = !Robot.intake.armTrigger;
+    isFinished = true;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -35,7 +38,8 @@ public class toggleIntakeArm extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
-    Robot.intake.extendArm(Value.kReverse);
+    //Robot.intake.extendArm(Value.kReverse);
+    //Robot.intake.stopBeltMotor();
   }
 
   @Override
@@ -45,6 +49,6 @@ public class toggleIntakeArm extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return isFinished;
   }
 }
