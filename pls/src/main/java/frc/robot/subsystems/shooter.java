@@ -28,6 +28,7 @@ public class shooter extends Subsystem {
       //launch2 = new TalonSRX(RobotMap.SHOOT_MOTOR_FIRE2);
       launch.configFactoryDefault(100);
       hold.configFactoryDefault(100);
+
       //launch2.configFactoryDefault(100);
 
       //pid
@@ -63,6 +64,11 @@ public class shooter extends Subsystem {
     launch.set(ControlMode.PercentOutput, speed);
     hold.set(ControlMode.PercentOutput,.75);
     //launch2.set(ControlMode.PercentOutput,speed);
+  }
+
+  public void setPosition(double o)
+  {
+    launch.set(ControlMode.MotionMagic,o);
   }
 
   public void setShooter(boolean isOn)

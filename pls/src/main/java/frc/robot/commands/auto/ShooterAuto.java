@@ -21,7 +21,6 @@ public class ShooterAuto extends CommandGroup {
   {
     requires(Robot.driveTrain);
     // requires(Robot.shooter);
-    requires(Robot.dumper);
     requires(Robot.limelight);
 
     addSequential(new driveForward(1));

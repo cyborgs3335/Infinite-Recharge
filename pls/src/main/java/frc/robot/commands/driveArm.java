@@ -9,8 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.armControl.armPosition;
-import frc.util.mapAxis;
 
 public class driveArm extends Command {
   double deadzone = .05;

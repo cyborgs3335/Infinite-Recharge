@@ -51,8 +51,8 @@ public class OI
       int bRotControl = 2;
 
       //dump
-      int bToggleDump = 10;
-      int bToggleFlap = 9;
+      // int bToggleDump = 10;
+      // int bToggleFlap = 9;
 
       //shooter
       int bToggleShooter = 11;
@@ -128,11 +128,11 @@ public class OI
       JoystickButton rotControl = addButton(mJoystick, bRotControl, "activate rotation control");
       rotControl.whenPressed(new rotationControl());
 
-      JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
-      toggleDump.toggleWhenPressed(new toggleDump());
+      // JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
+      // toggleDump.toggleWhenPressed(new toggleDump());
 
-      JoystickButton toggleFlap = addButton(mJoystick, bToggleFlap, "toggle flap");
-      toggleFlap.toggleWhenPressed(new toggleFlap());
+      // JoystickButton toggleFlap = addButton(mJoystick, bToggleFlap, "toggle flap");
+      // toggleFlap.toggleWhenPressed(new toggleFlap());
 
       // JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
       // toggleShooter.toggleWhenPressed(new toggleShooter());
@@ -170,8 +170,8 @@ public class OI
       //int bRetractArm = 9;
 
       //dump
-      int bToggleDump = 11;
-      int bFlap =7;
+      // int bToggleDump = 11;
+      // int bFlap =7;
 
       //shooter
       //int bToggleShooter = -1;
@@ -219,11 +219,11 @@ public class OI
       //armClimb.toggleWhenPressed(new armClimb());
       armClimb.whileHeld(new armClimb());
 
-      JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
-      toggleDump.whenPressed(new toggleDump());
+      // JoystickButton toggleDump = addButton(mJoystick, bToggleDump, "toggle Dump");
+      // toggleDump.whenPressed(new toggleDump());
 
-      JoystickButton toggleFlap = addButton(mJoystick, bFlap, "toggle Flap");
-      toggleFlap.whenPressed(new toggleFlap());
+      // JoystickButton toggleFlap = addButton(mJoystick, bFlap, "toggle Flap");
+      // toggleFlap.whenPressed(new toggleFlap());
 
       // JoystickButton toggleShooter = addButton(mJoystick, bToggleShooter, "toggle shooter");
       // toggleShooter.toggleWhenPressed(new toggleShooter());

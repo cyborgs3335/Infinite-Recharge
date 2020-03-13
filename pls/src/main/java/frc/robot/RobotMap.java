@@ -37,7 +37,7 @@ public class RobotMap {
 	public static final int DRIVE_MOTOR_RIGHTB = 14;//back right
   	//intake constants
 	public static final int INTAKE_MOTOR_BELT = 5;
-	public static final int INTAKE_MOTOR_ARM = 10;
+	public static final int INTAKE_MOTOR_CYLINDER = 10;
 	public static final int INTAKE_SOLENOID_ARM = 0;
 	public static final int INTAKE_SOLENOID_ARM2 = 1;
 	//dumper constants

@@ -8,13 +8,10 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.whatOI;
-import frc.robot.commands.auto.DumpAuto;
 import frc.robot.commands.auto.ShooterAuto;
 import frc.robot.subsystems.*;
 import frc.robot.subsystems.vision.ColorSensor;
@@ -39,7 +36,7 @@ public class Robot extends TimedRobot {
   public static driveTrain driveTrain;
   public static Intake intake;
   // public static shooter shooter;
-  public static Dumper dumper;
+  // public static Dumper dumper;
   public static Limelight limelight;
   public static ColorSensor colorSensor;
 
@@ -52,7 +49,7 @@ public class Robot extends TimedRobot {
     System.out.println("start");
     intake = new Intake();
     //shooter = new shooter();
-    dumper = new Dumper();
+    // dumper = new Dumper();
     limelight = new Limelight();
     armControl = new armControl();
     colorSensor = new ColorSensor();
@@ -61,8 +58,7 @@ public class Robot extends TimedRobot {
     driveTrain = new driveTrain();
     oi = new OI(podrace);
     driveTrain.comp.start();
-    m_chooser.setDefaultOption("Default Auto", new DumpAuto());
-    m_chooser.addOption("Shooter Auto", new ShooterAuto());
+    m_chooser.setDefaultOption("Default Auto", new ShooterAuto());
     SmartDashboard.putData("Auto mode", m_chooser);
     SmartDashboard.putBoolean("DriveMode",podrace);
 

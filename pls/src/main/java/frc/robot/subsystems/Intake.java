@@ -11,7 +11,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
@@ -23,6 +24,7 @@ public class Intake extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   TalonSRX beltDrive/*, armDrive*/;
+  CANSparkMax cylinder;
   public boolean beltRun,armTrigger;
   DoubleSolenoid armExtend; 
   //Solenoid armExtend;
@@ -31,6 +33,8 @@ public class Intake extends Subsystem {
     //armExtend = new DoubleSolenoid(RobotMap.INTAKE_SOLENOID_ARM,RobotMap.INTAKE_SOLENOID_ARM2);
     beltRun = armTrigger = false;
     armExtend = new DoubleSolenoid(5, 4);
+    cylinder = new CANSparkMax(RobotMap.INTAKE_MOTOR_CYLINDER, MotorType.kBrushless);
+    cylinder.set(.7);
     //armExtend2 = new Solenoid(0,RobotMap.INTAKE_SOLENOID_ARM2);
     //armDrive = new TalonSRX(RobotMap.INTAKE_MOTOR_ARM);
     //armDrive.configFactoryDefault(100);
@@ -83,16 +87,16 @@ public class Intake extends Subsystem {
   @Override
   public void periodic() {
     // TODO Auto-generated method stub
-    super.periodic();
-    if(beltRun)
-      driveBeltMotor();
-    else
-      stopBeltMotor();
+    // super.periodic();
+    // if(beltRun)
+    //   driveBeltMotor();
+    // else
+    //   stopBeltMotor();
 
-    if(armTrigger)
-      extendArm(Value.kForward);
-    else
-      extendArm(Value.kReverse);
+    // if(armTrigger)
+    //   extendArm(Value.kForward);
+    // else
+    //   extendArm(Value.kReverse);
   }
 
   

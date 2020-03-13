@@ -19,7 +19,6 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotPreferences;
-import frc.robot.commands.DefaultHeight;
 import frc.util.mapAxis;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
