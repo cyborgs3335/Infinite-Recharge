@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 
-public class armControl extends Subsystem {
+public class Climber extends Subsystem {
   
   public enum armPosition
   {
@@ -62,7 +62,7 @@ public class armControl extends Subsystem {
   /**
    * Creates a new armControl.
    */
-  public armControl() {
+  public Climber() {
     armMotorWinchL = new TalonFX(RobotMap.ARM_MOTOR_WINCHL);
     armMotorWinchL.configFactoryDefault(100);
     // armMotorWinchR = new TalonSRX(RobotMap.ARM_MOTOR_WINCHR);

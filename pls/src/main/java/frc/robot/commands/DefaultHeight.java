@@ -10,13 +10,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotPreferences;
-import frc.robot.subsystems.armControl.armPosition;
+import frc.robot.subsystems.Climber.armPosition;
 
 public class DefaultHeight extends Command {
   public DefaultHeight() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.armControl);
+    requires(Robot.climber);
   }
 
   // Called just before this Command runs the first time
@@ -28,9 +28,9 @@ public class DefaultHeight extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.armControl.setArmHeight(RobotPreferences.kDefaultStart);
-    Robot.armControl.setArmPosition(armPosition.defaultStart);
-    Robot.armControl.brake(false);
+    Robot.climber.setArmHeight(RobotPreferences.kDefaultStart);
+    Robot.climber.setArmPosition(armPosition.defaultStart);
+    Robot.climber.brake(false);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +42,7 @@ public class DefaultHeight extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.armControl.brake(true);
+    Robot.climber.brake(true);
   }
 
   // Called when another command which requires one or more of the same

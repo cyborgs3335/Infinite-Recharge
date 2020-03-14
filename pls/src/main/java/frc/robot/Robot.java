@@ -32,10 +32,10 @@ public class Robot extends TimedRobot {
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  public static armControl armControl;
+  public static Climber climber;
   public static driveTrain driveTrain;
   public static Intake intake;
-  // public static shooter shooter;
+  public static shooter shooter;
   // public static Dumper dumper;
   public static Limelight limelight;
   public static ColorSensor colorSensor;
@@ -51,7 +51,7 @@ public class Robot extends TimedRobot {
     //shooter = new shooter();
     // dumper = new Dumper();
     limelight = new Limelight();
-    armControl = new armControl();
+    climber = new Climber();
     colorSensor = new ColorSensor();
     // PowerDistributionPanel pdp = new PowerDistributionPanel(0);
     // pdp.

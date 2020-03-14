@@ -64,7 +64,7 @@ public class ColorSensor extends Subsystem {
   }
 
   public void rotatePanel(double speed) {
-    Robot.armControl.shimmy(speed);
+    Robot.climber.shimmy(speed);
   }
 
   public Color getDetected() {

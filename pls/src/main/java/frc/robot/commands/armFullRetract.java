@@ -10,7 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.RobotPreferences;
-import frc.robot.subsystems.armControl.armPosition;
+import frc.robot.subsystems.Climber.armPosition;
 
 public class armFullRetract extends Command {
   /**
@@ -18,16 +18,16 @@ public class armFullRetract extends Command {
    */
   public armFullRetract() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
+    requires(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     
-    Robot.armControl.setArmHeight(RobotPreferences.kFullRetractHeight);
-    Robot.armControl.setArmPosition(armPosition.fullRetract);
-    Robot.armControl.brake(false);
+    Robot.climber.setArmHeight(RobotPreferences.kFullRetractHeight);
+    Robot.climber.setArmPosition(armPosition.fullRetract);
+    Robot.climber.brake(false);
     
   }
 
@@ -39,7 +39,7 @@ public class armFullRetract extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end() {
-    Robot.armControl.brake(true);
+    Robot.climber.brake(true);
   }
 
   // Returns true when the command should end.

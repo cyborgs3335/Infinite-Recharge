@@ -85,15 +85,15 @@ public class OI
       intakePC.whileHeld(new triggerIntake());
 
       JoystickButton toggleIntake = addButton(mJoystick2, bIntakeToggle, "Intake Toggle PC");
-      toggleIntake.toggleWhenPressed(new toggleIntake());
+      toggleIntake.whenPressed(new toggleIntake());
       JoystickButton toggleIntake2 = addButton(mJoystick, bIntakeToggle, "Intake Toggle PC");
-      toggleIntake2.toggleWhenPressed(new toggleIntake());
+      toggleIntake2.whenPressed(new toggleIntake());
 
       // JoystickButton toggleIntakeArmMotor = addButton(mJoystick2, bIntakeArmMotorToggle, "Toggle Intake Arm Motor");
       // toggleIntakeArmMotor.toggleWhenPressed(new toggleIntakeArmMotor());
 
       JoystickButton toggleIntakeArm = addButton(mJoystick2, bIntakeArmToggle, "Toggle Intake Arm");
-      toggleIntakeArm.toggleWhenPressed(new toggleIntakeArm());
+      toggleIntakeArm.whenPressed(new toggleIntakeArm());
 
       JoystickButton switchDrive = addButton(mJoystick, bSwitchDrive, "Toggle DriveState");
       switchDrive.whenPressed(new switchDrive());

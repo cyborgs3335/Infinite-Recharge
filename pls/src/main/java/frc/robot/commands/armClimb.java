@@ -16,14 +16,14 @@ public class armClimb extends Command {
   public armClimb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.armControl);
+    requires(Robot.climber);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.armControl.brake(true);
-    Robot.armControl.moveArm(.5);
+    Robot.climber.brake(true);
+    Robot.climber.moveArm(.5);
     WaitCommand w = new WaitCommand(.02);
     w.initialize();
     
@@ -33,8 +33,8 @@ public class armClimb extends Command {
   @Override
   protected void execute() {
     //Robot.armControl.moveArm(mapAxis.map(Robot.oi.getJoystick().getRawAxis(2)));
-    Robot.armControl.brake(false);
-    Robot.armControl.setSolenoid(Value.kReverse);
+    Robot.climber.brake(false);
+    Robot.climber.setSolenoid(Value.kReverse);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -46,7 +46,7 @@ public class armClimb extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.armControl.brake(true);
+    Robot.climber.brake(true);
   }
 
   // Called when another command which requires one or more of the same

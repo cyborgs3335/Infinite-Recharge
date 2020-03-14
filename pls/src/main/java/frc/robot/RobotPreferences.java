@@ -67,14 +67,20 @@ public class RobotPreferences {
     public static final double kDistFromBaseMax = 0;
     public static final double kDistFromBaseMin = 0;
 
-    //vision
-    public static final double kCameraDistanceFromFront = 17.75; 
-    public static final double kCameraHeight = 36+(5d/8); 
-    public static final double kCameraAngle = -18; 
-    public static final double kPortTargetBottomToPortCenter = 15;//done
-    public static final double kDrivetrainWheelDiameterInches = 4.0;
-
     //target center heights
     public static final double kFloorToPortCenter = 98.25;//done
     public static final double LowestPort = 23;//done
+
+    //vision
+    public static final double kCameraDistanceFromFront = 17.75; 
+    public static final double kCameraHeight = 36+(5d/8); 
+    public static final double kCameraAngle = 30;
+    public static final double kClearanceThreshold = 4; //done
+    public static final double kCameraYAngleFromHorz = 24.85; //done
+    public static final double kPortTargetBottomToPortCenter = 15;//done
+    public static final double kYDistFromPortToLimelight = kFloorToPortCenter - kCameraHeight;
+    public static final double kXDistFromPortToLimelight = 123098174;
+    public static final double kDrivetrainWheelDiameterInches = 4.0;
+
+    
 }

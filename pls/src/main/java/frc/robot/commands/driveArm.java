@@ -18,13 +18,13 @@ public class driveArm extends Command {
    */
   public driveArm() {
     // Use addRequirements() here to declare subsystem dependencies.
-    requires(Robot.armControl);
+    requires(Robot.climber);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.armControl.driveArms = !Robot.armControl.driveArms;
+    Robot.climber.driveArms = !Robot.climber.driveArms;
     isFinished = true;
   }
 

@@ -23,7 +23,7 @@ public class rotationControl extends Command
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.colorSensor);
-    requires(Robot.armControl);
+    requires(Robot.climber);
   }
 
   // Called just before this Command runs the first time
